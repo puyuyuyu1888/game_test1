@@ -1,0 +1,1092 @@
+<!doctype html><html lang="ja" data-generated="2026-09-24 sight9-rearline-summon-symmetry revision JST"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="小さな仲間とわちゃわちゃ城攻め。カードをタップして召喚する、自動バトルゲーム。"><title>決戦！ぷゆゆヶ原</title><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%23f6edce'/%3E%3Ctext x='4' y='25' font-size='25'%3E😊%3C/text%3E%3C/svg%3E"><style>
+:root{font-family:"Hiragino Maru Gothic ProN","Noto Sans JP",system-ui,sans-serif;color:#344b37;background:#edf5df;font-size:16px;color-scheme:light;--green:#5a9944;--line:#d6dfc5;--muted:#7d8a6e}*{box-sizing:border-box}body{margin:0;min-height:100vh;background:linear-gradient(#d6f1ff,#eff6dd 75%)}button,input,select,textarea{font:inherit}button{cursor:pointer;border:1px solid #b6c99e;border-radius:10px;background:#fffdf4;color:#4c653c;padding:10px 14px;box-shadow:0 2px 0 #8eac7320;touch-action:manipulation}button:hover{background:#f2f9df}button:disabled{opacity:.5;cursor:not-allowed}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid #73a7d0;outline-offset:2px}select,input,textarea{border:1px solid #c3d3ad;border-radius:8px;background:white;color:#405838;padding:8px}.primary{background:#5e9d47;color:white;border-color:#4c823c;box-shadow:0 3px 0 #407934}.primary:hover{background:#50883d}header{max-width:1000px;margin:auto;padding:17px 20px;display:flex;justify-content:space-between;align-items:center;gap:15px}.brand{display:flex;gap:12px;align-items:center}.brand>span{font-size:38px}h1{font-size:21px;margin:0;color:#42623f}.brand small{font-size:12px;color:#7b9479;display:block;margin-top:3px}.header-actions{display:flex;gap:10px;align-items:center;font-size:14px}.speed-label{color:#6d866b;white-space:nowrap}main{max-width:790px;margin:0 auto;padding:0 16px 24px}.battle-top{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:#7f947c;margin:4px 0 8px;gap:8px}.legend{display:flex;gap:6px;align-items:center}.ally-dot,.enemy-dot{width:7px;height:7px;border-radius:50%;display:inline-block;background:#5b99c8}.enemy-dot{background:#df8566}#modeBadge{background:#ffedb9;color:#9c7433;padding:4px 8px;border-radius:6px}.status-bar{background:#ffffff80;border:1px solid #d4e2c6;border-radius:10px;padding:8px 11px;display:flex;justify-content:space-between;gap:8px;font-size:13px;flex-wrap:wrap;line-height:1.4;margin-bottom:10px}.status-bar .buffs{color:#729050}.field-shell{border:4px solid #99b76f;border-radius:17px;overflow:hidden;box-shadow:0 5px 0 #77974d35}.castle{height:34px;position:relative;display:flex;justify-content:space-between;align-items:center;padding:0 12px;font-size:14px;overflow:visible;z-index:2}.castle span,.castle strong{z-index:2}.castle strong{font-family:ui-monospace,monospace;font-size:13px}.castle i{position:absolute;bottom:0;left:0;height:3px;transition:width .2s;background:currentColor;opacity:.6}.castle-emblem{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:calc(var(--field-unit,20px)*2.05);line-height:1;z-index:1;pointer-events:none;filter:drop-shadow(0 1px 2px rgba(255,255,255,.9)) drop-shadow(0 2px 3px rgba(0,0,0,.12));opacity:.97}.enemy-castle .castle-emblem{transform:translate(-50%,-38%)}.ally-castle .castle-emblem{transform:translate(-50%,-62%)}.enemy-castle{background:#ffe4c5;color:#975c43}.ally-castle{background:#ddf0ff;color:#4c7c9c}.field-frame{position:relative}.field-frame #field{display:grid;grid-template-columns:repeat(25,minmax(0,1fr));aspect-ratio:25/24;position:relative;background:#b4d885;isolation:isolate;overflow:clip}.cell{border:0;border-right:1px solid #6c935825;border-bottom:1px solid #6c935825;border-radius:0;aspect-ratio:1;min-width:0;padding:0;box-shadow:none;z-index:1;background:transparent}.cell.enemy-land{background:#e4c67626}.cell.neutral-land{background:#abd17716}.cell.home-land{background:#8fd7d738}.cell.boundary{border-bottom:2px dashed #738f6845}.cell:hover{background:#faffc945}.actors,.grass{position:absolute;inset:0;pointer-events:none}.actors{z-index:3}.grass{z-index:0;overflow:hidden}.grass span{position:absolute;opacity:.24;font-size:15px;animation:grass 3s infinite alternate;transform-origin:bottom}.actor{position:absolute;width:4%;height:4.1666667%;display:flex;align-items:center;justify-content:center;transition:top .18s ease-out,left .18s ease-out}.unit{position:relative;width:86%;height:86%;display:flex;align-items:center;justify-content:center;font-size:clamp(12px,2.8vw,23px);line-height:1;border-radius:40%;background:#dff4ff;box-shadow:inset 0 0 0 1.5px #5c99cc,0 2px 2px #466b3830;transform:translateX(var(--jitter));--size:1;scale:var(--size)}.unit.enemy{background:#f0d2be;box-shadow:inset 0 0 0 1.5px #d57c5e,0 2px 2px #466b3830}.face{animation:bob 1.5s ease-in-out infinite;animation-delay:var(--delay);display:inline-block}/* Enemy trial palette: same ability emoji as allies, recolored deep blue for instant team recognition. */
+.enemy .face{filter:hue-rotate(185deg) saturate(2.25) brightness(.72) contrast(1.15);text-shadow:0 0 2px rgba(235,245,255,.9),0 0 5px rgba(24,67,145,.35)}
+.unit.zombie-unit{background:radial-gradient(circle at 50% 48%,rgba(231,239,218,.96) 0 42%,rgba(195,211,178,.68) 60%,rgba(105,126,91,.24) 78%,rgba(105,126,91,0) 100%);box-shadow:inset 0 0 0 1.5px rgba(82,104,70,.72),0 2px 3px rgba(40,55,35,.12)}.unit.zombie-unit .face{filter:none!important;text-shadow:none!important}.unit.zombie-unit .life{background:#6f835f}
+.enemy .weapon{filter:brightness(.75)}.weapon{position:absolute;bottom:0;right:-2px;font-size:55%;text-shadow:0 0 1px white}.life{position:absolute;height:2px;bottom:-1px;left:0;background:#367fae;border-radius:3px;max-width:100%}.enemy .life{background:#b75740}.unit.legendary{--size:1.25;outline:1.5px solid #bc75e6;box-shadow:0 0 7px #c184ed,inset 0 0 0 1px #b37dd9;animation:aura 1.8s infinite alternate;z-index:4}.unit.giant{--size:1.55;z-index:5}.unit.legendary.giant{--size:1.9375}.unit.mob{width:74%;height:74%}.actor.lunge .face{animation:lunge .28s ease-out}.actor.shake .unit{animation:shake .28s ease-out}.actor.vanish{animation:vanish .3s forwards}.zone-label{position:absolute;right:4px;font-size:10px;letter-spacing:.05em;color:#56734888;pointer-events:none;z-index:2;background:#faffdf40;border-radius:3px;padding:1px 3px}.enemy-zone{top:1%}.neutral-zone{top:34%}.home-zone{top:68%}.effect,.projectile{position:absolute;z-index:7;pointer-events:none;font-size:13px;font-weight:800;white-space:nowrap}.effect{color:#a24d37;background:#fffbdabf;border-radius:6px;padding:1px 3px}.effect.heal{color:#388741}.effect.magic,.projectile{background:transparent;font-size:26px;text-shadow:0 0 4px #fff}.projectile{font-size:22px;color:#935c29}.laser-beam{position:absolute;z-index:8;pointer-events:none;width:3px;border-radius:3px;background:linear-gradient(90deg,rgba(255,255,255,.95),rgba(120,220,255,.95),rgba(255,255,255,.95));box-shadow:0 0 4px rgba(90,200,255,.95),0 0 9px rgba(70,160,255,.8);transform-origin:50% 0;opacity:0}.tile-emoji{position:absolute;z-index:9;pointer-events:none;font-size:calc(var(--field-unit)*.9);line-height:1;transform:translate(-50%,-50%)}.saturn-dark{position:absolute;z-index:6;pointer-events:none;border-radius:50%;background:radial-gradient(circle at 50% 48%,rgba(0,0,0,.99) 0%,rgba(2,0,6,.985) 50%,rgba(10,2,20,.97) 70%,rgba(44,13,78,.80) 87%,rgba(90,52,145,.18) 97%,rgba(0,0,0,0) 100%);box-shadow:inset 0 0 24px rgba(93,48,155,.48),0 0 18px rgba(70,35,130,.45)}.saturn-body{position:absolute;z-index:10;pointer-events:none;font-size:calc(var(--field-unit)*3.1);line-height:1;transform:translate(-50%,-50%);filter:drop-shadow(0 0 7px rgba(210,185,255,.95)) drop-shadow(0 0 14px rgba(118,74,190,.85));transform-origin:center}.spark-burst{position:absolute;z-index:11;pointer-events:none;width:0;height:0}.spark-burst i{position:absolute;left:-2px;top:-2px;width:4px;height:4px;border-radius:50%;background:radial-gradient(circle,#fff 0 34%,#fff3a3 38% 62%,rgba(255,202,60,.9) 66% 82%,rgba(255,220,100,0) 100%);box-shadow:0 0 5px rgba(255,244,175,.95)}.actor.follower-companion{z-index:0}.actor.follower-owner{z-index:2}.actor.hand-right .face{scale:-1 1}.actor.hand-punch{animation:handPunch .34s cubic-bezier(.2,.85,.35,1)}@keyframes handPunch{0%,100%{transform:translate(0,0)}48%{transform:translate(var(--punch-tx),var(--punch-ty))}}.commentary{height:27px;overflow:hidden;display:flex;align-items:center;gap:14px;font-size:12px;color:#85906f;padding:5px 2px;white-space:nowrap}.commentary span{overflow:hidden;text-overflow:ellipsis;min-width:0}.commentary span+span{opacity:.65}.hand-heading{display:flex;justify-content:space-between;align-items:center;font-size:14px;margin:10px 0 9px;gap:8px}.hand-heading>span{font-size:12px;color:#879571}.command-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-areas:'c1 c2 point' 'c3 c4 c5';gap:9px}.slot1{grid-area:c1}.slot2{grid-area:c2}.slot3{grid-area:c3}.slot4{grid-area:c4}.slot5{grid-area:c5}.card{--rare:#81b969;position:relative;overflow:hidden;min-width:0;border:2px solid var(--rare);border-radius:13px;padding:11px 12px 9px;background:#fffef6;text-align:left;box-shadow:0 3px 0 #adb98530;display:flex;flex-direction:column;gap:6px;min-height:113px}.card.r2{--rare:#d9b83b}.card.r3{--rare:#6b9dce}.card.r4{--rare:#b685d7}.card::before{content:'';position:absolute;inset:0;background:var(--rare);opacity:.055;pointer-events:none}.card.ready{box-shadow:0 0 12px color-mix(in srgb,var(--rare) 40%,transparent),0 3px 0 #91ab6260;background:#fffffa}.card.dim{filter:saturate(.65);opacity:.7}.card.paused-card{cursor:help}.cost-track{position:absolute;top:0;left:0;right:0;height:5px;background:#d7e0c380}.cost-track i{display:block;height:100%;background:var(--rare);transition:width .1s}.card-main{display:flex;justify-content:space-between;align-items:center;gap:6px}.card-portrait{font-size:34px;position:relative;line-height:1.2}.card-portrait .weapon{right:-4px;bottom:0}.card-portrait.r4{filter:drop-shadow(0 0 3px #bf82e1)}.card-stats{display:flex;flex-direction:column;gap:4px;font-size:15px;white-space:nowrap;color:#58714a}.card-name{font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:650;color:#516b40}.card-bottom{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:#8b9876;gap:4px}.card-cost{font-weight:750;color:#748c47}.point-card{grid-area:point;min-width:0;background:#fff0b8;border:2px solid #d9c278;border-radius:13px;padding:9px 12px;display:grid;grid-template-columns:1fr auto;align-items:center;gap:3px 6px}.point-title{font-size:12px;color:#a08745;grid-column:1/-1}.point-number{display:flex;align-items:baseline;gap:4px;grid-column:1}.point-number b{font-family:ui-monospace,monospace;font-size:30px;line-height:1;color:#98712d}.point-number span{font-size:12px;color:#b39451}.point-meter{grid-column:1/-1;height:5px;background:#e6d596;border-radius:5px;overflow:hidden}.point-meter i{height:100%;display:block;background:#dba638}.point-card small{font-size:11px;color:#ab8e4d;grid-column:1/-1;white-space:nowrap}.point-card button{grid-row:2;grid-column:2;padding:6px 8px;font-size:12px;border-color:#d7bd68;background:#fff8d9;white-space:nowrap}.play-hint{font-size:12px;color:#899674;margin:10px 0 20px}#pausedBadge{position:static;display:block;width:max-content;max-width:100%;margin:5px auto 0;transform:none;background:#fffcf1e0;border:1px solid #a0b685;box-shadow:0 5px 20px #52644030;border-radius:9px;padding:9px 12px;font-size:12px;white-space:nowrap;pointer-events:none;text-align:center}.paused .face,.paused .unit,.paused .grass span{animation-play-state:paused}.paused #field{filter:saturate(.85)}#outcome{position:absolute;z-index:10;top:34%;left:12%;right:12%;text-align:center;background:#fffdeced;border:3px solid #b9cf86;border-radius:16px;padding:20px 12px;box-shadow:0 8px 30px #758b4630}#outcome b{font-size:28px;color:#6d963f;display:block}#outcome p{font-size:14px;color:#829665}details>summary{cursor:pointer}details.rules,details.editor{border-top:1px solid #cfddba;margin-top:15px;padding-top:15px;font-size:14px;color:#768766}.rules p{font-size:13px;line-height:1.8}.editor{background:#fffdf2;border:1px solid #d3dfbe!important;border-radius:14px;padding:0!important;overflow:hidden}.editor>summary{padding:16px;font-size:15px;font-weight:700;color:#527446}.editor>summary span{font-weight:400;font-size:12px;color:#8d9b7c;margin-left:8px}.editor-content{padding:0 16px 20px}.editor-content p{font-size:13px;line-height:1.8;color:#839271}.editor-content details{border-top:1px solid #dce6cb;padding:13px 0}.editor-content details>summary{font-weight:650}.form-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:14px 0}.form-grid label{display:flex;flex-direction:column;gap:5px;font-size:12px;color:#71885b}.form-grid input,.form-grid select{width:100%;min-width:0;padding:9px;font-size:14px}.editor-content fieldset{border:1px solid #d8e5c6;border-radius:9px;margin:14px 0;padding:12px}.editor-content legend{font-weight:650;font-size:13px}.actions{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:12px 0}.actions button{font-size:13px}.editor-content section{border-top:2px solid #dce6c8;padding-top:12px;margin-top:20px}.editor-content h2{font-size:17px;margin:12px 0}.editor textarea{display:block;width:100%;margin:10px 0;font-size:13px;line-height:1.6;font-family:ui-monospace,monospace;resize:vertical}table{width:100%;border-collapse:collapse;font-size:12px;table-layout:fixed;margin:13px 0}th,td{padding:9px 8px;text-align:left;border-bottom:1px solid #dfe7d0;word-break:break-word}th{background:#edf5df;color:#6c8554}td button{font-size:12px;padding:5px 7px;margin:2px}pre{white-space:pre-wrap;word-break:break-word;font-size:12px;background:#eff5e4;border-radius:8px;padding:12px}.error{color:#ac513c!important}dialog{width:min(420px,calc(100% - 24px));border:2px solid #bdcea3;border-radius:18px;padding:24px;background:#fffef5;color:#47603c;max-height:85dvh;overflow:auto;box-shadow:0 12px 70px #30412640}dialog::backdrop{background:#243c3460;backdrop-filter:blur(3px)}.close{position:absolute;top:9px;right:10px;border:0;background:transparent;font-size:26px;padding:0 8px}.profile-heading{display:flex;gap:16px;align-items:center;margin:4px 15px 14px 0}.profile-heading>span{font-size:42px}.profile-heading h2{font-size:20px;margin:0 0 6px}.profile-heading small{color:#90996f;font-size:12px}.profile-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:15px 0}.profile-stat{padding:10px;background:#eef5df;border-radius:9px;display:flex;justify-content:space-between;gap:7px}.profile-stat small{font-size:12px;color:#899a70}.profile-stat b{font-size:15px}.profile-skill{border-top:1px solid #d9e4c8;padding-top:12px;font-size:14px;line-height:1.8}.profile-skill p{font-size:13px;color:#7f9268}.profile-skill li{font-size:13px;margin:4px 0}#toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);padding:12px 18px;border:1px solid #b3c996;border-radius:10px;background:#fffde9;color:#627d45;box-shadow:0 5px 20px #53673230;opacity:0;pointer-events:none;transition:opacity .2s;max-width:90vw;font-size:14px;z-index:30}#toast.show{opacity:1}@keyframes bob{50%{transform:translateY(-1.5px)}}@keyframes grass{to{rotate:6deg}}@keyframes aura{to{box-shadow:0 0 10px #ba6fe3,inset 0 0 0 1px #bb84df}}@keyframes lunge{50%{transform:translateY(-4px) scale(1.07)}}@keyframes shake{25%{translate:-2px}75%{translate:2px}}@keyframes vanish{to{transform:scale(.2) translateY(-12px);opacity:0}}@media(min-width:850px){main{max-width:min(790px,calc(100svh - 195px))}.editor .form-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.field-shell{max-width:100%}}@media(max-width:600px){header{padding:12px;gap:8px}.brand{gap:6px}.brand>span{font-size:27px}h1{font-size:16px}.brand small{display:none}.header-actions{gap:6px;font-size:12px}.header-actions button{font-size:12px;padding:8px}.speed-label{font-size:0}.speed-label select{font-size:12px;padding:6px}main{padding:0 10px 20px}.status-bar{font-size:11px;gap:4px;padding:6px 8px}.field-shell{border-width:3px;border-radius:13px}.castle{height:28px;font-size:12px;padding:0 9px}.castle strong{font-size:11px}.castle-emblem{font-size:calc(var(--field-unit,16px)*1.85)}.unit{font-size:clamp(10px,3vw,18px);transform:none}.zone-label{font-size:9px}.command-grid{gap:6px}.card{padding:9px 8px 7px;min-height:100px;gap:4px;border-radius:10px}.card-portrait{font-size:28px}.card-stats{font-size:12px;gap:3px}.card-name{font-size:12px}.card-bottom{font-size:10px}.point-card{padding:8px;border-radius:10px;gap:3px}.point-number b{font-size:25px}.point-title{font-size:10px}.point-card small{font-size:9px}.point-card button{font-size:10px;padding:5px 4px}.point-number span{font-size:10px}.commentary span:not(:first-child){display:none}.commentary{height:24px;font-size:11px}.hand-heading{margin-top:6px;font-size:13px}.hand-heading>span{font-size:11px}.play-hint{font-size:10px;line-height:1.5;margin:9px 0 14px}.editor-content{padding:0 12px 15px}.form-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.editor>summary span{display:block;margin:5px 0 0}table{font-size:11px}th,td{padding:8px 5px}}@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}[hidden]{display:none!important}
+
+.card-portrait.r4{scale:1.25}
+@media(max-width:600px){.point-card{gap:2px}.point-card button{font-size:10px;padding:4px}.point-number{min-width:0}.point-number b{font-size:23px}.point-card small{font-size:9px;white-space:normal;line-height:1.2}.point-card .point-meter{margin:1px 0}.card-stats{font-variant-numeric:tabular-nums}}
+.editor select{max-width:100%}
+.card *{pointer-events:none}
+#startBattle{position:absolute;z-index:11;top:50%;left:50%;transform:translate(-50%,-50%);font-weight:800;font-size:16px;padding:12px 22px;box-shadow:0 6px 22px #52644045,0 3px 0 #407934;white-space:nowrap}
+
+.card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}.card-stats-row{display:flex;justify-content:space-between;gap:8px;font-size:14px;color:#58714a;font-variant-numeric:tabular-nums}.card-bottom>span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.field-frame #field{aspect-ratio:25/26}.actor{height:3.8461538%}.cell.enemy-spawn{background:#ffe8d7;border-bottom:1px dashed #c98768}.cell.ally-spawn{background:#dfecff;border-top:1px dashed #6297bf}.terrain{position:absolute;inset:0;pointer-events:none;z-index:2}.fence{position:absolute;width:4%;height:3.8461538%;font-size:clamp(10px,2.7vw,23px);line-height:1;text-align:center;background:#aa80552e;color:#6b8548}.enemy-fence{color:#b86c46;background:#d19b6b50}.battle-line{position:absolute;left:0;right:0;border-top:2px dashed #e49920;color:#815000;font-size:9px}.battle-line span{position:absolute;left:0;top:-13px;background:#fff5c8d9;padding:0 3px}.defense-line{border-color:#4387c4;color:#265d99}.defense-line span{left:auto;right:0;background:#e0f1ffdb}.battle-marker{position:absolute;transform:translate(-50%,-50%);font-size:10px;color:#793e35;background:#fff7dacc;border:1px solid #ae776655;border-radius:8px;padding:2px;opacity:.8}.battle-commands{display:grid;grid-template-columns:1fr 1fr 1fr 1.15fr;gap:6px;align-items:stretch;margin:8px 0}.battle-commands>div{text-align:center;font-size:11px}.battle-commands>div>div{display:flex;justify-content:center;gap:3px}.battle-commands button{font-size:12px;padding:7px 5px}.battle-commands>div button{flex:1}.battle-commands .active{background:#4d8842;color:white;border-color:#315d28;box-shadow:0 0 9px #599f5c99}.ai-info{display:flex;justify-content:space-between;align-items:center;font-size:11px;margin:7px 0;gap:5px}.ai-info button{font-size:11px;padding:5px 8px}#specs{width:min(760px,calc(100% - 24px))}#specs h2{font-size:19px;margin-right:20px}#specs details{border-top:1px solid #d6dfc5;padding:12px 0}#specs summary{font-weight:700}#specs p{line-height:1.85;font-size:13px}#specs table{table-layout:auto}#specs pre{max-height:300px;overflow:auto}
+
+/* 決戦！ぷゆゆヶ原 UI update */
+.header-actions,.battle-top,.hand-heading,.play-hint{display:none!important}
+.status-bar{margin:8px 0 0;display:block;text-align:center;line-height:1.55}
+.status-bar .buffs{display:none}
+.commentary{position:relative;height:26px;margin:2px 0 5px;padding:0;overflow:hidden;border-top:1px solid #d8e4c9;border-bottom:1px solid #d8e4c9}
+.commentary .ticker{position:absolute;left:100%;top:4px;white-space:nowrap;animation:tickerMove 6s linear forwards}
+.commentary .good{color:#2673c9}.commentary .bad{color:#c94a3d}.commentary .neutral{color:#75866c}
+@keyframes tickerMove{from{transform:translateX(0)}to{transform:translateX(calc(-100vw - 120%))}}
+.battle-commands{grid-template-columns:repeat(4,minmax(0,1fr));gap:5px;margin:5px 0}
+.battle-commands>.command-main{display:flex}.battle-commands>.command-main button{width:100%;height:100%;padding:6px 3px}
+.battle-commands>.line-control{display:grid;grid-template-rows:1fr 1fr;gap:3px}
+.battle-commands>.line-control button{width:100%;padding:4px 2px;font-size:11px}
+.battle-commands .ai-row{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;gap:5px}
+.battle-commands .ai-row button{font-size:10px;padding:4px 6px}
+.frontline span{left:auto;right:0;cursor:ns-resize;pointer-events:auto;touch-action:none;user-select:none}
+.defense-line span{cursor:ns-resize;pointer-events:auto;touch-action:none;user-select:none}
+.battle-line.dragging span{font-weight:800;outline:2px solid currentColor;outline-offset:2px}
+#restartAction{margin-top:3px}
+@media(max-width:600px){header{padding:7px 10px}.brand>span{font-size:23px}h1{font-size:15px}main{padding:0 7px 14px}.field-shell{margin-top:0}.status-bar{font-size:11px;padding:5px 7px}.battle-commands{gap:4px}.battle-commands button{font-size:10px}.command-grid{margin-top:3px}}
+
+/* UI-only compact fixed-screen revision */
+header{display:none!important}
+#startBattle{position:static;transform:none}
+#startOverlay{position:absolute;inset:0;z-index:11;display:flex;align-items:center;justify-content:center;pointer-events:none;transform:translateY(-4%)}
+#startOverlay[hidden]{display:none!important}
+.start-panel{pointer-events:auto;text-align:center;padding:14px 18px;border:1px solid #b7ca9d;border-radius:15px;background:#fffbe8d9;box-shadow:0 7px 26px #40543355;backdrop-filter:blur(2px)}
+.start-panel h1{margin:0 0 10px;font-size:clamp(20px,5vw,30px);color:#42623f;text-shadow:0 1px 0 #fff}
+.point-card{display:block;padding:8px;min-height:0}
+.point-normal{height:auto;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:2px 5px}
+.point-normal #pause,.point-normal #readyMenuAction{padding:6px 8px;font-size:11px}
+.point-paused{height:100%;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;align-items:stretch}
+.point-paused[hidden]{display:none!important}.point-paused button{min-width:0;padding:4px 2px;font-size:10px;white-space:normal;line-height:1.2}
+.editor{margin:0}.editor .menu-head{display:flex;justify-content:space-between;align-items:center;gap:10px;position:sticky;top:0;z-index:2;background:#fffdf2;padding:10px 0;border-bottom:1px solid #dce6cb}.menu-tools{margin-top:10px}
+@media(max-width:600px){
+ html,body{width:100%;height:100%;height:100dvh;overflow:hidden;overscroll-behavior:none}
+ body{min-height:0}
+ main{height:100dvh;max-width:none;padding:4px 7px 5px;display:flex;flex-direction:column;overflow:hidden}
+ .field-shell{flex:0 1 auto;width:min(100%,calc((100dvh - 300px) * .9259));min-width:260px;align-self:center}
+ .field-frame #field{aspect-ratio:25/26}
+ .castle{height:24px}
+ .status-bar{flex:0 0 auto;margin:3px 0 0;padding:2px 6px;line-height:1.25;font-size:10px}
+ .commentary{flex:0 0 21px;height:21px;margin:1px 0 2px;font-size:10px}
+ .commentary .ticker{top:2px}
+ .battle-commands{flex:0 0 48px;height:48px;margin:2px 0;gap:3px}
+ .battle-commands>.command-main button{padding:3px 2px;font-size:10px}.battle-commands>.line-control{gap:2px}.battle-commands>.line-control button{padding:1px;font-size:9px}
+ .command-grid{flex:0 0 174px;height:174px;min-height:0;margin-top:2px;gap:4px;grid-template-rows:1fr 1fr}
+ .card{min-height:0;height:100%;padding:6px 6px 5px;gap:2px}.card-portrait{font-size:24px}.card-stats-row{font-size:11px}.card-name{font-size:11px}.card-bottom{font-size:9px}.card-cost{font-size:10px}
+ .point-card{height:100%;padding:5px}.point-number b{font-size:22px}.point-title{font-size:9px}.point-normal #pause,.point-normal #readyMenuAction{font-size:9px;padding:4px 3px}
+ .rules{display:none}
+ #editor{display:none;position:fixed;inset:0;z-index:50;width:100%;height:100dvh;max-height:none;border:0!important;border-radius:0;background:#fffdf2;overflow:auto;margin:0;padding:0!important}
+ #editor[open]{display:block}#editor>summary{display:none}.editor-content{padding:0 12px 18px;min-height:100%}
+}
+@media(max-width:600px) and (max-height:720px){.field-shell{width:min(100%,calc((100dvh - 270px) * .9259));min-width:220px}.command-grid{flex-basis:150px;height:150px}.card-portrait{font-size:20px}.card-stats-row{font-size:10px}.card-bottom{font-size:8px}.battle-commands{flex-basis:44px;height:44px}}
+
+
+/* New presentation rules, board geometry unchanged. */
+.unit{scale:calc(var(--base-size,1.3) * var(--rarity-size,1) * var(--size,1))}.actor.giant-actor{width:12%;height:11.5384615%;z-index:6}.actor.giant-actor .unit{--size:1;width:94%;height:94%;font-size:calc(var(--field-unit)*2.2)}.actor.giant-actor .life{height:3px}.unit.giant{--size:1}.unit.legendary.giant{--size:1}.unit.mob{width:86%;height:86%}
+.card-cost{display:flex;align-items:baseline;gap:2px;white-space:nowrap}.card-cost b{font-size:3em;line-height:1;font-weight:900}.card-cost small{font-size:.8em}
+.portrait-stack{display:flex;flex-direction:column;align-items:center;gap:3px}.attack-class{font-size:10px;line-height:1}
+.status-bar{display:flex;flex-direction:row;flex-wrap:nowrap;white-space:nowrap;gap:8px;overflow-x:auto;font-size:clamp(9px,1.6vw,12px)}.command-status{font-weight:bold}
+.point-paused button{grid-column:auto;grid-row:auto}
+.auto-front{font-size:11px;display:flex;gap:4px;align-items:center;flex-shrink:0}.auto-front input{margin:0}
+.commentary{display:flex;gap:24px;overflow-x:auto;scrollbar-width:none;white-space:nowrap;justify-content:flex-start}.commentary .ticker-item{display:block!important;overflow:visible;flex:none;position:static;animation:none;font-size:12px}
+#field{--field-unit:clamp(9px,2.4vw,24px)}.object-layer{position:absolute;inset:0;pointer-events:none;z-index:5}.field-object{position:absolute;transform:translate(-50%,-50%);font-size:var(--field-unit);line-height:1}.field-object.saturn{display:none}.field-object.bomb-blink{animation-name:bombBlink;animation-timing-function:steps(2,end);animation-iteration-count:infinite}.field-object.bomb-blink-3{animation-duration:1.05s}.field-object.bomb-blink-2{animation-duration:.7s}.field-object.bomb-blink-1{animation-duration:.38s}@keyframes bombBlink{50%{opacity:.18}}.paused .field-object.bomb-blink{animation-play-state:paused}
+@media(max-width:600px){.card-cost{font-size:10px}.card-cost b{font-size:30px}.card-top{align-items:center}.attack-class{font-size:9px}}
+
+/* 2026-09-23 visual refinement: soft unit plates, richer R4 aura, custom dragon and transient skill FX */
+.unit{
+  background:radial-gradient(circle at 50% 48%,rgba(223,244,255,.94) 0 42%,rgba(223,244,255,.70) 58%,rgba(190,226,247,.34) 76%,rgba(190,226,247,0) 100%);
+  box-shadow:0 0 5px rgba(92,153,204,.28),0 2px 3px rgba(70,107,56,.10);
+  border-radius:50%;
+  --charge-size:1;
+  scale:calc(var(--base-size,1.3) * var(--rarity-size,1) * var(--size,1) * var(--charge-size,1));
+}
+.unit.enemy{
+  background:radial-gradient(circle at 50% 48%,rgba(239,245,255,.96) 0 40%,rgba(216,229,255,.78) 58%,rgba(50,88,170,.34) 77%,rgba(27,59,129,0) 100%);
+  box-shadow:inset 0 0 0 1.8px rgba(31,69,151,.86),0 0 7px rgba(26,63,145,.36),0 2px 3px rgba(28,55,108,.14);
+}
+.unit.legendary{
+  --size:1;
+  outline:none;
+  box-shadow:0 0 7px rgba(193,132,237,.88),0 0 14px rgba(166,99,221,.56),0 0 22px rgba(128,73,196,.20);
+  animation:auraLuxury 1.9s ease-in-out infinite alternate;
+  z-index:4;
+}
+.unit.legendary::before{
+  content:"";
+  position:absolute;
+  inset:-14%;
+  border:1.5px solid rgba(201,154,241,.78);
+  border-radius:50%;
+  box-shadow:0 0 7px rgba(198,143,238,.65),inset 0 0 5px rgba(227,196,252,.38);
+  pointer-events:none;
+  animation:auraRing 2.4s ease-in-out infinite;
+}
+.unit.legendary::after{
+  content:"";
+  position:absolute;
+  inset:-22%;
+  border-radius:50%;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 18% 28%,rgba(255,255,255,.95) 0 2%,rgba(222,185,255,.78) 3%,transparent 6%),
+    radial-gradient(circle at 82% 34%,rgba(255,255,255,.92) 0 1.8%,rgba(205,153,248,.72) 3%,transparent 6%),
+    radial-gradient(circle at 70% 83%,rgba(255,255,255,.88) 0 1.6%,rgba(191,132,237,.66) 3%,transparent 6%);
+  animation:auraSparkle 2.8s linear infinite;
+}
+@keyframes auraLuxury{to{box-shadow:0 0 10px rgba(201,145,242,.98),0 0 19px rgba(173,106,229,.68),0 0 28px rgba(122,67,192,.28)}}
+@keyframes auraRing{0%,100%{transform:scale(.96);opacity:.62}50%{transform:scale(1.08);opacity:1}}
+@keyframes auraSparkle{0%{transform:rotate(0deg);opacity:.45}50%{opacity:.95}100%{transform:rotate(360deg);opacity:.45}}
+
+.actor.dragon-actor{width:8%;height:7.6923077%;z-index:5}
+.actor.dragon-actor .unit{width:96%;height:96%;--size:1;--base-size:1}
+.actor.dragon-actor .face{width:92%;height:92%;display:flex;align-items:center;justify-content:center;font-size:calc(var(--field-unit)*1.65)}
+.dragon-svg{width:100%;height:100%;overflow:visible;filter:drop-shadow(0 1px 1px rgba(78,10,7,.42))}
+.dragon-svg .wing{fill:#b91d24;stroke:#6f1016;stroke-width:1.4}
+.dragon-svg .wing-membrane{fill:#e6483f;opacity:.78}
+.dragon-svg .body{fill:#cf2528;stroke:#6f1016;stroke-width:1.5}
+.dragon-svg .belly{fill:#ee6b4f}
+.dragon-svg .horn{fill:#f0c79a;stroke:#7a4b32;stroke-width:.8}
+.dragon-svg .claw{fill:#f2d3a9}
+.dragon-svg .eye{fill:#ffd84a;stroke:#401007;stroke-width:.7}
+
+.actor.selfdestruct-charge .unit{z-index:7}
+.actor.selfdestruct-charge .face{animation:selfDestructPulse .48s ease-in-out infinite alternate}
+@keyframes selfDestructPulse{from{transform:scale(.96)}to{transform:scale(1.08)}}
+
+.scorch-mark{
+  position:absolute;
+  z-index:2;
+  pointer-events:none;
+  border-radius:46% 54% 50% 44% / 52% 45% 55% 48%;
+  background:
+    radial-gradient(ellipse at 42% 47%,rgba(28,15,7,.74) 0 25%,rgba(56,29,12,.58) 40%,rgba(86,48,20,.34) 58%,rgba(87,52,25,.12) 72%,transparent 82%),
+    radial-gradient(circle at 68% 35%,rgba(36,18,8,.34) 0 9%,transparent 22%),
+    radial-gradient(circle at 28% 68%,rgba(43,22,9,.32) 0 8%,transparent 20%);
+  mix-blend-mode:multiply;
+}
+.fx-mirror{scale:-1 1}
+
+.summon-sparkle{
+  position:absolute;
+  z-index:10;
+  pointer-events:none;
+  font-size:calc(var(--field-unit)*1.05);
+  line-height:1;
+  transform:translate(-50%,-50%);
+  text-shadow:0 0 5px rgba(255,255,255,.95),0 0 9px rgba(255,234,126,.85);
+}
+
+
+/* 2026-09-23 command presentation revision */
+.field-shell.command-active{outline:3px solid transparent;outline-offset:0}
+.field-shell.command-charge{border-color:#2f78d0;outline-color:#2f78d0;box-shadow:0 0 0 2px rgba(47,120,208,.14),0 5px 0 rgba(47,120,208,.18)}
+.field-shell.command-defend{border-color:#d84d43;outline-color:#d84d43;box-shadow:0 0 0 2px rgba(216,77,67,.14),0 5px 0 rgba(216,77,67,.18)}
+.field-shell.command-active .battle-line{display:none!important}
+.command-announcement{position:absolute;z-index:14;left:50%;top:50%;transform:translate(-50%,-50%) scale(.96);min-width:42%;max-width:90%;padding:12px 18px;border-radius:14px;text-align:center;font-size:clamp(24px,6vw,42px);font-weight:900;letter-spacing:.06em;line-height:1.15;pointer-events:none;opacity:0;white-space:nowrap;backdrop-filter:blur(2px)}
+.command-announcement.charge{color:#155ca8;background:rgba(225,241,255,.78);border:3px solid rgba(47,120,208,.76);text-shadow:0 1px 0 #fff,0 0 8px rgba(67,145,224,.24)}
+.command-announcement.defend{color:#a83028;background:rgba(255,231,228,.78);border:3px solid rgba(216,77,67,.76);text-shadow:0 1px 0 #fff,0 0 8px rgba(216,77,67,.22)}
+.command-announcement.show{animation:commandAnnouncementFade 1s ease-out forwards}
+@keyframes commandAnnouncementFade{0%{opacity:0;transform:translate(-50%,-50%) scale(.94)}12%{opacity:1;transform:translate(-50%,-50%) scale(1)}68%{opacity:.9}100%{opacity:0;transform:translate(-50%,-54%) scale(1.02)}}
+@media(max-width:600px){.field-shell.command-active{outline-width:3px}.command-announcement{padding:9px 12px;font-size:clamp(21px,7vw,34px)}}
+
+
+/* Basic field encounter uses the same board, actors, attack and skill renderer. */
+.test-banner{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:10px 0;padding:10px;border:2px solid #91a866;border-radius:10px;background:#fff8de}
+.test-banner[hidden]{display:none}
+.test-banner .actions{display:flex;gap:6px;flex-wrap:wrap}
+.test-battle .battle-commands,.test-battle .command-grid,.test-battle .auto-front,.test-battle .play-hint,.test-battle .castle,.test-battle .defense-line,.test-battle .battle-marker{display:none!important}
+
+/* ワープゲート・範囲デバフ・H&A・爆弾の表示（今回追加） */
+.gate-site{position:absolute;width:calc(var(--field-unit)*1.55);height:calc(var(--field-unit)*1.55);transform:translate(-50%,-50%);border-radius:50%;border:1.5px dashed #755ec5;background:radial-gradient(circle,#c1b5ff50,#987ed51a 65%,transparent);box-shadow:0 0 7px #cbbdff;animation:gateSite 1.4s ease-in-out infinite alternate}
+.field-object.mirror{
+  width:calc(var(--field-unit)*1.16);height:calc(var(--field-unit)*1.16);
+  display:flex;align-items:center;justify-content:center;
+  font-size:calc(var(--field-unit)*1.08);border-radius:50%;
+  filter:drop-shadow(0 0 4px rgba(205,175,255,.92));
+  box-shadow:0 0 7px rgba(193,132,237,.88),0 0 14px rgba(166,99,221,.56),0 0 22px rgba(128,73,196,.20);
+  animation:auraLuxury 1.9s ease-in-out infinite alternate;
+}
+.field-object.mirror::before{
+  content:"";position:absolute;inset:-14%;border:1.5px solid rgba(201,154,241,.78);
+  border-radius:50%;box-shadow:0 0 7px rgba(198,143,238,.65),inset 0 0 5px rgba(227,196,252,.38);
+  pointer-events:none;animation:auraRing 2.4s ease-in-out infinite;
+}
+.field-object.mirror::after{
+  content:"";position:absolute;inset:-22%;border-radius:50%;pointer-events:none;
+  background:
+    radial-gradient(circle at 18% 28%,rgba(255,255,255,.95) 0 2%,rgba(222,185,255,.78) 3%,transparent 6%),
+    radial-gradient(circle at 82% 34%,rgba(255,255,255,.92) 0 1.8%,rgba(205,153,248,.72) 3%,transparent 6%),
+    radial-gradient(circle at 70% 83%,rgba(255,255,255,.88) 0 1.6%,rgba(191,132,237,.66) 3%,transparent 6%);
+  animation:auraSparkle 2.8s linear infinite;
+}
+.paused .field-object.mirror,.paused .field-object.mirror::before,.paused .field-object.mirror::after{animation-play-state:paused}
+.effect.debuffAura{padding:0;border-radius:50%;border:1px solid rgba(90,145,220,.5);background:radial-gradient(circle,rgba(112,180,255,.16) 0 68%,rgba(112,180,255,.07) 78%,rgba(112,180,255,0) 100%);z-index:6}
+.debuff-tags{position:absolute;left:50%;top:103%;transform:translateX(-50%);font-size:calc(var(--field-unit)*.39);line-height:1.15;white-space:nowrap;text-shadow:0 0 2px white,0 0 2px white;pointer-events:none;z-index:12}
+.effect.sweat{padding:0;background:transparent;font-size:calc(var(--field-unit)*.65);line-height:1;z-index:12}
+.bomb-warning{animation:bombBlink var(--bomb-period,.54s) steps(2,end) infinite}
+.paused .bomb-warning,.paused .gate-site{animation-play-state:paused}
+@keyframes bombBlink{0%,100%{opacity:1;filter:drop-shadow(0 0 3px #fb492b)}50%{opacity:.2;filter:none}}
+@keyframes gateSite{from{opacity:.45}to{opacity:.9}}
+
+/* Interaction refinement: labels are visible only while paused; line hit radius is handled in pointer logic without changing line thickness. */
+.zone-label[hidden]{display:none!important}
+#field{touch-action:none}
+
+/* 2026-09-24 前線・防衛線連動 / 実況統合 / 本陣フィードバック */
+.battle-meta-row{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:6px;margin:2px 0 4px;min-width:0}
+.line-options{display:flex;align-items:center;justify-content:space-between;gap:5px;min-width:0;width:100%}
+.auto-front,.line-link{flex:1 1 0;min-width:0;padding:5px 5px;font-size:clamp(10px,1.65vw,12.5px);font-weight:700;white-space:nowrap;line-height:1.1;border-radius:8px}
+.toggle-setting.active{background:#5e9d47;color:white;border-color:#4c823c;box-shadow:0 2px 0 #407934}
+.battle-meta-row .commentary{min-width:0;width:100%;height:24px;margin:0;padding:3px 4px;border:1px solid #d8e4c9;border-radius:6px;overflow-x:auto;overflow-y:hidden;white-space:nowrap;display:flex;align-items:center;gap:16px;scrollbar-width:none}
+.battle-meta-row .commentary .ticker-item{display:block!important;overflow:visible;flex:none;position:static;animation:none;font-size:11px}
+#statusBar{display:none!important}
+.point-normal{height:auto;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:2px 5px}
+.point-value-block{min-width:0;text-align:left}.point-value-block .point-title{text-align:left}.point-value-block .point-number{justify-content:flex-start}
+.point-actions{display:flex;align-items:center;justify-content:flex-end}.point-actions button{padding:5px 6px;font-size:10px}
+.point-battle-stats{border-top:1px solid #d8c47c;margin-top:4px;padding-top:3px;font-size:10px;line-height:1.2;color:#846f3d;white-space:nowrap;font-variant-numeric:tabular-nums}
+.point-battle-stats>div{overflow:hidden;text-overflow:ellipsis}.point-mode{font-size:8px;opacity:.82;margin-left:4px}
+.hp-current{font-weight:800}.hp-high{color:#3f7f3d}.hp-mid{color:#9a7c16}.hp-low{color:#c36a22}.hp-critical{color:#c33d32}.hp-zero{color:#861f1f}.hp-max{color:inherit}
+.castle-emblem.castle-hit{animation:castleFaceShake .30s ease-out}
+@keyframes castleFaceShake{0%,100%{translate:0 0}18%{translate:-5px 0}36%{translate:5px 0}54%{translate:-4px 0}72%{translate:4px 0}88%{translate:-2px 0}}
+.test-battle .line-options{display:none!important}.test-battle .battle-meta-row{grid-template-columns:1fr}
+@media(max-width:600px){.battle-meta-row{grid-template-columns:1fr 1fr;gap:3px;margin:1px 0 2px}.line-options{gap:2px}.auto-front,.line-link{padding:4px 2px;font-size:clamp(8.5px,2.15vw,10px)}.battle-meta-row .commentary{height:20px;padding:2px 3px;gap:10px}.battle-meta-row .commentary .ticker-item{font-size:9px}.point-value-block .point-number b{font-size:22px}.point-value-block .point-title{font-size:8.5px}.point-actions button{font-size:9px;padding:4px 3px}.point-battle-stats{font-size:8.5px;line-height:1.15;margin-top:2px;padding-top:2px}.point-mode{font-size:7px}}
+
+.point-title{white-space:nowrap}
+
+
+/* 2026-09-24 compact pause / single commentary revision */
+.field-pause-button{
+  position:absolute;left:5px;top:5px;z-index:15;
+  width:30px;height:30px;padding:0;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;line-height:1;
+  color:#405838;background:rgba(255,253,244,.52);
+  border:1px solid rgba(123,148,105,.32);
+  box-shadow:none;opacity:.48;backdrop-filter:blur(1px);
+}
+.field-pause-button:hover,.field-pause-button:focus-visible{opacity:.9;background:rgba(255,253,244,.84)}
+.pause-panel{
+  display:flex;align-items:center;justify-content:center;gap:6px;
+  margin:4px 0 2px;padding:5px 7px;
+  border:1px solid #d4dfc6;border-radius:9px;
+  background:rgba(255,253,244,.9);font-size:11px;line-height:1.2;
+}
+.pause-panel[hidden]{display:none!important}
+.pause-panel strong{font-size:11px;color:#617553;white-space:nowrap}
+.pause-panel button{padding:5px 8px;font-size:11px;white-space:nowrap}
+.point-normal{display:flex;align-items:center;justify-content:space-between;gap:5px;height:auto}
+.point-normal .point-number{justify-content:flex-start;grid-column:auto}
+.point-normal #readyMenuAction{margin-left:auto;padding:5px 7px;font-size:10px}
+.point-battle-stats{font-variant-numeric:tabular-nums}
+.battle-meta-row .commentary{
+  justify-content:flex-start!important;
+  overflow:hidden!important;
+  text-align:left;
+  scroll-behavior:auto;
+}
+.battle-meta-row .commentary .ticker-item{
+  max-width:100%;overflow:hidden!important;text-overflow:ellipsis;white-space:nowrap;
+  flex:1 1 auto!important;text-align:left;
+}
+@media(max-width:600px){
+  .field-pause-button{left:3px;top:3px;width:26px;height:26px;font-size:12px;border-radius:7px}
+  .pause-panel{gap:3px;margin:2px 0 1px;padding:3px 4px;font-size:9px}
+  .pause-panel strong{font-size:9px}.pause-panel button{font-size:9px;padding:3px 5px}
+  .point-normal{gap:2px}.point-normal #readyMenuAction{font-size:9px;padding:3px 4px}
+}
+
+/* 2026-09-24 最終コスト変換 / 本陣帯 / カード情報整理 */
+.castle{gap:6px}
+.castle-pause-button{position:relative;z-index:3;flex:0 0 auto;width:28px;height:25px;padding:0;display:flex;align-items:center;justify-content:center;border-radius:7px;font-size:13px;line-height:1;color:#8d5b47;background:rgba(255,255,255,.24);border:1px solid rgba(151,92,67,.2);box-shadow:none;opacity:.64;backdrop-filter:blur(1px)}
+.castle-pause-button:hover,.castle-pause-button:focus-visible{opacity:.92;background:rgba(255,255,255,.48)}
+.ally-battle-stats{position:relative;z-index:3;min-width:0;max-width:48%;font-size:10px;line-height:1.12;color:#416f90;white-space:nowrap;text-align:left;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.ally-battle-stats>div{overflow:hidden;text-overflow:clip}
+.castle>strong{margin-left:auto;white-space:nowrap}
+.card{justify-content:flex-start}
+.card-top{min-width:0;align-items:flex-start}
+.portrait-stack{align-items:flex-start;min-width:0;max-width:58%;gap:2px}
+.attack-class{display:block;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:11px;font-weight:700;color:#657b54;line-height:1.15}
+.card-cost-stack{margin-left:auto;min-width:0;max-width:48%;display:flex;flex-direction:column;align-items:flex-end;gap:2px;text-align:right}
+.card-cost{justify-content:flex-end;font-size:10px;line-height:1}.card-cost b{font-size:30px}.card-cost small{font-size:8px}
+.card-action{display:block;max-width:100%;font-size:10px;font-weight:700;line-height:1.1;color:#7d8d6d;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.card-spacer{flex:1 1 auto;min-height:1px}
+.card-stats-line{display:block;width:100%;margin-top:auto;font-size:clamp(8.5px,1.65vw,11px);line-height:1.05;color:#536b49;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap;letter-spacing:-.045em;overflow:visible}
+@media(max-width:600px){
+ .castle{height:25px;padding:0 6px;gap:4px}.castle-pause-button{width:23px;height:21px;font-size:11px;border-radius:6px}.ally-battle-stats{max-width:51%;font-size:8.5px;line-height:1.08;letter-spacing:-.045em}.castle strong{font-size:10px}
+ .card{padding:5px 5px 4px;gap:1px}.card-top{gap:3px}.card-portrait{font-size:23px}.portrait-stack{gap:1px}.attack-class{font-size:8.5px}.card-cost-stack{gap:1px}.card-cost b{font-size:25px}.card-cost small{font-size:7px}.card-action{font-size:8px}.card-stats-line{font-size:clamp(8px,2.18vw,9.5px);letter-spacing:-.07em}
+}
+@media(max-width:600px) and (max-height:720px){.card-portrait{font-size:19px}.card-cost b{font-size:22px}.attack-class{font-size:8px}.card-action{font-size:7.5px}.card-stats-line{font-size:clamp(7.5px,2vw,8.7px)}}
+
+
+/* 2026-09-24 キャラカード大型表示調整 */
+.card{
+  container-type:inline-size;
+}
+.card-top{
+  align-items:flex-start;
+  overflow:visible;
+}
+.portrait-stack{
+  flex:0 0 45%;
+  width:45%;
+  max-width:none;
+  min-width:0;
+  align-items:center;
+  overflow:visible;
+}
+.card-portrait{
+  font-size:45cqw;
+  line-height:.95;
+  text-align:center;
+}
+.card-portrait.r4{
+  scale:1;
+}
+.attack-class{
+  width:max-content;
+  max-width:none;
+  overflow:visible;
+  text-overflow:clip;
+  white-space:nowrap;
+  text-align:center;
+  align-self:center;
+}
+.card-cost-stack{
+  flex:0 0 45%;
+  width:45%;
+  max-width:none;
+  min-width:0;
+  align-items:center;
+  text-align:center;
+  overflow:visible;
+}
+.card-cost{
+  justify-content:center;
+  overflow:visible;
+}
+.card-cost b{
+  font-size:45cqw;
+  line-height:.95;
+}
+.card-action{
+  text-align:center;
+  max-width:100%;
+}
+.card-stats-line{
+  text-align:center;
+  align-self:center;
+  width:100%;
+}
+@media(max-width:600px){
+  .card-portrait{font-size:45cqw}
+  .card-cost b{font-size:45cqw}
+  .attack-class{font-size:8.5px}
+  .card-stats-line{text-align:center}
+}
+@media(max-width:600px) and (max-height:720px){
+  .card-portrait{font-size:45cqw}
+  .card-cost b{font-size:45cqw}
+}
+
+
+/* 2026-09-24 カード再調整：絵文字/コスト70%、文字情報120% */
+.card-portrait{
+  font-size:31.5cqw;
+}
+.card-cost b{
+  font-size:31.5cqw;
+}
+.attack-class{
+  font-size:13.2px;
+}
+.card-action{
+  font-size:12px;
+}
+.card-stats-line{
+  font-size:clamp(10.2px,1.98vw,13.2px);
+}
+@media(max-width:600px){
+  .card-portrait{font-size:31.5cqw}
+  .card-cost b{font-size:31.5cqw}
+  .attack-class{font-size:10.2px}
+  .card-action{font-size:9.6px}
+  .card-stats-line{font-size:clamp(9.6px,2.616vw,11.4px)}
+}
+@media(max-width:600px) and (max-height:720px){
+  .card-portrait{font-size:31.5cqw}
+  .card-cost b{font-size:31.5cqw}
+  .attack-class{font-size:10.2px}
+  .card-action{font-size:9px}
+  .card-stats-line{font-size:clamp(9px,2.4vw,10.44px)}
+}
+
+
+
+/* 2026-09-24 索敵9x9・カード微調整・ポイント欄一時停止 */
+.card-portrait{font-size:28.35cqw}
+.portrait-stack{gap:2.5px}
+.card-stats-line{font-size:clamp(13.26px,2.574vw,17.16px);line-height:1.08}
+.point-normal .point-pause-button{margin-left:auto;padding:5px 7px;font-size:11px;border-color:#d7bd68;background:#fff8d9;white-space:nowrap}
+.point-normal #readyMenuAction{margin-left:0}
+@media(max-width:600px){
+  .card-portrait{font-size:28.35cqw}
+  .portrait-stack{gap:1.25px}
+  .card-stats-line{font-size:clamp(12.48px,3.4008vw,14.82px)}
+  .point-normal .point-pause-button{font-size:9px;padding:3px 4px}
+}
+@media(max-width:600px) and (max-height:720px){
+  .card-portrait{font-size:28.35cqw}
+  .card-stats-line{font-size:clamp(11.7px,3.12vw,13.572px)}
+}
+</style></head><body>
+
+<main><div class="field-shell"><div class="castle enemy-castle"><b id="enemyCastleFace" class="castle-emblem" aria-hidden="true">🥹</b><strong id="enemyHP"></strong><i id="enemyHPBar"></i></div><div class="field-frame"><div id="field" role="grid" aria-label="0行目の敵召喚エリア、1～24行目の戦場、25行目の味方召喚エリア（25列）"></div><span class="zone-label enemy-zone">敵陣</span><span class="zone-label neutral-zone">中立</span><span class="zone-label home-zone">自陣</span><div id="outcome" hidden></div><div id="startOverlay"><div class="start-panel"><h1>決戦！ぷゆゆヶ原</h1><button id="startBattle" class="primary" type="button">▶ 戦闘開始</button></div></div><div id="commandAnnouncement" class="command-announcement" hidden aria-hidden="true"></div></div><div class="castle ally-castle"><div id="allyBattleStats" class="ally-battle-stats" aria-label="戦況"><div id="unitCounts">味方 0体　　/ 敵　　0体</div><div id="killCounts">たおした 0体 / やられた 0体</div></div><b id="allyCastleFace" class="castle-emblem" aria-hidden="true">🥺</b><strong id="allyHP"></strong><i id="allyHPBar"></i></div></div><div id="pausePanel" class="pause-panel" hidden><strong>⏸ 一時停止中</strong><button id="resumeAction" type="button">▶ 再開</button><button id="restartAction" type="button">はじめから</button><button id="menuAction" type="button">メニュー</button></div><div id="testBanner" class="test-banner" hidden><strong></strong><div class="actions"><button id="testPause" type="button">⏸ 停止</button><button id="exitTest" type="button">調整・確認へ戻る</button></div></div><div class="battle-meta-row"><div class="line-options"><button id="autoFront" class="toggle-setting auto-front active" type="button" aria-pressed="true">前線自動 ON</button><button id="linkLines" class="toggle-setting line-link active" type="button" aria-pressed="true">前線・後衛連動 ON</button></div><div id="commentary" class="commentary" aria-live="polite"></div></div><div class="battle-commands"><div class="command-main"><button id="charge" aria-pressed="false">全軍突撃</button></div><div class="command-main"><button id="defend" aria-pressed="false">全軍防衛</button></div><div class="line-control"><button id="frontUp" aria-label="前線を1行上げる">前線▲</button><button id="frontDown" aria-label="前線を1行下げる">前線▼</button></div><div class="line-control"><button id="defenseUp" aria-label="後衛を1行上げる">後衛▲</button><button id="defenseDown" aria-label="後衛を1行下げる">後衛▼</button></div></div><div class="command-grid"><button id="card0" class="card slot1"></button><button id="card1" class="card slot2"></button><section class="point-card"><div id="pointNormal" class="point-normal"><div class="point-number"><b id="pointValue">0</b><span>pt</span></div><button id="pause" class="point-pause-button" type="button" aria-label="一時停止" title="一時停止">⏸</button><button id="readyMenuAction" type="button" hidden>メニュー</button></div></section><button id="card2" class="card slot3"></button><button id="card3" class="card slot4"></button><button id="card4" class="card slot5"></button></div><p class="play-hint">光るカードはポイント充足。プロフィールは停止中に確認できます。</p>
+<details class="rules"><summary>遊び方とルール</summary><p>中央の凸型7体は「前進」（範囲1・近接2・スキル1・遠距離3）、後方待機10体は「後衛」として両軍に配置されます。戦闘開始後、カード1枚のコストで同一キャラ3体を召喚。城HP0で勝敗が決まります。停止中にキャラを押すと能力を確認できます。</p><p>前線・後衛・全軍コマンドで指示できます。開始後に前線を手動操作すると自動押し上げがOFFになります。設定メニューの「戦闘AI仕様」で新しい能力と詳細を確認できます。</p></details>
+<details id="editor" class="editor"><summary>⚙ 調整・確認 <span>設定 / 新スキル</span></summary><div class="editor-content"><div class="menu-head"><strong>⚙ 調整・確認</strong><button id="closeMenu" type="button">閉じる</button></div><div class="actions menu-tools"><button id="openSpecs" type="button">戦闘AI仕様</button></div><p>開くと戦闘を停止します。編集後に「反映して新しい戦闘」を押してください。生成テストは反映済みの設定を使用します。</p><form id="settingsForm"><details><summary>基本能力・戦闘設定</summary><div id="baseEditor" class="form-grid"></div></details><details><summary>ピンチ時の強化</summary><div id="crisisEditor"></div></details><details><summary>キャラクター生成</summary><p>基本値：攻撃力 1～10／体力 5～65／素早さ 1～10。3能力から元コスト1～10を決め、最終コスト2～18へ固定変換します。初期確率はどちらも1/7（約14.29%）です。</p><div id="skillProbEditor" class="form-grid"></div></details><details><summary>スキル数値</summary><label>編集するスキル <select id="skillChoice"></select></label><div id="skillEditor"></div></details><details><summary>召喚モブ</summary><label>編集するモブ <select id="mobChoice"></select></label><div id="mobEditor"></div></details><p id="settingsError" class="error" role="alert"></p><div class="actions"><button class="primary" type="submit">反映して新しい戦闘</button><button id="defaults" type="button">初期設定に戻す</button></div></form>
+
+<section><h2>実戦テスト</h2><p>選択したスキルを持つレア3キャラ1体を体力無限で配置し、レア1・2の低級キャラ12体が倒されるたび継続出撃します。味方レア3には前線があり、H&A逃走時は後退できます。</p><form id="testForm" class="actions"><label for="testSkill">テストするスキル</label><select id="testSkill" required></select><button id="testStartButton" type="submit">実戦テスト開始</button></form><p id="testError" class="error" role="alert"></p></section><section><h2>大量生成テスト</h2><div class="actions"><label>生成数 <select id="batchSize"><option value="100">100体</option><option value="1000">1,000体</option><option value="10000">10,000体</option></select></label><button id="batchRun">生成して集計</button><span id="batchProgress" role="status"></span></div><div id="batchResult"></div></section></div></details></main>
+<dialog id="profile"><button id="closeProfile" class="close" aria-label="プロフィールを閉じる">×</button><div id="profileBody"></div></dialog><div id="toast" role="status"></div><dialog id="specs"><button class="close" id="closeSpecs" aria-label="仕様を閉じる">×</button><h2>戦闘AI仕様・主要仕様</h2><div id="specBody"></div></dialog>
+<script type="text/plain" data-module="m0.js">
+import {skillDescription} from './m10.js';
+import {setupSpecs} from './m10.js';
+import {isGateBuilder} from './m11.js';
+import {Game} from './m1.js';import {config,expectedCost} from './m2.js';import {TYPES,KINDS,EFFECT_NAMES,ROLE_NAMES} from './m3.js';import {generate} from './m4.js';import {mode,isCombatAvoider} from './m6.js';import {crisisFor} from './m5.js';import {createField,escapeHTML as esc} from './m8.js';import {setupEditor} from './m9.js';
+const $=id=>document.getElementById(id);const CARD_SKILL_LABELS={selfArea:'雷撃',frontArea:'火炎',vertical:'トライデント',diagonal:'クロスレーザー',eyes:'ビッグアイ',hands:'ゴッドハンド',teleport:'ワープ',giant:'巨人',summon:'召喚'};function cardSkillLabel(c){if(!c?.skill)return '';return CARD_SKILL_LABELS[c.skill.key]||c.skill.name||c.skill.category||'';}const DRAGON_PROFILE=`<svg class="dragon-svg" viewBox="0 0 64 64" aria-label="赤い西洋風ドラゴン"><path class="wing" d="M29 29C23 10 10 6 4 23c8-5 15-3 20 5L12 30c5 3 10 6 14 12z"/><path class="wing-membrane" d="M23 25C18 15 11 13 8 20c5-2 10 0 14 6z"/><path class="wing" d="M34 29C42 10 55 10 60 28c-8-5-15-3-21 5l13 1c-5 4-10 7-16 12z"/><path class="wing-membrane" d="M40 27c5-10 12-10 16-2-5-2-10 0-15 5z"/><path class="body" d="M18 39c2-10 10-17 21-16l7-5 10 4-7 5 5 6-10 1c-3 10-11 16-21 14-8-2-11-7-5-9z"/><path class="belly" d="M24 39c5-1 10-5 13-11 2 7 0 13-6 17-4 2-8 1-11-1z"/><path class="body" d="M22 44C13 48 10 54 5 55c8 2 16-1 23-7z"/><path class="horn" d="M47 20l2-7 3 7z"/><path class="horn" d="M52 21l5-5-1 7z"/><path class="claw" d="M27 47l-3 6 5-4 2 4 2-6z"/><path class="claw" d="M40 43l2 7 2-5 4 3-3-7z"/><circle class="eye" cx="49.5" cy="25.2" r="1.8"/><path d="M55 28l6 2-6 2z" fill="#8d1419"/></svg>`;function iconHTML(c){return esc(c.icon);}function isDedicated(c,u=null){return isCombatAvoider(c,u);}let game=new Game(),profileUid=null,profileCard=null,last=performance.now(),paintClock=0,toastTimer,commandAnnouncementTimer,castleWatchGame=null,lastCastleHP=[config.base.castleHP,config.base.castleHP];const field=createField($('field'),(x,y)=>{if(game.phase!=='paused')return;const u=game.at(x,y);if(u)openProfile(u.card,u);});
+function toast(text){$('toast').textContent=text;$('toast').classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').classList.remove('show'),2600);}
+function renderProfile(c,u){const stats=u?game.stats(u):c,s=c.skill,effects=s?.effects||[];if(s&&!u){$('profileBody').innerHTML='<div class="profile-heading"><span>'+iconHTML(c)+'</span><div><h2>スキル・'+esc(s.category)+'</h2><p>具体的な能力は召喚してからのお楽しみです。</p></div></div><p>攻撃 '+c.attack+' / 体力 '+c.hp+' / コスト '+c.cost+'pt</p>';return;}const remain=u?.status.filter(v=>v.skillName===s?.name).reduce((a,v)=>Math.max(a,v.remaining),0)||0;$('profileBody').innerHTML=`<div class="profile-heading"><span>${iconHTML(c)}${c.badge?'<small>'+esc(c.badge)+'</small>':''}</span><div><h2>${esc(c.name)}</h2><small>${c.mob?'召喚モブ':'レア'+c.rarity} · ${u?(u.side?'敵':'味方'):'手札'}</small></div></div><div class="profile-grid">${[['攻撃力',stats.attack],['体力',(u?.testInfiniteHP?'∞（体力無限）':u?Math.ceil(u.hp)+'/'+(u.maxHP||c.hp):c.hp)],['素早さ',Math.round(stats.initiative)],['コスト',c.cost],['役割',ROLE_NAMES[c.role]||'召喚モブ'],['射程',u?game.profile(u).range:c.range],['状態',u?(isGateBuilder(u)?'ワープゲート建設中':u.card.skill?.key==='starBarrage'?'中立巡回':({normal:'通常',fleeing:'逃走',tracking:'追跡'}[u.behaviorState]||'通常')):'待機']].map(([name,value])=>'<div class="profile-stat"><small>'+name+'</small><b>'+esc(value)+'</b></div>').join('')}</div><div class="profile-skill"><b>${esc(TYPES[u?game.profile(u).type:c.type])}</b>${s?'<p>'+esc(s.emoji+' '+s.name+' / '+KINDS[s.kind])+'</p><ul>'+effects.map(e=>'<li>'+esc(EFFECT_NAMES[e.type])+'：'+esc(e.type==='summon'?config.mobs[e.mob].name+' '+e.count+'体 / 能力×'+e.amount:e.amount)+(e.turns?' / '+e.turns+'ターン継続':'')+'</li>').join('')+'</ul><p>'+esc(skillDescription(s,c.rarity))+'</p>':'<p>通常攻撃で戦うキャラクターです。</p>'}${u?'<p>基礎攻撃 '+c.attack+' / 基礎素早さ '+c.initiative+'<br>現在の攻撃補正 '+Math.round((stats.atkFactor-1)*100)+'% / 素早さ補正 '+Math.round((stats.iniFactor-1)*100)+'%</p>':''}</div>`;}
+function openProfile(c,u){if(game.phase!=='paused')return;profileUid=u?.uid;profileCard=c;renderProfile(c,u);$('profile').showModal();}
+function closeProfile(){if($('profile').open)$('profile').close();profileUid=null;profileCard=null;}
+$('closeProfile').onclick=closeProfile;$('profile').addEventListener('click',e=>{if(e.target===$('profile')){const r=$('profile').getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)closeProfile();}});
+function renderCards(){if(game.mode==='test')return;for(let i=0;i<5;i++){const c=game.hands[0][i],ready=game.points[0]+1e-9>=c.cost,el=$('card'+i),typeLabel=c.skill?cardSkillLabel(c):TYPES[c.type].replace('攻撃',''),personalityLabel=ROLE_NAMES[c.role]||'前進';el.className='card slot'+(i+1)+' r'+c.rarity+' '+(ready?'ready':'dim')+(game.phase==='paused'?' paused-card':'');el.setAttribute('aria-label',(c.skill?'スキル（'+typeLabel+'）':typeLabel)+'、コスト'+c.cost+'、攻撃'+c.attack+'、体力'+c.hp+'、素早さ'+c.initiative+'、'+personalityLabel+(game.phase==='paused'?'。プロフィールを確認':'。タップして召喚'));el.innerHTML=`<span class="cost-track"><i style="width:${Math.min(100,game.points[0]/c.cost*100)}%"></i></span><span class="card-top"><span class="portrait-stack"><span class="card-portrait r${c.rarity}">${esc(c.icon)}${c.badge?'<span class="weapon">'+esc(c.badge)+'</span>':''}</span><small class="attack-class">${esc(typeLabel)}</small></span><span class="card-cost-stack"><span class="card-cost"><b>${c.cost}</b><small>pt</small></span><small class="card-action">${esc(personalityLabel)}</small></span></span><span class="card-spacer" aria-hidden="true"></span><span class="card-stats-line">💥${c.attack} / ♥${c.hp} / 💨${c.initiative}</span>`;}}
+function renderPointUI(){$('pointValue').textContent=Math.floor(game.points[0]);const paused=game.phase==='paused',ready=game.phase==='ready'&&game.mode!=='test',running=game.phase==='running';$('pointNormal').hidden=false;$('pausePanel').hidden=!paused;$('pause').hidden=!running;$('readyMenuAction').hidden=!ready;$('pause').disabled=!running;renderCards();}
+function shakeCastleFace(side){const el=$(side===0?'allyCastleFace':'enemyCastleFace');if(!el)return;el.classList.remove('castle-hit');void el.offsetWidth;el.classList.add('castle-hit');}
+function syncCastleFeedback(){if(castleWatchGame!==game){castleWatchGame=game;lastCastleHP=[...game.castles];return;}for(let side=0;side<2;side++)if(game.castles[side]<lastCastleHP[side])shakeCastleFace(side);lastCastleHP=[...game.castles];}
+let tickerGame=null,tickerLast=0;function renderTicker(){const el=$('commentary');if(tickerGame!==game){tickerGame=game;tickerLast=0;el.replaceChildren();}const latest=game.logbook[0];if(!latest){el.replaceChildren();return;}if(latest.id===tickerLast&&el.firstChild)return;tickerLast=latest.id;const span=document.createElement('span');span.className='ticker-item';span.textContent=latest.text;el.replaceChildren(span);el.scrollLeft=0;}
+
+function hpToneClass(value,max){const r=max>0?Math.max(0,value)/max:0;return value<=0?'hp-zero':r<=.25?'hp-critical':r<=.5?'hp-low':r<=.75?'hp-mid':'hp-high';}function castleHPHTML(value,max){return '<span class="hp-current '+hpToneClass(value,max)+'">'+Math.max(0,Math.ceil(value))+'</span><span class="hp-max"> / '+max+'</span>';}function render(){syncTestSkills();renderCommands();document.body.classList.toggle('paused',game.phase==='paused');document.querySelectorAll('.zone-label').forEach(el=>el.hidden=game.phase!=='paused');const allies=game.units.filter(u=>u.hp>0&&u.side===0),enemyCount=game.units.filter(u=>u.hp>0&&u.side===1).length,crisis=crisisFor(game,0);$('unitCounts').textContent='味方 '+allies.length+'体　　/ 敵　　'+enemyCount+'体';$('killCounts').textContent='たおした '+game.kills[0]+'体 / やられた '+game.kills[1]+'体';$('allyBattleStats').setAttribute('aria-label','味方人数'+allies.length+'、敵人数'+enemyCount+'、たおした'+game.kills[0]+'、やられた'+game.kills[1]);$('testBanner').hidden=game.mode!=='test';$('testBanner').querySelector('strong').textContent=game.mode==='test'?'実戦テスト・'+(game.testCard.skill?.name||cardSkillLabel(game.testCard))+(game.testCard.skill?.key==='warpGate'?'（中央レア3・体力無限／建設員2体）':'（レア3・体力無限）')+' 対 低級12体＋増援':'';$('testPause').textContent=game.phase==='paused'?'▶ 再開':'⏸ 停止';$('testPause').disabled=game.phase==='ended';syncCastleFeedback();$('enemyHP').innerHTML=castleHPHTML(game.castles[1],config.base.castleHP);$('allyHP').innerHTML=castleHPHTML(game.castles[0],config.base.castleHP);$('enemyHPBar').style.width=game.castles[1]/config.base.castleHP*100+'%';$('allyHPBar').style.width=game.castles[0]/config.base.castleHP*100+'%';renderTicker();$('commentary').title=game.logbook.map(l=>l.text).join('\n');$('startOverlay').hidden=game.phase!=='ready';$('outcome').hidden=game.phase!=='ended';if(game.phase==='ended')$('outcome').innerHTML='<b>'+(game.mode==='test'?(game.winner===0?'実戦テスト成功':'実戦テスト終了'):(game.winner===0?'🎉 勝利！':'☹️ また挑戦！'))+'</b><p>'+game.turn+'ターン</p><button id="againButton" class="primary">もう一度</button>'+(game.mode==='test'?'<button id="exitTestResult" type="button">調整・確認へ戻る</button>':'');if(game.phase==='ended'){$('againButton').onclick=restartCurrent;if(game.mode==='test')$('exitTestResult').onclick=returnToEditor;}renderPointUI();field.paint(game);field.events(game);}
+function pause(force){if(game.phase==='ended'||game.phase==='ready')return;game.phase=force===true?'paused':game.phase==='paused'?'running':'paused';if(game.phase==='running')closeProfile();last=performance.now();render();}
+function startBattle(){if(game.phase!=='ready')return;game.phase='running';game.log('にせぷゆゆ軍を撃破せよ！！');last=performance.now();render();}function newGame(){closeProfile();field.reset();game=new Game();paintClock=0;last=performance.now();render();}function returnToEditor(){newGame();$('editor').open=true;}function restartCurrent(){if(game.mode==='test')startTestBySkill(game.testCard.skill?.key);else newGame();}
+let testSkillSignature='';
+function syncTestSkills(){const select=$('testSkill'),signature=config.skills.map(s=>s.key+'\t'+s.name).join('\n');if(signature===testSkillSignature)return;const previous=select.value;testSkillSignature=signature;select.innerHTML=config.skills.map(s=>'<option value="'+esc(s.key)+'">'+esc(s.name)+'</option>').join('');if(config.skills.some(s=>s.key===previous))select.value=previous;}
+async function findRare3ForSkill(skillKey){if(!config.skills.some(s=>s.key===skillKey))throw new Error('選択したスキルが現在の設定に存在しません');return generate({skilled:true,rarity:3,skillKey});}
+function launchTest(card){closeProfile();field.reset();game=new Game({mode:'test',testCard:card});game.phase='running';$('editor').open=false;$('testError').textContent='';$('testSkill').value=card.skill?.key||$('testSkill').value;paintClock=0;last=performance.now();render();}
+async function startTestBySkill(skillKey){const button=$('testStartButton');try{syncTestSkills();if(!skillKey)skillKey=$('testSkill').value;if(!skillKey)throw new Error('テストするスキルを選択してください');button.disabled=true;$('testError').textContent='レア3キャラを検索中…';const card=await findRare3ForSkill(skillKey);launchTest(card);}catch(error){$('testError').textContent=error.message;}finally{button.disabled=false;}}
+for(let i=0;i<5;i++)$('card'+i).onclick=()=>{if(game.phase==='paused'){openProfile(game.hands[0][i]);return;}const result=game.summon(i);if(!result.ok&&result.message!=='ポイントが足りません')toast(result.message);render();};$('startBattle').onclick=startBattle;$('pause').onclick=()=>pause();$('readyMenuAction').onclick=()=>{$('editor').open=true;};$('resumeAction').onclick=()=>pause();$('restartAction').onclick=restartCurrent;$('menuAction').onclick=()=>{$('editor').open=true;};$('closeMenu').onclick=()=>{$('editor').open=false;};document.addEventListener('keydown',e=>{if(e.code==='Space'&&!['INPUT','SELECT','BUTTON','TEXTAREA','SUMMARY'].includes(document.activeElement.tagName)){e.preventDefault();pause();}});
+setupEditor({newGame,pause,toast});
+syncTestSkills();
+$('testForm').onsubmit=async e=>{e.preventDefault();await startTestBySkill($('testSkill').value);};$('testPause').onclick=()=>pause();$('exitTest').onclick=returnToEditor;
+setupSpecs(()=>game,pause);
+$('autoFront').onclick=()=>{game.autoFront=!game.autoFront;render();};$('linkLines').onclick=()=>{game.linkLines=!game.linkLines;render();};
+function renderCommands(){document.body.classList.toggle('test-battle',game.mode==='test');for(const [id,on,label] of [['autoFront',game.autoFront,'前線自動'],['linkLines',game.linkLines,'前線・後衛連動']]){const el=$(id);el.classList.toggle('active',on);el.setAttribute('aria-pressed',String(on));el.textContent=label+' '+(on?'ON':'OFF');}const shell=document.querySelector('.field-shell'),active=game.commands[0];shell?.classList.toggle('command-active',active==='charge'||active==='defend');shell?.classList.toggle('command-charge',active==='charge');shell?.classList.toggle('command-defend',active==='defend');for(const [id,mode] of [['charge','charge'],['defend','defend']]){const on=active===mode;$(id).classList.toggle('active',on);$(id).setAttribute('aria-pressed',String(on));}}
+function showCommandAnnouncement(mode){const el=$('commandAnnouncement');if(!el)return;clearTimeout(commandAnnouncementTimer);el.textContent=mode==='charge'?'全軍突撃！！':'全軍防衛！！';el.className='command-announcement '+mode;el.hidden=false;void el.offsetWidth;el.classList.add('show');commandAnnouncementTimer=setTimeout(()=>{el.classList.remove('show');el.hidden=true;},1000);}
+function toggleCommand(mode){game.setCommand(mode);if(game.commands[0]===mode)showCommandAnnouncement(mode);render();}
+$('charge').onclick=()=>toggleCommand('charge');$('defend').onclick=()=>toggleCommand('defend');
+for(const [id,which,delta]of [['frontUp','front',-1],['frontDown','front',1],['defenseUp','defense',-1],['defenseDown','defense',1]])$(id).onclick=()=>{game.shiftLine(which,delta);render();};
+const LINE_HIT_RADIUS=15;let lineDrag=null,suppressFieldClickUntil=0;
+$('field').addEventListener('click',e=>{if(performance.now()<suppressFieldClickUntil){e.preventDefault();e.stopImmediatePropagation();}},true);
+$('field').addEventListener('pointerdown',e=>{if(e.pointerType==='mouse'&&e.button!==0)return;const fieldEl=$('field'),r=fieldEl.getBoundingClientRect(),py=e.clientY-r.top,candidates=[];for(const [which,selector,pos] of [['front','.frontline',game.front[0]/26*r.height],['defense','.defense-line',(game.defense[0]+.5)/26*r.height]]){const line=fieldEl.querySelector(selector);if(!line||getComputedStyle(line).display==='none')continue;const d=Math.abs(py-pos);if(d<=LINE_HIT_RADIUS)candidates.push({which,line,d});}if(!candidates.length)return;candidates.sort((a,b)=>a.d-b.d);const picked=candidates[0];e.preventDefault();suppressFieldClickUntil=performance.now()+500;lineDrag={which:picked.which,pointerId:e.pointerId,line:picked.line};fieldEl.setPointerCapture?.(e.pointerId);picked.line.classList.add('dragging');});
+$('field').addEventListener('pointermove',e=>{if(!lineDrag||e.pointerId!==lineDrag.pointerId)return;e.preventDefault();const r=$('field').getBoundingClientRect(),ratio=(e.clientY-r.top)/r.height,row=Math.max(1,Math.min(24,lineDrag.which==='front'?Math.round(ratio*26):Math.round(ratio*26-.5))),arr=lineDrag.which==='front'?game.front:game.defense,delta=row-arr[0];if(delta){game.shiftLine(lineDrag.which,delta);render();$('field').querySelector(lineDrag.which==='front'?'.frontline':'.defense-line')?.classList.add('dragging');}});
+function endLineDrag(e){if(!lineDrag||e.pointerId!==lineDrag.pointerId)return;$('field').querySelectorAll('.battle-line.dragging').forEach(v=>v.classList.remove('dragging'));$('field').releasePointerCapture?.(e.pointerId);lineDrag=null;render();}$('field').addEventListener('pointerup',endLineDrag);$('field').addEventListener('pointercancel',endLineDrag);
+// Read-only handle for reproducing simulation tests from this standalone master.
+Object.defineProperty(window,'arenaGame',{get:()=>game});
+
+function frame(now){const dt=Math.min(.1,(now-last)/1000);last=now;if(game.phase!=='paused')field.animate(dt);if(game.phase==='running'){const previous=game.turn;game.advance(dt);paintClock+=dt;if(game.turn!==previous||game.events.length){render();paintClock=0;}else if(paintClock>=.12){renderPointUI();paintClock=0;}}requestAnimationFrame(frame);}render();requestAnimationFrame(frame);
+if(document.modelContext?.registerTool){const life=new AbortController();addEventListener('pagehide',()=>life.abort(),{once:true});for(const tool of [{name:'read_battle',description:'戦況・手札・ポイントを確認します',annotations:{readOnlyHint:true},inputSchema:{type:'object',properties:{},additionalProperties:false},execute:()=>({phase:game.phase,turn:game.turn,points:game.points,castles:game.castles,kills:game.kills,hand:game.hands[0].map(c=>({name:c.name,cost:c.cost,attack:c.attack,hp:c.hp}))})},{name:'set_battle_paused',description:'進行中の戦闘を停止または再開します',inputSchema:{type:'object',properties:{paused:{type:'boolean'}},required:['paused'],additionalProperties:false},execute:arg=>{if(typeof arg?.paused!=='boolean'||game.phase==='ended')throw new Error('停止状態を変更できません');if((game.phase==='paused')!==arg.paused)pause();return {phase:game.phase};}}])try{Promise.resolve(document.modelContext.registerTool(tool,{signal:life.signal})).catch(()=>{});}catch{}}
+</script>
+<script type="text/plain" data-module="m1.js">
+import {config} from './m2.js';import {initWarpGroup,updateWarpGroups,traverseGate} from './m11.js';import {starShoot} from './m12.js';import {draw,initialCard} from './m4.js';import {distance,isHome,crisisFor,autoSummonCell,applyCastleDamage} from './m5.js';import {decide,initAI,updateBattles,updateRoleCache,refreshSkillRoster,prepareUnitRole,withinFront,canEnter,command,lineStep,hitFence} from './m6.js';import {effectsOn,canCast,cast,summonMobs,onSpawn,onContact,onDeath,follow,followerAct,turnSkills,debuffFactors,firstFence,damageFence,transformZombie,dragonTurnAttack} from './m7.js';
+export class Game{
+constructor({drawCard=draw,rng=Math.random,mode='normal',testCard=null}={}){
+ this.mode=mode;this.testCard=testCard;this.draw=drawCard;this.rng=rng;this.objects=[];this.objectSerial=0;this.autoFront=true;this.linkLines=true;this.frontManual=false;this.warpGroups=new Map();this.warpSerial=0;this.warpVersion=0;this.units=[];this.board=new Map();this.serial=0;this.points=[config.base.initialPoints,config.base.initialPoints];this.hands=mode==='test'?[[],[]]:[Array.from({length:5},drawCard),Array.from({length:5},drawCard)];this.castles=[config.base.castleHP,config.base.castleHP];this.bonusUsed=[new Set(),new Set()];this.kills=[0,0];this.turn=0;this.elapsed=0;this.turnClock=0;this.summonWait=[0,0];this.phase='ready';this.logbook=[];this.actions=[];this.events=[];this.invaded=[false,false];initAI(this);
+ if(mode==='test'){
+  if(testCard?.rarity!==3)throw new Error('テストする味方はレア3キャラを選んでください');
+  const testSkill=testCard.skill?.key;this.front=[8,24];this.defense=[22,3];this.testEnemyTarget=12;this.testSpawnCursor=0;
+  this.testHero=this.add(testCard,0,12,18,true);if(this.testHero)this.testHero.testInfiniteHP=true;
+  // A gate needs all three members even in the one-hero practical test. Only the central hero is immortal.
+  if(testSkill==='warpGate'){const left=this.add(testCard,0,10,18,true),right=this.add(testCard,0,14,18,true);initWarpGroup(this,[left,this.testHero,right]);}
+  // Four cells per column from the normal opening formation, mirrored for the enemy.
+  for(const center of [4,12,20])for(const pos of [{x:center,y:17},{x:center-1,y:18},{x:center+1,y:18},{x:center,y:19}])this.add(initialCard('normal'),1,pos.x,25-pos.y,true);
+  for(const u of [...this.units])onSpawn(this,u);refreshSkillRoster(this);if(this.testHero)this.testHero.testVirtualHP=this.testHero.maxHP||this.testHero.card.hp;this.log('実戦テスト：'+(testCard.skill?.name||testCard.name)+(testSkill==='warpGate'?'（中央レア3・体力無限／建設員2体）':'（レア3・体力無限）')+'対 低級12体＋継続増援');return;
+ }
+ for(let side=0;side<2;side++){
+  const formation=[{x:12,y:17,type:'area'},{x:11,y:18,type:'melee'},{x:12,y:18,skill:true},{x:13,y:18,type:'melee'},{x:11,y:19,type:'ranged'},{x:12,y:19,type:'ranged'},{x:13,y:19,type:'ranged'}];
+  for(const pos of formation){const c=initialCard('normal',!!pos.skill,pos.type||null),y=side===0?pos.y:25-pos.y;this.add(c,side,pos.x,y,true,true);}
+  const rearXs=[2,4,7,9,12,14,17,19,22,24];
+  for(let i=0;i<rearXs.length;i++){
+   const c=initialCard('defender',i===1||i===8),x=rearXs[i],depth=this.rng()<.25?1:0;
+   const line=this.defense[side],y=side===0?Math.min(24,line+depth):Math.max(1,line-depth),u=this.add(c,side,x,y,true);
+   if(u){u.homePostX=x;u.homePostDepth=depth;if(side===1)u.defenseAnchor={x,y};}
+  }
+ }
+ for(const u of [...this.units])onSpawn(this,u);refreshSkillRoster(this);this.log('戦闘開始を押してね');
+}
+log(text){this.logbook.unshift({id:(this.logSerial=(this.logSerial||0)+1),turn:this.turn,text});this.logbook=this.logbook.slice(0,500);}
+isGiant(u){return !!(u&&u.card?.skill?.key==='giant');}
+isDragon(u){return !!(u&&u.card?.mob==='dragon');}
+bounds(u,cx=u.x,cy=u.y){if(this.isGiant(u))return {left:cx-1,right:cx+1,top:cy-1,bottom:cy+1};if(this.isDragon(u))return {left:cx,right:cx+1,top:cy,bottom:cy+1};return {left:cx,right:cx,top:cy,bottom:cy};}
+occupies(u,x,y,cx=u.x,cy=u.y){const b=this.bounds(u,cx,cy);return x>=b.left&&x<=b.right&&y>=b.top&&y<=b.bottom;}
+footprint(u,cx=u.x,cy=u.y){const b=this.bounds(u,cx,cy),out=[];for(let y=b.top;y<=b.bottom;y++)for(let x=b.left;x<=b.right;x++)if(x>=0&&x<25&&y>=1&&y<=24)out.push({x,y});return out;}
+footprintSize(u){return this.isGiant(u)?9:this.isDragon(u)?4:1;}
+unitDistance(a,b){const A=this.bounds(a),B=this.bounds(b),dx=A.right<B.left?B.left-A.right:B.right<A.left?A.left-B.right:0,dy=A.bottom<B.top?B.top-A.bottom:B.bottom<A.top?A.top-B.bottom:0;return Math.max(dx,dy);}
+at(x,y){return this.units.find(u=>u.hp>0&&this.occupies(u,x,y))||null;}
+occupants(x,y){return this.units.filter(u=>u.hp>0&&this.occupies(u,x,y));}
+indexAdd(u){const k=u.y*25+u.x;if(!this.board.has(k))this.board.set(k,new Set());this.board.get(k).add(u);}
+indexRemove(u){const k=u.y*25+u.x,b=this.board.get(k);b?.delete(u);if(!b?.size)this.board.delete(k);}
+near(q,r,side=null){const out=[];for(const v of this.units){if(v.hp<=0||(side!==null&&v.side!==side))continue;let d;if(q?.card)d=this.unitDistance(q,v);else{const b=this.bounds(v),dx=q.x<b.left?b.left-q.x:q.x>b.right?q.x-b.right:0,dy=q.y<b.top?b.top-q.y:q.y>b.bottom?q.y-b.bottom:0;d=Math.max(dx,dy);}if(d<=r)out.push(v);}return out;}
+free(x,y){return Number.isInteger(x)&&Number.isInteger(y)&&x>=0&&x<25&&y>=1&&y<=24&&!this.at(x,y)&&!this.fences.has(y*25+x)&&!this.objects.some(o=>o.key==='mountain'&&o.x===x&&o.y===y);}
+add(card,side,x,y,defer=false,initialAdvanceNoLane=false){const spawn=y===(side===0?25:0),u={uid:++this.serial,card,side,x,y,homeX:x,hp:card.hp,status:[],waves:[],cooldown:0,timedUsed:false,born:this.turn,state:'moving',initialAdvanceNoLane:!!initialAdvanceNoLane};if(spawn){if(this.at(x,y)||x<0||x>24)return null;}else{const cells=this.footprint(u,x,y);if(cells.length!==this.footprintSize(u)||cells.some(p=>!this.free(p.x,p.y)))return null;}this.units.push(u);this.indexAdd(u);prepareUnitRole(this,u);if(!defer)onSpawn(this,u);return u;}
+moveTo(u,x,y){if(!canEnter(this,u,x,y))return false;this.indexRemove(u);u.previous={x:u.x,y:u.y};u.facing=Math.abs(x-u.x)>Math.abs(y-u.y)?{x:Math.sign(x-u.x),y:0}:{x:0,y:Math.sign(y-u.y)};u.x=x;u.y=y;this.indexAdd(u);follow(this,u);updateWarpGroups(this);return true;}
+setCommand(mode,side=0){command(this,mode,side);}
+shiftLine(which,delta,side=0,manual=true){
+ if(!delta)return;
+ const linked=side===0&&this.linkLines,primary=which==='front'?this.front:this.defense;
+ if(manual&&side===0&&this.phase!=='ready'&&(which==='front'||linked)){this.autoFront=false;this.frontManual=true;}
+ if(!linked){lineStep(this,which,delta,side);return;}
+ const other=which==='front'?this.defense:this.front,otherWhich=which==='front'?'defense':'front',p=primary[side],q=other[side],minDelta=Math.max(1-p,1-q),maxDelta=Math.min(24-p,24-q),actual=Math.max(minDelta,Math.min(maxDelta,delta));
+ if(!actual)return;lineStep(this,which,actual,side);lineStep(this,otherWhich,actual,side);
+}
+hasStatus(u,type){return u.status.some(s=>s.remaining>0&&s.effect.type===type);}
+hostile(u,v){if(!u||!v||v===u||v.hp<=0)return false;if(u.card?.mob==='zombie')return !v.card?.mob&&!v.owner&&v.card?.skill?.key!=='zombie';return v.card?.mob==='zombie'||v.side!==u.side;}
+enemies(u){return this.units.filter(v=>this.hostile(u,v)).sort((a,b)=>distance(a,u)-distance(b,u)||a.hp-b.hp);}
+stats(u){const debuffs=debuffFactors(this,u);if(u.card?.mob==='zombie')return {attack:Math.round(u.card.attack*debuffs.attack),initiative:u.card.initiative*debuffs.initiative,guard:1-debuffs.damage,atkFactor:debuffs.attack,iniFactor:debuffs.initiative};const crisis=crisisFor(this,u.side),home=isHome(u);const atkFactor=debuffs.attack*(this.isGiant(u)?2:1)*crisis.attack*(home?config.base.homeAttack:1),iniFactor=debuffs.initiative*crisis.initiative*(home?config.base.homeInitiative:1);return {attack:Math.max(0,Math.round(u.card.attack*atkFactor)),initiative:u.card.initiative*iniFactor,guard:1-debuffs.damage,atkFactor,iniFactor};}
+
+profile(u){const e=effectsOn(this,u);const ranged=e.find(v=>v.type==='rangedMode'),area=e.some(v=>v.type==='areaMode');return {type:ranged?'ranged':area?'area':u.card.type,range:ranged?ranged.range||6:u.card.range,depth:u.card.areaDepth||config.base.areaDepth};}
+	mountainBetween(from,to){const dx=to.x-from.x,dy=to.y-from.y,n=Math.max(Math.abs(dx),Math.abs(dy));for(let i=1;i<n;i++){const x=Math.round(from.x+dx*i/n),y=Math.round(from.y+dy*i/n);if(this.objects.some(o=>o.key==='mountain'&&o.x===x&&o.y===y))return true;}return false;}
+attackTargets(u,preferred=null,primaryTarget=null){const p=this.profile(u),enemies=this.near(u,Math.max(p.range,p.depth*2)).filter(v=>this.hostile(u,v)).sort((a,b)=>distance(a,u)-distance(b,u)||a.hp-b.hp||a.uid-b.uid),priority=(a,b)=>preferred?Number(!preferred(a))-Number(!preferred(b)):0;if(p.type==='ranged'){if(primaryTarget)return this.hostile(u,primaryTarget)&&distance(u,primaryTarget)<=p.range&&!this.mountainBetween(u,primaryTarget)?[primaryTarget]:[];return enemies.filter(v=>distance(u,v)<=p.range&&!this.mountainBetween(u,v)).sort((a,b)=>priority(a,b)||a.hp-b.hp||a.uid-b.uid).slice(0,1);}const adjacent=enemies.filter(v=>this.unitDistance(u,v)<=1).sort((a,b)=>priority(a,b)||a.uid-b.uid);const primary=primaryTarget?(this.hostile(u,primaryTarget)&&this.unitDistance(u,primaryTarget)<=1?primaryTarget:null):adjacent[0];if(!primary)return [];if(p.type==='melee')return [primary];const dx=Math.sign(primary.x-u.x),dy=Math.sign(primary.y-u.y);return enemies.filter(v=>{if(this.unitDistance(u,v)<=1)return true;const rx=v.x-u.x,ry=v.y-u.y;if(dx===0||dy===0){const forward=dx?rx*dx:ry*dy,lateral=dx?Math.abs(ry):Math.abs(rx);return forward>=1&&forward<=p.depth&&lateral<=config.base.areaWidth;}const forward=rx*dx+ry*dy,lateral=Math.abs(rx*dy-ry*dx);return forward>=1&&forward<=p.depth*2&&lateral<=config.base.areaWidth*2;});}
+canAttackCastle(u){const p=this.profile(u),b=this.bounds(u),castleDistance=this.isGiant(u)?(u.side===0?b.top:25-b.bottom):(u.side===0?u.y:25-u.y),inRange=castleDistance<=(p.type==='ranged'?p.range:1);if(!inRange)return false;if(p.type==='ranged'&&this.mountainBetween(u,{x:u.x,y:u.side?25:0}))return false;return true;}
+canCast(u){return canCast(this,u);}
+hurt(t,amount,source){if(t.hp<=0)return;if(t.owner)return;if(t.selfDestructExplodeTurn)return;t.lastAttacked=this.turn;t.fought=true;if(source?.uid)t.attacker=source;const effects=effectsOn(this,t);let damage=effects.some(e=>e.type==='invincible')?0:amount===Infinity?Math.ceil(t.hp):Math.max(0,Math.round(amount*(1-this.stats(t).guard)));const testInfinite=this.mode==='test'&&t===this.testHero&&t.testInfiniteHP;if(testInfinite){t.testVirtualHP=(t.testVirtualHP??(t.maxHP||t.card.hp))-damage;this.events.push({kind:'hit',x:t.x,y:t.y,uid:t.uid,text:damage?'−'+damage:'防御'});if(t.testVirtualHP<=0){t.testVirtualHP=t.maxHP||t.card.hp;if(t.card.skill?.key==='selfDestruct'&&!t.selfDestructDone){t.hp=1;t.selfDestructStart=this.turn;t.selfDestructExplodeTurn=this.turn+3;t.selfDestructSource=source?.uid||0;t.state='waiting';t.path=null;t.target=null;}else t.hp=t.maxHP||t.card.hp;}return;}t.hp-=damage;if(t.hp<=0&&effects.some(e=>e.type==='endure'))t.hp=1;this.events.push({kind:'hit',x:t.x,y:t.y,uid:t.uid,text:damage?'−'+damage:'防御'});if(t.hp<=0&&t.card.skill?.key==='selfDestruct'&&!t.selfDestructDone){t.hp=1;t.selfDestructStart=this.turn;t.selfDestructExplodeTurn=this.turn+3;t.selfDestructSource=source?.uid||0;t.state='waiting';t.path=null;t.target=null;return;}if(t.hp<=0){this.indexRemove(t);onDeath(this,t,source);this.kills[1-t.side]++;}}
+heal(u,amount){const old=u.hp;u.hp=Math.min(u.maxHP||u.card.hp,u.hp+Math.round(amount));if(u.hp>old)this.events.push({kind:'heal',x:u.x,y:u.y,uid:u.uid,text:'+'+(u.hp-old)});}
+summon(index,side=0){if(this.mode==='test')return {ok:false,message:'テスト中はカード召喚できません'};if(this.phase!=='running')return {ok:false,message:this.phase==='ready'?'「戦闘開始」を押してください':'停止中はプロフィールを確認できます'};const c=this.hands[side][index];if(!c)return {ok:false,message:'カードがありません'};if(this.points[side]+1e-9<c.cost)return {ok:false,message:'ポイントが足りません'};const spots=[];if(c.skill?.key==='giant'){const entryY=side===0?23:2,spawnY=side===0?25:0,reserved=new Set(),bases=[8,12,16],candidates=[];for(let x=1;x<=23;x++){const temp={card:c,side,x,y:entryY};const cells=this.footprint(temp,x,entryY);if(cells.length!==9||cells.some(q=>!this.free(q.x,q.y)))continue;candidates.push({x,score:Math.min(...bases.map(b=>Math.abs(x-b)))});}candidates.sort((a,b)=>a.score-b.score||a.x-b.x);for(const q of candidates){const cells=[];for(let y=entryY-1;y<=entryY+1;y++)for(let x=q.x-1;x<=q.x+1;x++)cells.push(y*25+x);if(cells.some(k=>reserved.has(k)))continue;spots.push({x:q.x,y:spawnY,entryY});cells.forEach(k=>reserved.add(k));if(spots.length===3)break;}if(spots.length<3)return {ok:false,message:'巨人3体を配置できる3×3の空き場所がありません'};}else{for(let n=0;n<3;n++){const spot=autoSummonCell(this,side,spots);if(!spot)return {ok:false,message:'3体を召喚できる空きマスがありません'};spots.push(spot);}}const units=spots.map(spot=>{const u=this.add(c,side,spot.x,spot.y,true);if(u&&spot.entryY)u.spawnEntryY=spot.entryY;return u;});for(const u of units)onSpawn(this,u);if(c.skill?.key==='warpGate')initWarpGroup(this,units);this.points[side]-=c.cost;this.hands[side][index]=this.draw();for(const u of units)this.events.push({kind:'magic',x:u.x,y:u.y,text:'✨'});if(c.skill)this.log(c.name+' ×3が出撃！');return {ok:true,uids:units.map(u=>u.uid)};}
+act(u){if(u.hp<=0||u.card.mob&&u.born===this.turn)return;if(u.selfDestructExplodeTurn)return;if(u.owner){followerAct(this,u);return;}if(this.near(u,1).some(v=>this.hostile(u,v)))onContact(this,u);if(u.card.mob==='dragon'){const reposition=decide(this,u);if(reposition.type==='move'&&reposition.cell&&!this.hasStatus(u,'root')){u.state='moving';const moved=this.moveTo(u,reposition.cell.x,reposition.cell.y);if(moved){this.actions.push({uid:u.uid,type:'move'});return;}}const special=dragonTurnAttack(this,u);u.state='fighting';u.fought=true;this.actions.push({uid:u.uid,type:'attack'});return;}const action=decide(this,u);u.state=action.type==='wait'?'waiting':(action.type==='move'||action.type==='warp')?'moving':'fighting';if(action.type==='wait')return;if(action.type==='warp'){if(!this.hasStatus(u,'root'))traverseGate(this,u,action.warp,canEnter);}else if(action.type==='starShot'){starShoot(this,u);}else if(action.type==='move'){if(!action.cell||this.hasStatus(u,'root'))return;if(u.card.mob==='zombie'&&this.turn-(u.zombieLastMoveTurn??-Infinity)<2){u.state='waiting';this.actions.push({uid:u.uid,type:'wait'});return;}const moved=this.moveTo(u,action.cell.x,action.cell.y);if(moved&&action.warp)traverseGate(this,u,action.warp,canEnter);if(moved&&u.card.mob==='zombie')u.zombieLastMoveTurn=this.turn;}else if(action.type==='fence'){hitFence(this,u,action.target);}else if(action.type==='skill')cast(this,u);else if(action.type==='castle'){const damage=this.stats(u).attack*(this.profile(u).type==='ranged'?.5:1),f=this.profile(u).type==='ranged'?firstFence(this,u,{x:u.x,y:u.side?25:0}):null;if(f)damageFence(this,f,damage);else applyCastleDamage(this,u,damage);u.fought=true;const p=this.profile(u);if(p.type==='ranged')this.events.push({kind:'projectile',from:{x:u.x,y:u.y},to:{x:u.x,y:u.side===0?0:25},text:u.card.type==='ranged'?'➶':'✨'});}else if(action.type==='attack'){const p=this.profile(u),damage=this.stats(u).attack*(p.type==='ranged'?.5:1);u.fought=true;for(const t of action.targets){u.facing=Math.abs(t.x-u.x)>Math.abs(t.y-u.y)?{x:Math.sign(t.x-u.x),y:0}:{x:0,y:Math.sign(t.y-u.y)|| (u.side?1:-1)};if(p.type==='ranged')this.events.push({kind:'projectile',from:{x:u.x,y:u.y},to:{x:t.x,y:t.y},text:u.card.type==='ranged'?'➶':u.card.skill?.emoji||'✨'});const f=p.type==='ranged'?firstFence(this,u,t):null;if(f)damageFence(this,f,damage);else if(u.card.mob==='zombie'&&!t.card.mob)transformZombie(this,t,u);else this.hurt(t,damage,u);}}this.actions.push({uid:u.uid,type:action.type});}
+refillTestEnemies(){if(this.mode!=='test')return;let count=this.units.filter(u=>u.hp>0&&u.side===1&&!u.owner&&!u.card.mob&&u.card.rarity<3).length;while(count<this.testEnemyTarget){const card=initialCard('normal'),start=(this.testSpawnCursor++*7)%25;let added=null;for(let i=0;i<25&&!added;i++){const x=(start+i)%25;if(!this.at(x,0))added=this.add(card,1,x,0,true);}if(!added)break;onSpawn(this,added);count++;}}
+checkTestResult(){if(this.mode!=='test'||this.phase!=='running')return;/* Endless practical test: exit manually from the test banner. */}
+tick(){if(this.phase!=='running')return false;this.turn++;this.actions=[];turnSkills(this);if(this.mode==='test')this.refillTestEnemies();if(this.phase==='ended')return true;this.checkTestResult();if(this.phase==='ended'){this.units=this.units.filter(u=>u.hp>0);return true;}updateBattles(this);if(this.mode!=='test'&&this.turn%3===0){
+ if(this.autoFront&&!this.commands[0]&&this.front[0]>1){const lead=this.units.filter(u=>u.hp>0&&u.side===0&&!u.card.defender&&u.y<=this.front[0]+1),foes=this.units.filter(u=>u.hp>0&&u.side===1&&u.y>=this.front[0]-2&&u.y<=this.front[0]+2);if(lead.length&&lead.length>=foes.length)this.shiftLine('front',-1,0,false);}
+ if(!this.commands[1]&&this.front[1]<24){const lead=this.units.filter(u=>u.hp>0&&u.side===1&&!u.card.defender&&u.y>=this.front[1]-1),foes=this.units.filter(u=>u.hp>0&&u.side===0&&u.y>=this.front[1]-2&&u.y<=this.front[1]+2);if(lead.length&&lead.length>=foes.length){const delta=Math.min(1,24-this.front[1],24-this.defense[1]);if(delta){lineStep(this,'front',delta,1);lineStep(this,'defense',delta,1);}}}
+}updateRoleCache(this);const buckets=new Map();for(const u of this.units)if(u.hp>0){const speed=Math.round(this.stats(u).initiative*10000);if(!buckets.has(speed))buckets.set(speed,[]);buckets.get(speed).push(u);}const speeds=[...buckets.keys()].sort((a,b)=>b-a);for(const u of [...this.units]){if(u.hp<=0)continue;for(const e of effectsOn(this,u))if(e.type==='heal')this.heal(u,u.card.hp*e.amount);for(const w of u.waves)if(w.remaining>0&&w.born<this.turn&&!this.hasStatus(u,'seal')){summonMobs(this,u,w.effect,w.skill);w.remaining--;}}for(const speed of speeds){for(const u of buckets.get(speed)){this.act(u);if(this.phase==='ended')break;}if(this.phase==='ended')break;}for(const u of this.units){u.cooldown=Math.max(0,u.cooldown-1);u.status=u.status.map(s=>({...s,remaining:s.remaining-(s.born<this.turn?1:0)})).filter(s=>s.remaining>0);u.waves=u.waves.filter(w=>w.remaining>0);}this.units=this.units.filter(u=>u.hp>0);this.checkTestResult();for(let side=0;side<2;side++){const invaded=this.units.some(u=>u.side!==side&&isHome(u,side));this.invaded[side]=invaded;}return true;}
+pointRate(){const b=config.base,steps=Math.floor(this.turn/Math.max(1,b.pointsGrowthTurns));return Math.min(b.pointsMaxPerSecond,b.pointsPerSecond+steps*b.pointsGrowthAmount);}advance(seconds){if(this.phase!=='running')return;this.elapsed+=seconds;if(this.mode!=='test'){const rate=this.pointRate();for(let side=0;side<2;side++){this.points[side]+=seconds*rate;this.summonWait[side]=Math.max(0,this.summonWait[side]-seconds);}if(this.summonWait[1]<=0){const choices=this.hands[1].map((c,i)=>({c,i})).filter(v=>v.c.cost<=this.points[1]);if(choices.length)this.summon(choices[Math.floor(this.rng()*choices.length)].i,1);}}this.turnClock+=seconds*1000;while(this.turnClock>=config.base.turnMs&&this.phase==='running'){this.turnClock-=config.base.turnMs;this.tick();}}
+}
+</script>
+<script type="text/plain" data-module="m10.js">
+import {config} from './m2.js';import {TUNING} from './m3.js';import {escapeHTML as esc} from './m8.js';
+export function skillDescription(s,r=3){const up=r===4,k=s.key;
+if(s.group==='large')return (k==='selfArea'?`自分中心${up?'7×7相当':'5×5相当'}の円形`:`前方${up?'5×9':'3×7'}`)+'。通常AIで行動し、既存の発動条件と再使用間隔を維持。';
+if(s.group==='line')return (k==='vertical'?'トライデント（最大'+TUNING.tridentRange+'マス）':'クロスレーザー')+'。通常AIで行動し、初回戦闘後は既存条件で発射。特殊攻撃は既存どおりオブジェクトを通過。';
+if(s.group==='summon')return 'ヒット＆アウェイ型。敵へ接近し、接敵時に龍1・狼3・スライム8・カタツムリ5・妖精3体のいずれかを独立ランダム召喚。発動後15ターン逃走し、再接敵で再発動。';
+if(s.group==='transform')return ({zombie:'通常キャラをHP3・素早さ1の共通ゾンビに変化。ゾンビは両陣営から敵として扱われる。',convert:'敵キャラを自軍に変更。'})[k]+' ヒット＆アウェイ型で、既存の逃走時間を維持。';
+if(k==='eyes')return 'ビッグアイ。左右に'+(up?'2つ':'1つ')+'ずつ👁️。不死身で本体消滅時に消える。縦方向のレーザーは敵キャラと柵を貫通攻撃し、城へのダメージは0。通常AI。';
+if(k==='hands')return 'ゴッドハンド。左右に✋が追従。不死身で本体消滅時に消える。召喚主の攻撃力×1.5で正面1～2マスへパンチ。通常AI。';
+if(k==='saturn')return (up?'11×11、オブジェクトも破壊。':'9×9。')+'範囲の両軍キャラ・モブをリセット。城は消さず、範囲内の敵城へ固定2400ダメージ。通常AI系。既存の土星効果を維持。';
+if(k==='mountain')return (up?'左右7マスずつ最大14個':'左右4マスずつ最大8個')+'の⛰️を横一列に生成。自陣・中立のみ。生成地点のユニットは即死。30ターン通行・射線を遮り、土星以外では破壊不可。ヒット＆アウェイ型。';
+if(k==='tornado')return 'ヒット＆アウェイ型。接敵時に前・左・右へ🌪️を3つ生成し15ターン逃走。既存の竜巻挙動を維持。';
+if(k==='selfDestruct')return '致死ダメージを受けると😡に変化し、既存の自爆処理を行う。通常AI。防衛役には生成されない。';
+if(k==='giant')return '出撃時から永久に巨人。3×3マスを占有し、攻撃力2倍・最大HPと現在HP3倍。通常AIで行動し、時間経過で元に戻らない。';
+if(k==='execute')return (up?'3×3内':'接触中')+'の敵を即死。累計撃破上限'+(up?6:3)+'体。即死時は💀を表示し、ヒット＆アウェイ型で行動。';
+if(k==='teleport')return 'ワープ。最終体力2倍。通常AIを使い、通常移動で2歩以上必要なとき既存のワープ移動を使用。';
+if(k==='plantBomb')return '敵柵・城へ爆弾を設置して逃走。10ターン後800固定ダメージ。残り3ターンから💣が点滅。既存の再設置待ちを維持するヒット＆アウェイ型。';
+if(k==='warpGate')return 'カード出撃の3体で建設。中央1体が本陣寄り自陣の第1鏡、他2体が中立の第2鏡を担当。完成後は通常AIに戻り、味方のみが有利な近道として使用。完成'+TUNING.warpLife+'ターン後、または土星で片方が壊れると両方消滅。';
+if(s.group==='debuff')return 'ヒット＆アウェイ型。半径'+s.radius+'の敵へ'+({attack:'攻撃力×'+TUNING.debuffAttack.toFixed(3),guard:'被ダメージ×'+TUNING.debuffDamage.toFixed(3),initiative:'素早さ×'+TUNING.debuffInitiative.toFixed(3)})[s.stat]+'。死亡まで効果は続き、同種は重複しない。発動時にオーラ、対象に低下表示。';
+if(k==='starBarrage')return '中立地帯を横移動する戦闘回避型。'+TUNING.starInterval+'ターンごとに⭐を射出。'+TUNING.starNearRange+'マス以内の敵へ照準。星は敵方向へ毎ターン1マス進み、命中した敵／敵柵へ固定'+Math.round(((config.base.hpMin+config.base.hpMax)/2)*config.base.hpMultiplier*TUNING.starDamageFactor)+'ダメージ。城や味方へは当たらない。';
+return '';}
+
+export function setupSpecs(getGame,pause){document.getElementById('closeSpecs').onclick=()=>document.getElementById('specs').close();document.getElementById('openSpecs').onclick=()=>{pause(true);const g=getGame();const items=[['キャラクター生成','カード補充時に生成。攻撃力1～10、体力5～65、素早さ1～10。元コストは攻撃力＋体力評価＋素早さを3点ごとに1～10へ変換し、最終コストは2,4,7,8,11,12,15,16,17,18へ固定変換。スキル持ちとレア4の確率は設定で変更可能。'],['役割と優先順位','通常キャラは前進1/2、スキル持ち撃破・護衛・後衛が各1/6。スキル持ちは前進：後衛＝10：4。全軍コマンド→自陣侵入敵／敵陣での城目標→役割の順。攻撃可能な敵には共通戦闘を使用。'],['スキル持ち撃破・護衛','味方・敵の生存スキル持ち一覧を開始時と5ターンごとに共有更新。撃破は最寄りの敵スキル持ち、護衛は自陣外にいる最寄りの味方スキル持ちを対象にする。対象がいない場合は前進へ戻る。'],['索敵・前進レーン・後衛','基本索敵は自分中心9×9（上下左右4マス）。前進キャラは索敵内の最寄り敵を固定優先で選び、死亡・索敵外・到達不能まで追跡を維持。敵がいなければ前線へ進む。カード等から出撃する前進キャラだけが左・中央・右のレーンを1回選択し、初期配置の前進兵はレーン抽選自体を行わない。後衛は後衛ラインの本陣側を待機位置とし、敵が後衛ライン内へ侵入した場合は距離に関係なく迎撃、侵入敵がいなくなると待機位置へ戻る。自陣内では利用可能な柵の本陣側を優先する。'],['マップ・前線','0行目・25行目は出撃専用。1～24行目の戦場と既存前線・防衛線・柵・城は維持。前線の通行制限は既存どおり。'],['実戦テスト','選択したスキルのレア3キャラを直接生成し、体力無限で配置。敵の通常キャラ12体を継続補充。ワープゲートは建設仲間2体を加える。'],['特殊行動','ヒット＆アウェイ、建設、星の巡回、召喚モブ、既存のスキル発動条件を維持。全軍コマンド中は役割よりコマンドを優先。']];document.getElementById('specBody').innerHTML='<p>新スキル体系 / 現在 '+g.turn+'ターン</p>'+items.map(([a,b])=>'<details><summary>'+esc(a)+'</summary><p>'+esc(b)+'</p></details>').join('')+'<details open><summary>新スキル一覧（レア3 / レア4）</summary>'+config.skills.map(s=>'<p><b>'+esc(s.emoji+' '+s.name)+'</b><br>R3 '+esc(skillDescription(s,3))+'<br>R4 '+esc(skillDescription(s,4))+'</p>').join('')+'</details><details><summary>全設定・一時調整値</summary><pre>'+esc(JSON.stringify({...config,tuning:TUNING},null,2))+'</pre></details>';document.getElementById('specs').showModal();};}
+</script>
+<script type="text/plain" data-module="m2.js">
+import {DEFAULTS,EFFECT_NAMES,KINDS} from './m3.js';
+export let config=structuredClone(DEFAULTS);
+const num=(v,min,max,label)=>{if(typeof v!=='number'||!Number.isFinite(v)||v<min||v>max)throw new Error(label+' は '+min+'〜'+max+' の数値にしてください');return v;};
+const keys=(obj,allowed)=>{if(!obj||typeof obj!=='object'||Array.isArray(obj))throw new Error('オブジェクト形式にしてください');for(const k of Object.keys(obj))if(!allowed.includes(k))throw new Error('未対応の項目：'+k);};
+const str=(v,max,label)=>{if(typeof v!=='string'||!v.trim()||v.length>max)throw new Error(label+' を確認してください');return v;};
+export function validateSkill(s,mobs=config.mobs){if(!DEFAULTS.skills.some(x=>x.key===s.key))throw new Error('新体系にないスキルです');for(const k of ['range','radius','duration','cooldown','chance'])num(s[k],0,k==='chance'?1:50,k);for(const e of s.effects){if(e.type!=='summon'||!mobs[e.mob])throw new Error('モブ設定が不正です');num(e.count,1,30,'召喚数');num(e.amount,0,20,'倍率');}return structuredClone(s);}
+export function parseSkill(text){if(text.length>30000)throw new Error('定義が長すぎます');return validateSkill(JSON.parse(text));}
+export function validateSettings(s){if(!s||!s.base)throw new Error('設定形式が不正です');num(s.skillChance,0,1,'スキル持ち出現率');num(s.rare4Chance,0,1,'レア4条件付き出現率');for(const [k,v]of Object.entries(s.base))num(v,0,100000,k);for(const [k,v]of Object.entries({costMin:1,costMax:10,attackMin:1,attackMax:10,hpMin:5,hpMax:65,hpMultiplier:1,initiativeMin:1,initiativeMax:10}))if(s.base[k]!==v)throw new Error('基礎能力とコスト範囲は固定です');if(s.base.castleHP<1||s.base.turnMs<150||s.base.pointsPerSecond<=0||s.base.pointsGrowthTurns<1||s.base.pointsGrowthAmount<0||s.base.pointsMaxPerSecond<s.base.pointsPerSecond||s.base.rangeMin<1||s.base.rangeMax>24||s.base.rangeMin>s.base.rangeMax)throw new Error('城・ポイントは正数、ポイント増加間隔は1ターン以上、最大ポイント速度は初期値以上、ターン時間150ms以上、射程1〜24です');for(const k of ['rangeMin','rangeMax','areaDepth','areaWidth','maxEffects','pointsGrowthTurns'])if(!Number.isInteger(s.base[k]))throw new Error(k+' は整数です');if(s.base.maxEffects<1||s.base.maxEffects>200)throw new Error('エフェクト数は1〜200です');for(const m of Object.values(s.mobs)){for(const k of ['attack','hp','initiative','range','areaDepth'])num(m[k],k==='hp'?1:0,100000,k);if(!['melee','area','ranged'].includes(m.type))throw new Error('モブの攻撃タイプが不正です');}if(!s.skills.length)throw new Error('スキルを1つ以上用意してください');const seen=new Set();for(const sk of s.skills){validateSkill(sk,s.mobs);if(seen.has(sk.key))throw new Error('スキルkeyが重複しています');seen.add(sk.key);}for(const band of s.crisis)for(const k of ['attack','initiative','skill'])num(band[k],1,10,'ピンチ倍率');return structuredClone(s);}
+export function applyConfig(s){config=validateSettings(s);}
+export const freshDefaults=()=>structuredClone(DEFAULTS);
+export const expectedBaseCost=()=>5.5;
+export const expectedCost=()=>11;
+</script>
+<script type="text/plain" data-module="m3.js">
+// New skill catalogue. No rarity-wide random scaling: explicit tier rules only.
+// 新スキルの調整値はここ。既存の数値はそのまま残す。
+export const TUNING={
+ bombDamage:800,bombRadius:2,bombFuse:10,bombBlinkTurns:3,transformFlee:15,hitAwaySweatInterval:3,
+ mountainLife:30,objectCooldown:10,lineStep:1,tridentRange:12,skillDamage:1,laserDamage:1,deathDamage:1,mobCap:240,objectCap:160,fleeNear:3,fleeFar:6,
+ warpLife:50,warpHomeRows:[[21,24],[1,4]],warpNeutralRows:[9,16],warpExitRadius:2,
+ warpLockTurns:3,warpMinSaving:2,warpRerouteTurns:6,
+ debuffRadius:3,debuffAttack:1/1.5,debuffInitiative:1/1.5,debuffDamage:1/.67,debuffFlee:10,
+ starInterval:3,starNearRange:5,starDamageFactor:.5,starNeutralRows:[9,16],starPatrolRows:[14,11],
+
+};
+const entry=(key,name,group,category,emoji,behavior='combat',extra={})=>({key,name,group,category,emoji,behavior,kind:'contact',range:1,radius:2,duration:10,cooldown:10,chance:1,effects:[],...extra});
+export const BUILTIN_SKILLS=[
+entry('selfArea','雷撃','large','範囲攻撃系','😎','combat',{cooldown:5}),entry('frontArea','火炎','large','範囲攻撃系','🤓','combat',{cooldown:5}),
+entry('vertical','トライデント','line','直線攻撃系','😫','combat',{cooldown:0}),entry('diagonal','クロスレーザー','line','直線攻撃系','🤪','combat',{cooldown:0}),
+entry('summon','召喚','summon','その他','🤠','combat',{kind:'summon'}),
+entry('zombie','ゾンビ化','transform','敵キャラ変化系','🤢'),entry('convert','味方化','transform','敵キャラ変化系','🥸'),
+entry('eyes','ビッグアイ','followers','特殊攻撃系','🫪'),entry('hands','ゴッドハンド','followers','特殊攻撃系','🤗'),
+entry('tornado','竜巻','object','オブジェクト設置系','🤣'),entry('saturn','土星','object','オブジェクト設置系','😇'),entry('mountain','隆起','object','オブジェクト設置系','😤'),
+entry('selfDestruct','自爆','other','その他','😠'),entry('giant','巨人','other','その他','😄','combat'),entry('execute','即死','other','敵キャラ変化系','😳'),entry('teleport','ワープ','other','その他','🥴'),entry('plantBomb','ボマー','other','オブジェクト設置系','😶','bomb'),
+entry('warpGate','ワープゲート','gate','移動支援系','🧐','gate',{kind:'construction'}),
+...['attack','guard','initiative'].map((stat,i)=>entry('local_'+stat,'範囲・'+['攻撃力','防御','素早さ'][i]+'デバフ','debuff','範囲デバフ系',['😩','😔','😣'][i],'hitAway',{stat,radius:TUNING.debuffRadius,cooldown:TUNING.debuffFlee})),
+entry('starBarrage','星の弾幕','star','飛翔体攻撃系','🤩','patrol',{kind:'barrage'})
+];
+export const ENEMY_ICONS={large:'👻',line:'👹',summon:'👽',transform:'🤡',followers:'👺',object:'🌞',other:'🌝',debuff:'🌛',gate:'🧐',star:'🤩'};
+export const MOBS={slime:{name:'スライム',icon:'🟢',attack:5,hp:18,initiative:20,type:'melee',range:1,areaDepth:2},wolf:{name:'狼',icon:'🐺',attack:26,hp:52,initiative:90,type:'melee',range:1,areaDepth:3},dragon:{name:'龍',icon:'🐲',attack:70,hp:290,initiative:35,type:'area',range:1,areaDepth:3},snail:{name:'カタツムリ',icon:'🐌',attack:8,hp:390,initiative:8,type:'melee',range:1,areaDepth:3},fairy:{name:'妖精',icon:'🧚',attack:10,hp:38,initiative:40,type:'ranged',range:5,areaDepth:3},zombie:{name:'ゾンビ',icon:'🧟',attack:1,hp:3,initiative:1,type:'melee',range:1,areaDepth:1},eye:{name:'目',icon:'👁️',attack:0,hp:52,initiative:40,type:'ranged',range:24,areaDepth:1},hand:{name:'手',icon:'✋',attack:0,hp:95,initiative:40,type:'melee',range:1,areaDepth:1}};
+export const ROLE_NAMES={normal:'前進',hunter:'スキル持ち撃破',guard:'スキル持ち護衛',defender:'後衛'};
+export const DEFAULTS={skillChance:1/7,rare4Chance:1/7,base:{costMin:1,costMax:10,attackMin:1,attackMax:10,hpMin:5,hpMax:65,hpMultiplier:1,initiativeMin:1,initiativeMax:10,rangeMin:3,rangeMax:6,castleHP:2000,initialPoints:8,pointsPerSecond:1.6,pointsGrowthTurns:50,pointsGrowthAmount:.2,pointsMaxPerSecond:3,turnMs:1100,homeAttack:1.25,homeInitiative:1.25,homeSkill:1.25,homeExecute:1,homeConvert:1,defenseRadius:8,areaDepth:3,areaWidth:1,maxEffects:32},crisis:[{threshold:.75,units:3,attack:1.05,initiative:1.05,skill:1.05},{threshold:.5,units:4,attack:1.1,initiative:1.1,skill:1.1},{threshold:.25,units:5,attack:1.18,initiative:1.18,skill:1.18},{threshold:.1,units:6,attack:1.25,initiative:1.25,skill:1.25},{threshold:.05,units:7,attack:1.35,initiative:1.35,skill:1.35}],skills:BUILTIN_SKILLS,mobs:MOBS};
+export const TYPES={melee:'近接攻撃',area:'範囲攻撃',ranged:'遠距離攻撃'};
+export const KINDS={contact:'接敵発動型',construction:'共同建設型',barrage:'周期射出型',summon:'召喚型'};
+export const EFFECT_NAMES={summon:'モブ召喚'};
+
+// 本来の攻撃AIから独立した専用役割の判定。
+export const isHitAway=c=>!!c?.skill&&(['summon','transform','debuff'].includes(c.skill.group)||['tornado','mountain','execute','plantBomb'].includes(c.skill.key));
+export const DEBUFF_LABELS={attack:'⚔️↓',guard:'🛡️↓',initiative:'⚡↓'};
+</script>
+<script type="text/plain" data-module="m4.js">
+import {config} from './m2.js';
+import {TYPES} from './m3.js';
+
+const rand=(a,b)=>a+Math.floor(Math.random()*(b-a+1));
+const faces=['😊','☹️','😎','🤠','🤓','😤','😇','🙂','😄','😁','😏','😌'];
+let nextCardId=0;
+
+// The three basic stats alone determine cost; special abilities add no surcharge.
+export const healthRating=hp=>Math.min(10,Math.floor((hp-5)/6)+1);
+export const baseCostFor=(attack,hp,speed)=>Math.min(10,Math.floor((attack+healthRating(hp)+speed-3)/3)+1);
+export const COST_MAP=Object.freeze([0,2,4,7,8,11,12,15,16,17,18]);
+export const costFor=(attack,hp,speed)=>COST_MAP[baseCostFor(attack,hp,speed)];
+
+export function allowedRoles(skill){
+ const roles=skill?['normal','defender']:['normal','hunter','guard','defender'];
+ // Preserve the old per-skill exclusions, including the two dedicated builders/patrols.
+ if(['selfDestruct','eyes','saturn','warpGate','starBarrage'].includes(skill?.key))return roles.filter(r=>r!=='defender');
+ return roles;
+}
+export function chooseRole(skill){
+ // The removed detour-role share is merged into normal/front advance, so overall role mass is preserved.
+ const roles=allowedRoles(skill),weights=skill?{normal:10,defender:4}:{normal:12,hunter:4,guard:4,defender:4};
+ let n=Math.random()*roles.reduce((sum,role)=>sum+weights[role],0);
+ for(const role of roles){n-=weights[role];if(n<0)return role;}
+ return roles.at(-1);
+}
+
+// A card is made only when needed; its ID identifies that card, not its abilities.
+export function generate({role=null,skilled=null,rarity=null,skillKey=null,type:forcedType=null}={}){
+ const hasSkill=skillKey!=null?true:skilled==null?Math.random()<config.skillChance:!!skilled;
+ const r=rarity??(hasSkill?(Math.random()<config.rare4Chance?4:3):(Math.random()<5/8?1:2));
+ const skill=hasSkill?structuredClone(skillKey?config.skills.find(s=>s.key===skillKey):config.skills[rand(0,config.skills.length-1)]):null;
+ if(hasSkill&&!skill)throw new Error('指定したスキルが存在しません');
+ if(role&&!allowedRoles(skill).includes(role))throw new Error('そのスキルには指定された役割を割り当てられません');
+ const selectedRole=role||chooseRole(skill),type=forcedType|| (r===2?(Math.random()<.5?'area':'ranged'):'melee');
+ const attack=rand(1,10),hp=rand(5,65),initiative=rand(1,10);
+ const id='C'+(++nextCardId);
+ return {id,rarity:r,icon:skill?skill.emoji:r===1?'💂':r===2?(type==='area'?'🧙':'🧝'):faces[rand(0,faces.length-1)],badge:type==='ranged'?'🏹':'',name:skill?.name||TYPES[type],cost:costFor(attack,hp,initiative),attack,baseHP:hp,hp,initiative,type,range:type==='ranged'?rand(config.base.rangeMin,config.base.rangeMax):1,role:selectedRole,defender:selectedRole==='defender',skill};
+}
+export const draw=()=>generate();
+
+export function makeMob(key,power=1){const m=config.mobs[key],baseFinalHP=key==='zombie'?m.hp:Math.max(1,Math.round(m.hp*config.base.hpMultiplier*power)),hp=key==='dragon'?baseFinalHP*2:baseFinalHP;return {...m,mob:key,rarity:0,name:m.name,cost:0,baseHP:m.hp,hp,attack:Math.round(m.attack*power),skill:null,role:'normal',defender:false};}
+
+// Initial formations use a dedicated pool so opening units cannot roll disruptive setup skills.
+const INITIAL_SKILL_EXCLUSIONS=new Set(['giant','teleport','selfDestruct','saturn','hands','eyes','plantBomb','starBarrage','warpGate']);
+export function initialCard(role,skilled=false,forcedType=null){const skills=skilled?config.skills.filter(s=>s.behavior==='combat'&&!INITIAL_SKILL_EXCLUSIONS.has(s.key)&&allowedRoles(s).includes(role)):null;const rarity=skilled?3:forcedType&&forcedType!=='melee'?2:1;return generate({role,skilled,rarity,skillKey:skilled?skills[rand(0,skills.length-1)]?.key:null,type:skilled?null:forcedType});}
+</script>
+<script type="text/plain" data-module="m5.js">
+import {config,expectedBaseCost} from './m2.js';
+export const distance=(a,b)=>Math.max(Math.abs(a.x-b.x),Math.abs(a.y-b.y));
+export const isHome=(u,side=u.side)=>side===0?u.y>=17:u.y<=8;
+export const crisisFor=(game,side)=>config.crisis.filter(b=>game.castles[side]/config.base.castleHP<=b.threshold).at(-1)||{attack:1,initiative:1,skill:1};
+export const friendlySkillScale=(g,u)=>crisisFor(g,u.side).skill*(isHome(u)?config.base.homeSkill:1);
+export function applyCastleDamage(g,attacker,amount){if(g.mode==='test')return;const side=1-attacker.side;g.castles[side]=Math.max(0,g.castles[side]-amount);for(let i=0;i<config.crisis.length;i++){const band=config.crisis[i];if(!g.bonusUsed[side].has(i)&&g.castles[side]/config.base.castleHP<=band.threshold){g.bonusUsed[side].add(i);const bonus=Math.round(expectedBaseCost()*band.units);g.points[side]+=bonus;g.log((side===0?'自軍':'敵軍')+'城耐久'+Math.round(band.threshold*100)+'%！ +'+bonus+'pt！');}}
+if(g.castles[side]<=0){g.phase='ended';g.winner=attacker.side;g.log(attacker.side===0?'勝利！ 敵城を攻略しました':'敗北。新しい戦闘で再挑戦！');}}
+export function autoSummonCell(g,side,reserved=[]){
+ const y=side===0?25:0,invaders=g.units.filter(u=>u.hp>0&&u.side!==side&&(side===0?u.y>=21:u.y<=4));
+ const available=x=>!g.at(x,y)&&!reserved.some(p=>p.x===x);
+ if(invaders.length){const targets=invaders.slice().sort((a,b)=>(side===0?b.y-a.y:a.y-b.y)||a.x-b.x);const target=targets[reserved.length%targets.length];return Array.from({length:25},(_,x)=>({x,y})).filter(p=>available(p.x)).sort((a,b)=>Math.abs(a.x-target.x)-Math.abs(b.x-target.x))[0]||null;}
+ const base=[8,12,16];for(const x of base)if(available(x))return {x,y};
+ return Array.from({length:25},(_,x)=>({x,y})).filter(p=>available(p.x)).sort((a,b)=>Math.min(...base.map(x=>Math.abs(x-a.x)))-Math.min(...base.map(x=>Math.abs(x-b.x))))[0]||null;
+}
+</script>
+<script type="text/plain" data-module="m6.js">
+// Shared combat, area priorities and lightweight movement goals.
+import {config} from './m2.js';
+import {isHitAway} from './m3.js';
+import {isGateBuilder,gateDecision,gateTravel} from './m11.js';
+import {starDecision} from './m12.js';
+import {distance,isHome} from './m5.js';
+import {skillDecision,firstFence,canZombieTarget} from './m7.js';
+export const AI={version:'4.1',clusterLink:2,contactRadius:2,defenseRadius:4,sightRadius:4,pathTurns:7,maxSearch:360};
+export const withinFront=(g,side,y)=>g.commands?.[side]==='charge'?true:(side===0?y>=g.front[0]:y<=g.front[1]);
+export function initAI(g){g.front=[17,8];g.defense=[22,3];g.commands=[null,null];g.battles=[];g.battleSerial=0;g.fences=new Map();g.fenceVersion=0;g.withinFront=(side,y)=>withinFront(g,side,y);g.fenceHP=(config.base.attackMin+config.base.attackMax)/2*10;g.fenceReward=0;g.skillRoster=[[],[]];g.skillRosterVersion=0;g.homeIntruders=[[],[]];g.defenseIntruders=[[],[]];
+ for(const [side,y,gaps] of [[0,17,[3,4,5,11,12,13,19,20,21]],[1,8,[3,4,5,11,12,13,19,20,21]],[0,21,[7,8,9,15,16,17]],[1,4,[7,8,9,15,16,17]]])for(let x=0;x<25;x++)if(!gaps.includes(x))g.fences.set(y*25+x,{x,y,side,hp:g.fenceHP,maxHP:g.fenceHP});
+}
+export function mode(g,u){return g.mode==='test'?'test':g.commands[u.side]==='charge'?'charge':g.commands[u.side]==='defend'?'defend':u.card.role;}
+export function command(g,value,side=0){g.commands[side]=g.commands[side]===value?null:value;invalidate(g,side);g.log(g.commands[side]==='charge'?'全軍突撃！':g.commands[side]==='defend'?'全軍防衛！':'コマンド解除');}
+function invalidate(g,side){for(const u of g.units)if(u.side===side){u.path=null;u.target=null;u.state='moving';}}
+export function lineStep(g,which,delta,side=0){const arr=which==='front'?g.front:g.defense;arr[side]=Math.max(1,Math.min(24,arr[side]+delta));invalidate(g,side);}
+export function canEnter(g,u,x,y){if(x<0||x>24||y<1||y>24||!Number.isInteger(x)||!Number.isInteger(y))return false;
+ const cells=g.footprint(u,x,y);if(cells.length!==g.footprintSize(u))return false;
+ if(cells.some(p=>g.fences.has(p.y*25+p.x)||g.objects.some(o=>o.key==='mountain'&&o.x===p.x&&o.y===p.y)))return false;
+ const zombie=u.card?.mob==='zombie';if(!zombie&&cells.some(p=>!withinFront(g,u.side,p.y)&&!(u.side===0?p.y>u.y:p.y<u.y)))return false;
+ const strictGiant=g.isGiant(u);return cells.every(p=>g.occupants(p.x,p.y).every(v=>v.uid===u.uid||(!strictGiant&&!zombie&&!g.hostile(u,v)&&v.side===u.side&&v.state==='waiting')));
+}
+export function hitFence(g,u,f){if(!f||f.hp<=0||f.side===u.side)return;const damage=g.stats(u).attack*(g.profile(u).type==='ranged'?.5:1);if(g.profile(u).type==='ranged')f=firstFence(g,u,f)||f;f.hp-=damage;u.fought=true;g.events.push({kind:'hit',x:f.x,y:f.y,text:'柵 −'+damage});if(f.hp<=0){g.fences.delete(f.y*25+f.x);g.fenceVersion++;g.log((u.side?'敵軍':'自軍')+'が進路上の柵を破壊');}}
+// Keep the existing battle-cluster display in one shared pass.
+export function updateBattles(g){const engaged=g.units.filter(u=>u.hp>0&&u.card?.mob!=='zombie'&&u.y>=1&&u.y<=24&&g.near(u,AI.contactRadius).some(v=>g.hostile(u,v))),active=new Set(engaged.map(u=>u.uid)),visited=new Set(),groups=[];
+ for(const u of engaged){if(visited.has(u.uid))continue;const members=[],queue=[u];visited.add(u.uid);for(let i=0;i<queue.length;i++){const v=queue[i];members.push(v);for(const n of g.near(v,AI.clusterLink))if(active.has(n.uid)&&!visited.has(n.uid)){visited.add(n.uid);queue.push(n);}}
+ const counts=[0,0];for(const v of members)counts[v.side]++;if(counts.every(n=>n>=2)){const x=members.reduce((s,u)=>s+u.x,0)/members.length,y=members.reduce((s,u)=>s+u.y,0)/members.length;groups.push({x,y,counts,members:new Set(members.map(u=>u.uid)),radius:Math.max(...members.map(u=>distance(u,{x,y}))),size:members.length});}}
+ const used=new Set();for(const b of groups){let best=null,overlap=0;for(const old of g.battles){if(used.has(old.id))continue;let count=0;for(const id of b.members)if(old.members.has(id))count++;if(count>overlap){best=old;overlap=count;}}b.id=best?.id||++g.battleSerial;used.add(b.id);}g.battles=groups;
+}
+// Rebuild the shared skill rosters only on turns 0,5,10... .
+export function refreshSkillRoster(g){const rosters=[[],[]];for(const u of g.units)if(u.hp>0&&u.card.skill&&!u.owner)rosters[u.side].push(u);g.skillRoster=rosters;g.skillRosterVersion++;}
+export function updateRoleCache(g){if(g.turn%5===0)refreshSkillRoster(g);const homes=[[],[]],rear=[[],[]];for(const u of g.units)if(u.hp>0&&!u.owner){const hostile0=u.side!==0||u.card.mob==='zombie',hostile1=u.side!==1||u.card.mob==='zombie',b=g.bounds(u);if(hostile0&&isHome(u,0))homes[0].push(u);if(hostile1&&isHome(u,1))homes[1].push(u);if(hostile0&&b.bottom>=g.defense[0])rear[0].push(u);if(hostile1&&b.top<=g.defense[1])rear[1].push(u);}g.homeIntruders=homes;g.defenseIntruders=rear;}
+function nearest(g,u,list,predicate){let best=null,score=Infinity;for(const v of list){if(v===u||v.hp<=0||predicate&&!predicate(v))continue;const d=g.unitDistance(u,v);if(d<score||d===score&&v.uid<best.uid){best=v;score=d;}}return best;}
+function homeCellOpen(g,u,x,y){if(!isHome({side:u.side,y}))return false;const cells=g.footprint(u,x,y);return cells.length===g.footprintSize(u)&&cells.every(p=>isHome({side:u.side,y:p.y})&&g.free(p.x,p.y));}
+const ADVANCE_LANE_X=[4,12,20],ADVANCE_LANE_BASE=[2.5,5,2.5];
+const laneIndex=x=>x<8?0:x<17?1:2;
+function chooseAdvanceLane(g,u){
+ const counts=[0,0,0];
+ for(const v of g.units)if(v!==u&&v.hp>0&&v.y>=1&&v.y<=24&&!v.owner&&g.hostile(u,v))counts[laneIndex(v.x)]++;
+ // Base preference is left 25% / center 50% / right 25%.
+ // More enemies increase attraction, but an exceptionally empty lane receives a flanking/opportunity bonus.
+ const weights=counts.map((n,i)=>ADVANCE_LANE_BASE[i]+n),max=Math.max(...counts),min=Math.min(...counts);
+ if(max>=4&&max-min>=4){
+  for(let i=0;i<3;i++)if(counts[i]<=max*.25)weights[i]+=max*1.5;
+ }
+ let roll=g.rng()*weights.reduce((a,b)=>a+b,0);
+ for(let i=0;i<3;i++){roll-=weights[i];if(roll<0)return i;}
+ return 1;
+}
+export function prepareUnitRole(g,u){if(u.card.mob||u.owner)return;
+ if(u.card.role==='defender'){u.homePostX=u.x;u.homePostDepth=g.rng()<.25?1:0;}
+ if(u.card.role==='normal'&&!u.initialAdvanceNoLane)u.advanceLane=chooseAdvanceLane(g,u);
+}
+function defensiveAnchor(g,u){
+ if(g.commands[u.side]==='defend')return {x:u.homeX,y:u.side===0?24:1};
+ const line=g.defense[u.side],depth=(u.homePostDepth??0)+(g.isGiant(u)?1:0),base={x:u.homePostX??u.homeX,y:u.side===0?Math.min(24,line+depth):Math.max(1,line-depth)},lineInHome=u.side===0?line>=17:line<=8;
+ if(!lineInHome)return base;
+ const castleStep=u.side===0?1:-1;let best=null;
+ for(const f of g.fences.values()){if(f.side!==u.side||Math.abs(f.y-line)>4)continue;const q={x:f.x,y:f.y+castleStep};if(q.y<1||q.y>24)continue;const cells=g.footprint(u,q.x,q.y);if(cells.length!==g.footprintSize(u)||cells.some(p=>g.fences.has(p.y*25+p.x)||g.objects.some(o=>o.key==='mountain'&&o.x===p.x&&o.y===p.y)))continue;const score=Math.abs(f.y-line)*3+Math.abs(q.x-base.x)+Math.abs(q.y-base.y)*.5;if(!best||score<best.score||score===best.score&&q.x<best.x)best={...q,score};}
+ return best?{x:best.x,y:best.y}:base;
+}
+class Heap{constructor(){this.a=[];}push(v){const a=this.a;let i=a.length;a.push(v);while(i){const p=(i-1)>>1;if(a[p].f<=v.f)break;a[i]=a[p];i=p;}a[i]=v;}pop(){const a=this.a,top=a[0],v=a.pop();if(a.length){let i=0;while(i*2+1<a.length){let c=i*2+1;if(c+1<a.length&&a[c+1].f<a[c].f)c++;if(a[c].f>=v.f)break;a[i]=a[c];i=c;}a[i]=v;}return top;}}
+function routeCellOpen(g,u,x,y,person){if(!canEnter(g,u,x,y))return false;if(person!=='home-defense')return true;const line=g.defense[u.side];return g.footprint(u,x,y).every(p=>u.side===0?p.y>=line:p.y<=line);}
+function route(g,u,goal,person,range=0,probe=false){const key=[goal.x,goal.y,range,person,g.front[u.side],g.fenceVersion].join('/');
+ if(!probe&&u.pathKey===key&&u.pathUntil>g.turn&&u.path?.length){const next=u.path[0];if(distance(u,next)===1&&routeCellOpen(g,u,next.x,next.y,person)){u.path.shift();return next;}u.path=null;}
+ if(distance(u,goal)<=range)return probe?{cells:[],reached:true}:null;
+ const heap=new Heap(),cost=new Map(),previous=new Map(),points=new Map(),start=u.y*25+u.x;heap.push({x:u.x,y:u.y,k:start,f:distance(u,goal),d:0});cost.set(start,0);let found=null,best=null,expanded=0;
+ while(heap.a.length&&expanded++<AI.maxSearch){const p=heap.pop();if(p.d!==cost.get(p.k))continue;const h=Math.max(0,distance(p,goal)-range);if(p.k!==start&&(!best||h<best.h)){best={...p,h};}if(h===0){found=p;break;}
+ for(let dy=-1;dy<=1;dy++)for(let dx=-1;dx<=1;dx++){if(!dx&&!dy)continue;const x=p.x+dx,y=p.y+dy,q={x,y},k=y*25+x;if(!routeCellOpen(g,u,x,y,person))continue;
+ if(dx&&dy&&g.fences.has(p.y*25+x)&&g.fences.has(y*25+p.x))continue;
+ const backtrack=u.previous&&x===u.previous.x&&y===u.previous.y?.65:0,d=p.d+1+(dx&&dy?.04:0)+backtrack;if(d>=(cost.get(k)??Infinity))continue;cost.set(k,d);previous.set(k,p.k);points.set(k,q);heap.push({x,y,k,d,f:d+Math.max(0,distance(q,goal)-range)});}}
+ const reached=!!found;found=found||best;if(!found)return probe?{cells:[],reached:false}:null;let k=found.k;const path=[];while(k!==start&&previous.has(k)){path.push(points.get(k));k=previous.get(k);}path.reverse();if(probe)return {cells:path,reached};u.pathKey=key;u.path=path;u.pathUntil=g.turn+AI.pathTurns;return path.shift()||null;
+}
+function movement(g,u,goal,person,range=0){if(goal.card&&g.hostile(u,goal)&&g.profile(u).type==='ranged'&&g.mountainBetween(u,goal))range=Math.min(range,1);
+ if(person!=='home-defense'&&u.card.skill?.key==='teleport'&&distance(u,goal)-range>=2){let best=null;for(let y=Math.max(1,goal.y-2);y<=Math.min(24,goal.y+2);y++)for(let x=Math.max(0,goal.x-2);x<=Math.min(24,goal.x+2);x++)if(canEnter(g,u,x,y)&&withinFront(g,u.side,y)&&distance(u,{x,y})>=2){const score=distance({x,y},goal)*3+((u.side?y<=goal.y:y>=goal.y)?1:0);if(!best||score<best.score)best={x,y,score};}if(best)return {type:'move',cell:best};}
+ if(distance(u,goal)<=range){u.stuck=0;return {type:'wait'};}if(person!=='home-defense'){const gate=gateTravel(g,u,goal,range,(v,q,r)=>route(g,v,q,person,r,true),canEnter);if(gate)return gate;}
+ const cell=route(g,u,goal,person,range);u.stuck=cell?0:(u.stuck||0)+1;return cell?{type:'move',cell}:{type:'wait'};}
+function zombieTarget(g,u){return nearest(g,u,g.units,t=>canZombieTarget(t));}
+function inSight(g,u,v){return !!v&&v.hp>0&&g.unitDistance(u,v)<=AI.sightRadius;}
+function lockedTarget(g,u,pool,validator){let v=u.target?g.units.find(t=>t.uid===u.target):null;if(v&&validator(v))return v;u.target=null;v=nearest(g,u,pool,validator);if(v)u.target=v.uid;return v;}
+function advanceTarget(g,u){const pool=g.near(u,AI.sightRadius).filter(v=>!v.owner&&g.hostile(u,v)),range=g.profile(u).type==='ranged'?g.profile(u).range:1;let current=u.target?g.units.find(v=>v.uid===u.target):null;if(current&&(!g.hostile(u,current)||current.owner||!inSight(g,u,current)))current=null;if(current)return current;u.target=null;for(const v of pool.sort((a,b)=>g.unitDistance(u,a)-g.unitDistance(u,b)||a.uid-b.uid)){const probe=route(g,u,v,'normal',range,true);if(g.unitDistance(u,v)<=range||probe.reached){u.target=v.uid;return v;}}return null;}
+function rearTarget(g,u){return lockedTarget(g,u,g.defenseIntruders[u.side]||[],v=>!v.owner&&g.hostile(u,v)&&(g.defenseIntruders[u.side]||[]).some(q=>q.uid===v.uid));}
+export function isCombatAvoider(c,u=null){return !!c&&(isHitAway(c)||c.skill?.key==='starBarrage'||isGateBuilder(u));}
+function skillGoal(g,u){const valid=v=>v?.hp>0&&v.card.skill&&inSight(g,u,v)&&(u.card.role==='hunter'?g.hostile(u,v):v.side===u.side&&v!==u&&!isHome(v,u.side));if(u.skillTargetVersion!==g.skillRosterVersion||!valid(u.skillTarget)){u.skillTargetVersion=g.skillRosterVersion;const pool=g.skillRoster[u.card.role==='hunter'?1-u.side:u.side];u.skillTarget=nearest(g,u,pool,valid);}
+ const v=u.skillTarget;return valid(v)?v:null;}
+function forwardGoal(g,u){if(u.initialAdvanceNoLane)return {x:u.x,y:g.front[u.side]};const lane=u.advanceLane??laneIndex(u.homeX);return {x:ADVANCE_LANE_X[lane],y:g.front[u.side]};}
+export function decide(g,u){const order=mode(g,u);
+ // The summon strip remains exit-only, as before.
+ if(u.y===0||u.y===25){if(u.spawnEntryY)return {type:'move',cell:{x:u.x,y:u.spawnEntryY}};return movement(g,u,{x:u.x,y:u.side===0?24:1},order);}
+ if(g.mode!=='test'&&!g.commands[u.side]&&u.card.mob!=='zombie'&&isHome(u)&&u.card.role!=='defender'){
+  const intruder=nearest(g,u,g.homeIntruders[u.side],v=>g.hostile(u,v)&&inSight(g,u,v));
+  if(intruder){u.target=intruder.uid;const attacks=g.attackTargets(u,null,intruder);if(g.canCast(u))return {type:'skill'};if(attacks.length)return {type:'attack',targets:attacks};return movement(g,u,intruder,'home-guard',g.profile(u).type==='ranged'?g.profile(u).range:1);}
+ }
+ const building=gateDecision(g,u,movement);if(building)return building;
+ const patrol=starDecision(g,u,movement,canEnter);if(patrol)return patrol;
+ if(g.mode==='test'){if(u===g.testHero&&u.behaviorState==='fleeing'){const retreat=skillDecision(g,u,movement,canEnter);if(retreat)return retreat;}const visibleEnemies=g.near(u,AI.sightRadius).filter(v=>!v.owner&&g.hostile(u,v)),visibleIds=new Set(visibleEnemies.map(v=>v.uid)),attacks=g.attackTargets(u).filter(v=>visibleIds.has(v.uid));if(visibleEnemies.length&&g.canCast(u))return {type:'skill'};if(attacks.length)return {type:'attack',targets:attacks};const target=nearest(g,u,visibleEnemies);return target?movement(g,u,target,'test',g.profile(u).type==='ranged'?g.profile(u).range:1):{type:'wait'};}
+ if(u.card.mob==='zombie'){const target=zombieTarget(g,u);if(!target)return {type:'wait'};if(g.unitDistance(u,target)<=1)return {type:'attack',targets:[target]};return movement(g,u,target,'zombie',1);}
+ const special=skillDecision(g,u,movement,canEnter);if(special)return special;
+ // All commands take precedence over assigned roles; nearby attacks keep their existing priority.
+ if(g.commands[u.side]){const visibleEnemies=g.near(u,AI.sightRadius).filter(v=>!v.owner&&g.hostile(u,v)),visibleIds=new Set(visibleEnemies.map(v=>v.uid)),attacks=g.attackTargets(u).filter(v=>visibleIds.has(v.uid));if(visibleEnemies.length&&g.canCast(u))return {type:'skill'};if(attacks.length)return {type:'attack',targets:attacks};if(order==='defend'){const anchor=defensiveAnchor(g,u),intruder=nearest(g,u,g.homeIntruders[u.side],v=>g.hostile(u,v)&&inSight(g,u,v));return movement(g,u,intruder||anchor,'command-defend',intruder&&g.profile(u).type==='ranged'?g.profile(u).range:0);}if(order==='charge'){const enemy=nearest(g,u,visibleEnemies,v=>withinFront(g,u.side,v.y));return enemy?movement(g,u,enemy,'command-charge',g.profile(u).type==='ranged'?g.profile(u).range:1):movement(g,u,{x:u.x,y:u.side===0?1:24},'command-charge');}}
+ // Rear units detect the whole castle-side zone of the rear line, regardless of their own distance.
+ if(u.card.role==='defender'){const target=rearTarget(g,u);if(target){const attacks=g.attackTargets(u,null,target);if(g.canCast(u))return {type:'skill'};if(attacks.length)return {type:'attack',targets:attacks};return movement(g,u,target,'home-defense',g.profile(u).type==='ranged'?g.profile(u).range:1);}u.target=null;return movement(g,u,defensiveAnchor(g,u),'home-defense');}
+ // Front-advance units search a 9x9 square every turn and retain a valid target.
+ if(u.card.role==='normal'){const target=advanceTarget(g,u);if(target){const attacks=g.attackTargets(u,null,target);if(g.canCast(u))return {type:'skill'};if(attacks.length)return {type:'attack',targets:attacks};const move=movement(g,u,target,'normal',g.profile(u).type==='ranged'?g.profile(u).range:1);if(move.type==='wait'&&(u.stuck||0)>=2){u.target=null;u.path=null;}else return move;}if(!withinFront(g,u.side,u.y))return movement(g,u,{x:u.x,y:g.front[u.side]},order);if(u.side===0?u.y<=8:u.y>=17){if(g.canAttackCastle(u))return {type:'castle'};return movement(g,u,{x:u.x,y:u.side===0?1:24},'castle');}return movement(g,u,forwardGoal(g,u),'normal');}
+ if(!withinFront(g,u.side,u.y))return movement(g,u,{x:u.x,y:g.front[u.side]},order);
+ const visibleEnemies=g.near(u,AI.sightRadius).filter(v=>!v.owner&&g.hostile(u,v)),visibleIds=new Set(visibleEnemies.map(v=>v.uid)),attacks=g.attackTargets(u).filter(v=>visibleIds.has(v.uid));
+ if(visibleEnemies.length&&g.canCast(u))return {type:'skill'};
+ if(attacks.length)return {type:'attack',targets:attacks};
+ if(u.side===0?u.y<=8:u.y>=17){if(g.canAttackCastle(u))return {type:'castle'};return movement(g,u,{x:u.x,y:u.side===0?1:24},'castle');}
+ if(u.card.role==='hunter'||u.card.role==='guard'){const target=skillGoal(g,u);if(target)return movement(g,u,target,'skill-goal',u.card.role==='guard'?2:g.profile(u).type==='ranged'?g.profile(u).range:1);}
+ return movement(g,u,forwardGoal(g,u),'normal');
+}
+</script>
+<script type="text/plain" data-module="m7.js">
+// Skill runtime: simulation-turn work only, never animation-frame AI.
+import {config} from './m2.js';
+import {TUNING} from './m3.js';
+import {object,abortWarpForUnit,endWarpGroup,updateWarpGroups} from './m11.js';
+import {stepStars} from './m12.js';
+import {makeMob} from './m4.js';
+import {distance,isHome,applyCastleDamage} from './m5.js';
+const SUMMON_CHOICES=[['dragon',1],['wolf',3],['slime',8],['snail',5],['fairy',3]];
+export function effectsOn(g,u){return u.card?.skill?.key==='giant'?[{type:'giant',amount:1}]:[];}
+// 対象ごとに保持。範囲外や発動者死亡後も維持し、同種は一度だけ記録する。
+export function debuffFactors(g,u){return {attack:u.debuffs?.attack??1,initiative:u.debuffs?.initiative??1,damage:u.debuffs?.guard??1};}
+export function isHitAwaySkill(s){return !!s&&(s.group==='summon'||s.group==='transform'||s.group==='debuff'||['tornado','mountain','execute','plantBomb'].includes(s.key));}
+export function setFlee(g,u,turns){u.behaviorState='fleeing';u.fleeUntil=g.turn+turns;u.hitAwayFleeStart=g.turn;u.target=null;u.path=null;}
+function summonOffsets(side,count){const fy=side?1:-1;if(count===1)return [{dx:0,dy:fy}];if(count===3)return [{dx:0,dy:fy},{dx:-1,dy:fy},{dx:1,dy:fy}];if(count===5)return [{dx:0,dy:fy},{dx:-1,dy:fy},{dx:1,dy:fy},{dx:-2,dy:fy},{dx:2,dy:fy}];if(count===8)return [{dx:-1,dy:fy},{dx:1,dy:fy},{dx:-1,dy:0},{dx:1,dy:0},{dx:-2,dy:fy},{dx:2,dy:fy},{dx:-2,dy:0},{dx:2,dy:0}];const out=[];for(let r=1;out.length<count;r++){out.push({dx:-r,dy:fy},{dx:r,dy:fy});}return out.slice(0,count);}
+function summonSpotOpen(g,u,card,x,y){if(x<0||x>24||y<1||y>24||!g.withinFront(u.side,y))return false;const temp={card,side:u.side,x,y},cells=g.footprint(temp,x,y);return cells.length===g.footprintSize(temp)&&cells.every(p=>g.free(p.x,p.y));}
+export function summonMobs(g,u,e,s){const template=makeMob(e.mob,e.amount),offsets=summonOffsets(u.side,e.count),all=[];for(let y=Math.max(1,u.y-3);y<=Math.min(24,u.y+3);y++)for(let x=Math.max(0,u.x-3);x<=Math.min(24,u.x+3);x++)if(summonSpotOpen(g,u,template,x,y))all.push({x,y});let count=0,left=0,right=0;for(const ideal of offsets){if(count>=e.count||g.units.filter(v=>v.hp>0&&v.card.mob).length>=TUNING.mobCap)break;const tx=u.x+ideal.dx,ty=u.y+ideal.dy,candidates=all.filter(p=>summonSpotOpen(g,u,template,p.x,p.y));if(!candidates.length)break;candidates.sort((a,b)=>{const sidePenalty=p=>ideal.dx<0?(p.x<u.x?0:6):ideal.dx>0?(p.x>u.x?0:6):Math.abs(p.x-u.x)*3;const balancePenalty=p=>p.x<u.x?Math.max(0,left-right)*2:p.x>u.x?Math.max(0,right-left)*2:0;const sa=Math.max(Math.abs(a.x-tx),Math.abs(a.y-ty))*10+distance(u,a)+sidePenalty(a)+balancePenalty(a),sb=Math.max(Math.abs(b.x-tx),Math.abs(b.y-ty))*10+distance(u,b)+sidePenalty(b)+balancePenalty(b);return sa-sb||a.y-b.y||a.x-b.x;});const p=candidates[0],c=makeMob(e.mob,e.amount);if(e.mob==='zombie')c.hp=config.mobs.zombie.hp;const v=g.add(c,u.side,p.x,p.y);if(v){count++;if(p.x<u.x)left++;else if(p.x>u.x)right++;}}if(count){for(const [dx,dy] of [[-.55,-.25],[.5,-.35],[.08,.55]])g.events.push({kind:'summonSparkle',x:u.x+.5+dx,y:u.y-.5+dy,dx:dx*.75,dy:dy*.75,text:'✨️',duration:.68});g.log(config.mobs[e.mob].name+' '+count+'体出現！');}return count;}
+function summonRandomMobs(g,u){const [mob,count]=SUMMON_CHOICES[Math.floor(g.rng()*SUMMON_CHOICES.length)];return summonMobs(g,u,{type:'summon',target:'self',mob,count,amount:1},u.card.skill);}
+export function spawnFollowers(g,u){if(u.followersMade)return;u.followersMade=true;u.followers=[];const eye=u.card.skill.key==='eyes',count=eye&&u.card.rarity===4?2:1;for(const sign of [-1,1])for(let i=1;i<=count;i++){const c=makeMob(eye?'eye':'hand');c.attack=eye?u.card.attack:u.card.attack*1.5;const v={uid:++g.serial,card:c,side:u.side,x:u.x,y:u.y,hp:c.hp,maxHP:c.hp,status:[],waves:[],cooldown:0,born:g.turn,state:'waiting',behaviorState:'normal',owner:u.uid,offset:sign*i};g.units.push(v);g.indexAdd(v);u.followers.push(v.uid);}follow(g,u);}
+export function follow(g,u){for(const id of u.followers||[]){const v=g.units.find(v=>v.uid===id&&v.hp>0);if(!v)continue;g.indexRemove(v);v.x=Math.max(0,Math.min(24,u.x+v.offset));v.y=u.y;v.side=u.side;g.indexAdd(v);}}
+export function onSpawn(g,u){const hpBonus=u.card.skill?.key==='giant'?3:u.card.skill?.key==='teleport'?2:1;u.maxHP=u.card.hp*hpBonus;u.hp=u.maxHP;u.behaviorState='normal';u.giantUntil=0;if(u.card?.mob==='dragon')u.dragonPhase=0;const s=u.card.skill;if(s?.group==='followers')spawnFollowers(g,u);}
+export function onContact(g,u){if(u.contacted)return;u.contacted=true;u.firstContact=g.turn;}
+export function damageFence(g,f,damage){if(!f||f.hp<=0)return;f.hp-=damage;if(f.hp<=0){g.fences.delete(f.y*25+f.x);g.fenceVersion++;}}
+export function firstFence(g,u,to){let x=u.x,y=u.y,dx=to.x-x,dy=to.y-y,n=Math.max(Math.abs(dx),Math.abs(dy));for(let i=1;i<=n;i++){const f=g.fences.get(Math.round(y+dy*i/n)*25+Math.round(x+dx*i/n));if(f&&f.side!==u.side)return f;}return null;}
+function rectangle(q,c,w,h){const left=c.x-Math.floor((w-1)/2),top=c.y-Math.floor((h-1)/2);return q.x>=left&&q.x<left+w&&q.y>=top&&q.y<top+h;}
+function circle(q,c,r){const dx=q.x-c.x,dy=q.y-c.y;return dx*dx+dy*dy<=r*r+1e-9;}
+function emojiRect(g,c,w,h,text){const left=c.x-Math.floor((w-1)/2),top=c.y-Math.floor((h-1)/2);for(let y=top;y<top+h;y++)for(let x=left;x<left+w;x++)if(x>=0&&x<25&&y>=1&&y<=24)g.events.push({kind:'tileEmoji',x,y,text});}
+function emojiCircle(g,c,r,text){const n=Math.ceil(r);for(let y=c.y-n;y<=c.y+n;y++)for(let x=c.x-n;x<=c.x+n;x++)if(x>=0&&x<25&&y>=1&&y<=24&&circle({x,y},c,r))g.events.push({kind:'tileEmoji',x,y,text});}
+function largeVisual(g,u,k,r4){if(k==='selfArea'){const radius=r4?3:2;emojiCircle(g,u,radius,'⚡️');return;}const dx=u.facing?.x||0,dy=u.facing?.y||(u.side?1:-1),depth=r4?5:3,width=r4?9:7;for(let f=1;f<=depth;f++)for(let l=-Math.floor(width/2);l<=Math.floor(width/2);l++){const x=u.x+dx*f+(dy?l:0),y=u.y+dy*f+(dx?l:0);if(x>=0&&x<25&&y>=1&&y<=24)g.events.push({kind:'tileEmoji',x,y,text:'🔥'});}}
+function lineTarget(g,u,dx,dy){let last={x:u.x,y:u.y},steps=0;for(let i=1;i<25;i++){const x=u.x+dx*i,y=u.y+dy*i;if(x<0||x>24||y<1||y>24)break;last={x,y};steps=i;const hit=g.occupants(x,y).find(v=>g.hostile(u,v)&&(!v.card.mob||v.card.mob==='zombie'));if(hit)return {to:last,hit,steps};}return {to:last,hit:null,steps};}
+
+function tridentDirection(g,u,dy){
+ let mountain=null;
+ for(let i=1;i<=TUNING.tridentRange;i++){
+  const x=u.x,y=u.y+dy*i;if(y<1||y>24)break;
+  if(!mountain&&g.objects.some(o=>!o.remove&&o.key==='mountain'&&o.x===x&&o.y===y))mountain={kind:'mountain',x,y,steps:i};
+  const unit=g.occupants(x,y).find(v=>!v.owner&&g.hostile(u,v));
+  if(unit)return {dy,targetDistance:i,terminal:mountain||{kind:'unit',x,y,steps:i,unit}};
+  const fence=g.fences.get(y*25+x);
+  if(fence&&fence.side!==u.side)return {dy,targetDistance:i,terminal:mountain||{kind:'fence',x,y,steps:i,fence}};
+ }
+ const castleDy=u.side===0?-1:1,inEnemyTerritory=u.side===0?u.y<=8:u.y>=17;
+ if(dy===castleDy&&inEnemyTerritory&&!mountain){
+  const steps=u.side===0?u.y:25-u.y;if(steps>TUNING.tridentRange)return null;
+  return {dy,targetDistance:steps,terminal:{kind:'castle',x:u.x,y:u.side===0?0:25,steps}};
+ }
+ return null;
+}
+function tridentPlan(g,u){
+ const key=g.turn+'/'+u.x+'/'+u.y+'/'+g.fenceVersion+'/'+g.objects.filter(o=>!o.remove&&o.key==='mountain').map(o=>o.id+':'+o.x+':'+o.y).join(',');
+ if(u.tridentPlanKey===key)return u.tridentPlanCache;
+ const options=[tridentDirection(g,u,-1),tridentDirection(g,u,1)].filter(Boolean).sort((a,b)=>a.targetDistance-b.targetDistance||a.dy-b.dy);
+ u.tridentPlanKey=key;u.tridentPlanCache=options[0]||null;return u.tridentPlanCache;
+}
+
+export function blast(g,c,source,w=5,h=w,damage=TUNING.bombDamage){const radius=(Math.max(w,h)-1)/2;emojiCircle(g,c,radius,'💥');for(const v of [...g.units])if(v.hp>0&&circle(v,c,radius))g.hurt(v,damage,source);for(const f of [...g.fences.values()])if(circle(f,c,radius))damageFence(g,f,damage);for(const side of [0,1])if(circle({x:c.x,y:side?0:25},c,radius))applyCastleDamage(g,{side:1-side},damage);}
+export function dragonTurnAttack(g,u){if(u.card?.mob!=='dragon')return {phase:null,hit:false};const phase=u.dragonPhase||0,damage=g.stats(u).attack,b=g.bounds(u),hostiles=new Set(),hitCell=(x,y,text)=>{if(x<0||x>24||y<1||y>24)return;g.events.push({kind:'tileEmoji',x,y,text,duration:.55});for(const t of g.occupants(x,y))if(g.hostile(u,t)&&!hostiles.has(t.uid)){hostiles.add(t.uid);g.hurt(t,damage,u);}};if(phase===0){const dy=u.side?1:-1,startY=u.side?b.bottom+1:b.top-1;for(let d=0;d<3;d++)for(let x=b.left;x<=b.right;x++)hitCell(x,startY+dy*d,'🔥');}else if(phase===1){for(const [sx,sy] of [[-1,-1],[1,-1],[-1,1],[1,1]]){const ox=sx<0?b.left:b.right,oy=sy<0?b.top:b.bottom;for(let d=1;d<=2;d++)hitCell(ox+sx*d,oy+sy*d,'⚡');}}else{const cy=u.y,spots=[{x:b.left-1,y:cy,baseDx:-1},{x:b.right+1,y:cy,baseDx:1}];for(const q of spots)object(g,u,'tornado',q.x,q.y,{baseDx:q.baseDx,baseDy:0,frontCastle:true,damage,emoji:'🌪️'});}u.dragonPhase=(phase+1)%3;return {phase,hit:hostiles.size>0,spawned:phase===2};}
+export function canZombieTarget(t){return !!(t&&t.hp>0&&!t.card.mob&&!t.owner&&t.card.skill?.key!=='zombie');}
+export function transformZombie(g,t,source){if(!canZombieTarget(t))return false;abortWarpForUnit(g,t);const z=makeMob('zombie');z.icon='🧟';t.card=z;t.hp=t.maxHP=z.hp;t.behaviorState='normal';t.fleeUntil=0;t.target=null;t.path=null;t.bombAt=null;t.giantUntil=0;t.contacted=false;t.selfDestructStart=0;t.selfDestructExplodeTurn=0;t.selfDestructSource=0;t.selfDestructDone=false;for(const id of t.followers||[]){const v=g.units.find(v=>v.uid===id);if(v){v.hp=0;g.indexRemove(v);}}t.followers=[];return true;}
+export function onDeath(g,u,source){if(u.deathHandled)return;u.deathHandled=true;abortWarpForUnit(g,u);u.debuffs=null;if(u.card.skill?.key==='selfDestruct'&&!u.selfDestructDone){const n=u.card.rarity===4?10:5;blast(g,u,u,n,n,u.card.attack*TUNING.deathDamage);}for(const id of u.followers||[]){const v=g.units.find(v=>v.uid===id);if(v){v.hp=0;g.indexRemove(v);}}}
+export function canCast(g,u){const s=u.card.skill;if(!s||u.cooldown>0||u.fleeUntil>g.turn)return false;const k=s.key;
+if(['gate','star','followers'].includes(s.group)||['teleport','selfDestruct','giant'].includes(k))return false;if(k==='mountain'&&!(u.side===0?u.y>=9:u.y<=16))return false;
+if(s.group==='debuff')return g.near(u,s.radius??TUNING.debuffRadius).some(v=>!v.owner&&g.hostile(u,v)&&circle(v,u,s.radius??TUNING.debuffRadius));
+const near=g.near(u,1).filter(v=>g.hostile(u,v)),enemy=near.filter(v=>!v.card.mob);
+if(s.group==='large')return !!u.fought||g.attackTargets(u).length>0;
+if(s.group==='line')return k==='vertical'?!!tridentPlan(g,u):!!u.fought;
+if(s.group==='transform')return k==='zombie'?enemy.some(canZombieTarget):enemy.length>0;
+if(k==='execute')return (u.executeKills||0)<(u.card.rarity===4?6:3)&&g.near(u,1).some(v=>g.hostile(u,v));
+if(k==='plantBomb')return !(g.objects.some(o=>o.key==='bomb'&&o.side===u.side&&o.x===u.x&&o.y===u.y))&&([...g.fences.values()].some(f=>f.side!==u.side&&distance(f,u)<=1)||g.canAttackCastle(u));
+return !!near.length;
+}
+export function cast(g,u){const s=u.card.skill,k=s.key,r4=u.card.rarity===4,damage=g.stats(u).attack*TUNING.skillDamage;u.cooldown=s.group==='large'?s.cooldown:s.cooldown+1;if(s.group!=='large'&&s.group!=='line')g.log('「'+s.name+'」が発動！');
+if(s.group==='large'){largeVisual(g,u,k,r4);const radius=r4?3:2;for(const t of g.units.filter(v=>g.hostile(u,v))){let hit=false;if(k==='selfArea')hit=circle(t,u,radius);else{const dx=u.facing?.x||0,dy=u.facing?.y||(u.side?1:-1),rx=t.x-u.x,ry=t.y-u.y,depth=r4?5:3,width=r4?9:7;const f=dx?rx*dx:ry*dy,l=dx?Math.abs(ry):Math.abs(rx);hit=f>=1&&f<=depth&&l<=Math.floor(width/2);}if(hit)g.hurt(t,damage,u);}return;}
+if(s.group==='line'){if(k==='vertical'){const plan=tridentPlan(g,u);if(!plan)return;const hit=plan.terminal,to={x:hit.x,y:hit.y},duration=Math.min(.9,Math.max(.28,hit.steps*.055));g.events.push({kind:'projectile',from:{x:u.x,y:u.y},to,text:'🔱',duration,stepped:true,fixedRotation:plan.dy<0?0:180});if(hit.kind==='unit')g.hurt(hit.unit,damage,u);else if(hit.kind==='fence')damageFence(g,hit.fence,damage);else if(hit.kind==='castle')applyCastleDamage(g,u,damage);if(hit.kind!=='mountain')g.events.push({kind:'sparkBurst',x:to.x,y:Math.max(1,Math.min(24,to.y)),duration:.34});u.tridentPlanKey=null;u.tridentPlanCache=null;return;}const dirs=[[-1,-1],[1,-1],[-1,1],[1,1]],scored=dirs.map(([dx,dy])=>{let d=99;for(let i=1;i<25;i++){const x=u.x+dx*i,y=u.y+dy*i;if(x<0||x>24||y<1||y>24)break;if(g.occupants(x,y).some(v=>g.hostile(u,v)&&(!v.card.mob||v.card.mob==='zombie'))){d=i;break;}}return {dx,dy,d};}).sort((a,b)=>a.d-b.d),dir=scored[0],shot=lineTarget(g,u,dir.dx,dir.dy),duration=Math.min(.9,Math.max(.28,shot.steps*.055)),mirror=u.side===0?dir.dx<0:dir.dx>0;for(let i=1;i<=shot.steps;i++)g.events.push({kind:'tileEmoji',x:u.x+dir.dx*i,y:u.y+dir.dy*i,text:'🧬',duration:.55,mirror});g.events.push({kind:'projectile',from:{x:u.x,y:u.y},to:shot.to,text:'🧬',duration,stepped:true,mirror});if(shot.hit){g.hurt(shot.hit,damage,u);g.events.push({kind:'sparkBurst',x:shot.to.x,y:shot.to.y,duration:.34});}return;}
+if(s.group==='debuff'){const radius=s.radius??TUNING.debuffRadius,factor=s.stat==='attack'?TUNING.debuffAttack:s.stat==='initiative'?TUNING.debuffInitiative:TUNING.debuffDamage;for(const t of g.near(u,radius))if(!t.owner&&g.hostile(u,t)&&circle(t,u,radius)){t.debuffs??={};if(t.debuffs[s.stat]===undefined)t.debuffs[s.stat]=factor;}g.events.push({kind:'debuffAura',x:u.x,y:u.y,radius,duration:.6});setFlee(g,u,TUNING.debuffFlee);u.cooldown=0;return;}
+if(s.group==='summon'){summonRandomMobs(g,u);setFlee(g,u,15);u.cooldown=0;return;}
+	if(s.group==='transform'){const t=g.near(u,1,1-u.side).find(v=>k==='zombie'?canZombieTarget(v):!v.card.mob);if(!t)return;if(k==='zombie')transformZombie(g,t,u);if(k==='convert'){abortWarpForUnit(g,t);t.side=u.side;t.path=null;t.target=null;t.battleId=null;t.state='moving';follow(g,t);}setFlee(g,u,TUNING.transformFlee);u.cooldown=0;return;}
+if(k==='execute'){const limit=r4?6:3;for(const t of g.near(u,1).filter(v=>g.hostile(u,v))){if((u.executeKills||0)>=limit)break;g.events.push({kind:'tileEmoji',x:t.x,y:t.y,text:'💀',duration:.75});g.hurt(t,Infinity,u);if(t.hp<=0)u.executeKills=(u.executeKills||0)+1;}setFlee(g,u,s.cooldown||10);u.cooldown=0;return;}
+if(k==='plantBomb'){object(g,u,'bomb',u.x,u.y,{expires:g.turn+TUNING.bombFuse,emoji:'💣'});u.nextBomb=g.turn+(r4?0:10);u.cooldown=0;setFlee(g,u,r4?1:10);u.mustFleeStep=r4;return;}
+if(k==='tornado'){const fy=u.side?1:-1,specs=[{x:u.x,y:u.y+fy,baseDx:0,baseDy:fy,frontCastle:true},{x:u.x-1,y:u.y,baseDx:-1,baseDy:0,frontCastle:false},{x:u.x+1,y:u.y,baseDx:1,baseDy:0,frontCastle:false}];for(const q of specs)object(g,u,'tornado',q.x,q.y,{baseDx:q.baseDx,baseDy:q.baseDy,frontCastle:q.frontCastle,damage,emoji:'🌪️'});setFlee(g,u,15);u.cooldown=0;return;}
+if(k==='mountain'){const reach=r4?7:4;for(const dx of [...Array(reach).keys()].flatMap(i=>[-(i+1),i+1])){const x=u.x+dx,y=u.y;if(x<0||x>24)continue;for(const t of [...g.occupants(x,y)]){if(t.hp<=0)continue;g.indexRemove(t);t.hp=0;onDeath(g,t,u);g.kills[1-t.side]++;}if(!g.objects.some(o=>o.key==='mountain'&&o.x===x&&o.y===y))object(g,u,'mountain',x,y,{expires:g.turn+TUNING.mountainLife,emoji:'⛰️'});}setFlee(g,u,s.cooldown||10);return;}
+if(k==='saturn'){const size=r4?11:9,fadeTurns=Math.max(1,Math.round(7500/config.base.turnMs));object(g,u,'saturn',u.x,u.y,{size,rarity:u.card.rarity,expires:g.turn+1,emoji:'🪐'});g.events.push({kind:'saturnBody',x:u.x,y:u.y,text:'🪐',duration:2.7});g.events.push({kind:'saturnDark',x:u.x,y:u.y,size,startTurn:g.turn,endTurn:g.turn+fadeTurns});return;}
+}
+export function followerAct(g,u){const owner=g.units.find(v=>v.uid===u.owner&&v.hp>0);if(!owner){u.hp=0;g.indexRemove(u);return;}if(u.born===g.turn)return;
+if(u.card.mob==='hand'){const dx=owner.facing?.x||0,dy=owner.facing?.y||(u.side?1:-1),hits=[],seen=new Set();for(let step=1;step<=2;step++){const x=u.x+dx*step,y=u.y+dy*step;if(x<0||x>24||y<1||y>24)continue;for(const t of g.occupants(x,y))if(g.hostile(u,t)&&!seen.has(t.uid)){seen.add(t.uid);hits.push({t,x,y});}}if(hits.length){g.events.push({kind:'handPunch',uid:u.uid,dx,dy,duration:.34});for(const h of hits){g.hurt(h.t,g.stats(owner).attack*1.5,u);g.events.push({kind:'sparkBurst',x:h.x,y:h.y,duration:.34});}}return;}
+// One forward-column pass: collect the same penetrating hits, and fire only when at least one valid enemy/fence exists.
+const dy=u.side?1:-1,hits=[];for(let y=u.y+dy;y>=1&&y<=24;y+=dy){for(const t of g.occupants(u.x,y))if(!t.owner&&g.hostile(u,t))hits.push({kind:'unit',target:t});const f=g.fences.get(y*25+u.x);if(f&&f.side!==u.side)hits.push({kind:'fence',target:f});}
+if(!hits.length)return;const laserDamage=g.stats(owner).attack*TUNING.laserDamage;for(const hit of hits)hit.kind==='unit'?g.hurt(hit.target,laserDamage,u):damageFence(g,hit.target,laserDamage);
+g.events.push({kind:'laser',from:{x:u.x,y:u.y},to:{x:u.x,y:u.side?25:0}});
+}
+export function turnSkills(g){updateWarpGroups(g);for(const u of [...g.units]){if(u.hp<=0)continue;if(u.selfDestructExplodeTurn&&g.turn>=u.selfDestructExplodeTurn){const n=u.card.rarity===4?10:5,source=g.units.find(v=>v.uid===u.selfDestructSource);u.selfDestructDone=true;blast(g,u,u,n,n,u.card.attack*TUNING.deathDamage);g.events.push({kind:'scorch',x:u.x,y:u.y,size:n,duration:5});if(g.mode==='test'&&u===g.testHero){u.hp=u.maxHP||u.card.hp;u.testVirtualHP=u.maxHP||u.card.hp;u.selfDestructStart=0;u.selfDestructExplodeTurn=0;u.selfDestructSource=0;u.selfDestructDone=false;u.state='moving';u.path=null;u.target=null;continue;}u.hp=0;g.indexRemove(u);onDeath(g,u,source);g.kills[1-u.side]++;continue;}if(u.bombAt&&g.turn>=u.bombAt){u.bombAt=null;blast(g,u,u);}if(u.hp<=0)continue;if(u.behaviorState==='fleeing'&&u.fleeUntil&&g.turn>=u.fleeUntil&&!u.mustFleeStep){u.behaviorState='normal';u.fleeUntil=0;u.path=null;}if(u.behaviorState==='fleeing'&&isHitAwaySkill(u.card.skill)&&u.hitAwayFleeStart!=null&&g.turn>u.hitAwayFleeStart&&(g.turn-u.hitAwayFleeStart)%Math.max(1,TUNING.hitAwaySweatInterval)===0)g.events.push({kind:'tileEmoji',x:u.x+.65,y:u.y,text:'💦',duration:.34});}
+for(const o of [...g.objects]){if(o.born===g.turn||o.remove)continue;
+if(o.key==='bomb'&&g.turn>=o.expires){o.remove=true;blast(g,o,o.source);}
+if(o.key==='saturn'&&g.turn>=o.expires){o.remove=true;for(const t of [...g.units])if(t.hp>0&&rectangle(t,o,o.size,o.size))g.hurt(t,Infinity,o.source);for(const mirror of [...g.objects])if(mirror.key==='mirror'&&rectangle(mirror,o,o.size,o.size))endWarpGroup(g,mirror.groupId,'saturn');if(o.rarity===4){for(const f of [...g.fences.values()])if(rectangle(f,o,o.size,o.size))damageFence(g,f,Infinity);for(const v of g.objects)if(v!==o&&v.key!=='saturn'&&rectangle(v,o,o.size,o.size))v.remove=true;}const enemyCastleSide=1-o.side,enemyCastleY=enemyCastleSide?0:25;if(rectangle({x:o.x,y:enemyCastleY},o,o.size,o.size))applyCastleDamage(g,{side:o.side},2400);}
+if(o.key==='line'){o.x+=o.dx*TUNING.lineStep;o.y+=o.dy*TUNING.lineStep;const hit=g.occupants(o.x,o.y).find(v=>g.hostile(o.source,v)&&(!v.card.mob||v.card.mob==='zombie'));if(hit){g.hurt(hit,o.damage,o.source);g.events.push({kind:'sparkBurst',x:o.x,y:o.y,duration:.34});o.remove=true;}if(o.x<0||o.x>24||o.y<1||o.y>24)o.remove=true;}
+if(o.key==='tornado'){const r=g.rng(),bx=o.baseDx||0,by=o.baseDy||0,left={dx:-by,dy:bx},right={dx:by,dy:-bx},back={dx:-bx,dy:-by},step=r<.70?{dx:bx,dy:by}:r<.82?left:r<.94?right:back;o.x+=step.dx;o.y+=step.dy;const forwardExit=o.frontCastle&&((o.side===0&&o.y<1)||(o.side===1&&o.y>24));if(forwardExit){applyCastleDamage(g,{side:o.side},200);o.remove=true;continue;}if(o.x<0||o.x>24||o.y<1||o.y>24){o.remove=true;continue;}const f=g.fences.get(o.y*25+o.x);if(f)damageFence(g,f,Infinity);for(const t of [...g.occupants(o.x,o.y)]){const amount=t.card?.mob==='zombie'||t.side!==o.side?o.damage:o.damage*.5;g.hurt(t,amount,o.source);}}
+if(o.expires&&g.turn>=o.expires)o.remove=true;
+}stepStars(g,damageFence);updateWarpGroups(g);const n=g.objects.length;g.objects=g.objects.filter(o=>!o.remove);if(n!==g.objects.length)g.fenceVersion++;
+}
+// Dedicated behavior has priority over role, but never over the player's command.
+export function skillDecision(g,u,movement,canEnter){const s=u.card.skill;if(g.commands[u.side])return null;
+if(s&&u.card.role==='defender'&&g.mode!=='test'){if(u.behaviorState==='fleeing'&&isHitAwaySkill(s)){let best=null,score=-Infinity;for(let dy=-1;dy<=1;dy++)for(let dx=-1;dx<=1;dx++){const q={x:u.x+dx,y:u.y+dy};if(!isHome({side:u.side,y:q.y})||!canEnter(g,u,q.x,q.y))continue;const enemies=g.homeIntruders[u.side],min=enemies.length?Math.min(...enemies.map(t=>distance(q,t))):20;if(min>score){score=min;best=q;}}return best?{type:'move',cell:best}:{type:'wait'};}return null;}
+const enemies=g.near(u,4).filter(v=>!v.owner&&g.hostile(u,v)),hitAway=isHitAwaySkill(s)&&s?.key!=='plantBomb';
+if(hitAway){if(u.behaviorState==='fleeing'){u.mustFleeStep=false;let best=null,bestScore=-Infinity;for(let dy=-1;dy<=1;dy++)for(let dx=-1;dx<=1;dx++){const q={x:u.x+dx,y:u.y+dy};if(!canEnter(g,u,q.x,q.y))continue;const min=enemies.length?Math.min(...enemies.map(t=>distance(q,t))):20,score=min*10+(u.side?25-q.y:q.y)*.2;if(score>bestScore){best=q;bestScore=score;}}if(best)return {type:'move',cell:best};return {type:'wait'};}if(g.canCast(u))return {type:'skill'};const target=enemies.slice().sort((a,b)=>distance(u,a)-distance(u,b)||a.uid-b.uid)[0];return target?movement(g,u,target,'aggressive',s?.group==='debuff'?Math.max(1,(s.radius??TUNING.debuffRadius)-1):1):{type:'wait'};}
+if(s?.behavior==='bomb'){if(g.turn<(u.nextBomb||0))return {type:'wait'};if(canCast(g,u))return {type:'skill'};const targets=g.attackTargets(u);if(targets.length)return {type:'attack',targets};const facilities=[...g.fences.values()].filter(f=>f.side!==u.side);facilities.push({x:u.x,y:u.side?25:0});facilities.sort((a,b)=>distance(u,a)-distance(u,b));return movement(g,u,facilities[0],'solo',1);}
+return null;
+}
+</script>
+<script type="text/plain" data-module="m8.js">
+import {config} from './m2.js';import {TUNING,DEBUFF_LABELS} from './m3.js';
+
+const DRAGON_SVG=`<svg class="dragon-svg" viewBox="0 0 64 64" aria-hidden="true"><path class="wing" d="M29 29C23 10 10 6 4 23c8-5 15-3 20 5L12 30c5 3 10 6 14 12z"/><path class="wing-membrane" d="M23 25C18 15 11 13 8 20c5-2 10 0 14 6z"/><path class="wing" d="M34 29C42 10 55 10 60 28c-8-5-15-3-21 5l13 1c-5 4-10 7-16 12z"/><path class="wing-membrane" d="M40 27c5-10 12-10 16-2-5-2-10 0-15 5z"/><path class="body" d="M18 39c2-10 10-17 21-16l7-5 10 4-7 5 5 6-10 1c-3 10-11 16-21 14-8-2-11-7-5-9z"/><path class="belly" d="M24 39c5-1 10-5 13-11 2 7 0 13-6 17-4 2-8 1-11-1z"/><path class="body" d="M22 44C13 48 10 54 5 55c8 2 16-1 23-7z"/><path class="horn" d="M47 20l2-7 3 7z"/><path class="horn" d="M52 21l5-5-1 7z"/><path class="claw" d="M27 47l-3 6 5-4 2 4 2-6z"/><path class="claw" d="M40 43l2 7 2-5 4 3-3-7z"/><circle class="eye" cx="49.5" cy="25.2" r="1.8"/><path d="M55 28l6 2-6 2z" fill="#8d1419"/></svg>`;
+export const escapeHTML=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+export function createField(field,onClick){const cells=[],actors=new Map(),particles=[];for(let y=0;y<=25;y++)for(let x=0;x<25;x++){const cell=document.createElement('button'),zone=y===0?'enemy-spawn':y===25?'ally-spawn':y<=8?'enemy-land':y<=16?'neutral-land':'home-land';cell.className='cell '+zone+([8,16].includes(y)?' boundary':'');cell.setAttribute('role','gridcell');cell.addEventListener('click',()=>onClick(x,y));field.append(cell);cells.push(cell);}const grass=document.createElement('div');grass.className='grass';grass.setAttribute('aria-hidden','true');for(let i=0;i<12;i++){const el=document.createElement('span');el.textContent=i%4?'🌱':'🌼';el.style.left=(i*83%92+3)+'%';el.style.top=(i*59%92+3)+'%';grass.append(el);}field.append(grass);const layer=document.createElement('div');layer.className='actors';field.append(layer);
+const objectLayer=document.createElement('div');objectLayer.className='object-layer';field.append(objectLayer);let objectKey='',renderTurn=0,renderGame=null;
+const terrain=document.createElement('div');terrain.className='terrain';field.append(terrain);let terrainKey='';
+function paintTerrain(g){const key=[g.fenceVersion,g.front[0],g.defense[0],g.battles.map(b=>b.id+':'+b.x+':'+b.y).join('/')].join('|');
+ if(key!==terrainKey){terrainKey=key;terrain.innerHTML=[...g.fences.values()].map(f=>'<span class="fence '+(f.side?'enemy-fence':'ally-fence')+'" style="left:'+f.x/25*100+'%;top:'+f.y/26*100+'%" title="'+(f.side?'敵':'味方')+'柵">╫</span>').join('')+'<div class="battle-line frontline" style="top:'+g.front[0]/26*100+'%"><span>前線 '+g.front[0]+'</span></div><div class="battle-line defense-line" style="top:'+(g.defense[0]+.5)/26*100+'%"><span>後衛 '+g.defense[0]+'</span></div>'+g.battles.map(b=>'<span class="battle-marker" style="left:'+(b.x+.5)/25*100+'%;top:'+(b.y+.5)/26*100+'%">⚔ '+b.id+'</span>').join('');}
+}
+function paintObjects(game){const ok=[game.warpVersion,...game.objects.filter(o=>!o.remove).map(o=>[o.id,o.x,o.y,o.connected,o.key==='bomb'?o.expires-game.turn:''].join(':'))].join('/');if(ok===objectKey)return;objectKey=ok;
+ const objects=game.objects.filter(o=>!o.remove).map(o=>{const remaining=o.expires-game.turn,blink=o.key==='bomb'&&remaining<=TUNING.bombBlinkTurns,period=Math.max(.12,.18*remaining);return '<span class="field-object '+(o.key==='saturn'?'saturn ':o.key==='mirror'?'mirror ':'')+(blink?'bomb-warning':'')+'" title="'+escapeHTML(o.key==='mirror'?'ワープゲート '+o.groupId+(o.connected?'（接続中）':'（建設中）'):o.key==='bomb'?'爆発まで '+Math.max(0,remaining)+'ターン':o.emoji)+'" style="left:'+((o.x+.5)/25*100)+'%;top:'+((o.y+.5)/26*100)+'%;'+(o.key==='saturn'?'font-size:calc(var(--field-unit) * '+o.size+');':'')+(blink?'--bomb-period:'+period+'s;':'')+'">'+escapeHTML(o.emoji)+'</span>';});
+ for(const group of game.warpGroups?.values()||[])if(group.status==='building')for(const [p,label] of [[group.mirrors.length?null:group.homeSite,'第1鏡'],[group.neutralSite,'第2鏡']])if(p)objects.push('<span class="gate-site" title="'+label+' 設置予定（グループ '+group.id+'）" style="left:'+((p.x+.5)/25*100)+'%;top:'+((p.y+.5)/26*100)+'%"></span>');
+ objectLayer.innerHTML=objects.join('');
+}
+function paint(game){renderGame=game;renderTurn=game.turn;field.style.setProperty('--field-unit',(field.clientWidth/25)+'px');paintTerrain(game);paintObjects(game);const alive=new Set();for(const u of game.units){if(u.hp<=0)continue;alive.add(u.uid);let el=actors.get(u.uid);if(!el){el=document.createElement('div');el.className='actor';el.innerHTML='<div class="unit"><span class="face"></span><span class="weapon"></span><i class="life"></i><span class="debuff-tags"></span></div>';layer.append(el);actors.set(u.uid,el);}const giant=game.isGiant(u),dragon=u.card.mob==='dragon',charging=!!u.selfDestructExplodeTurn,followerCompanion=u.card.mob==='eye'||u.card.mob==='hand',followerOwner=u.card.skill?.key==='eyes'||u.card.skill?.key==='hands';el.classList.toggle('giant-actor',giant);el.classList.toggle('dragon-actor',dragon);el.classList.toggle('selfdestruct-charge',charging);el.classList.toggle('follower-companion',followerCompanion);el.classList.toggle('follower-owner',followerOwner);el.classList.toggle('hand-right',u.card.mob==='hand'&&u.offset>0);el.style.left=(dragon?u.x:giant?(u.x-1):u.x)/25*100+'%';el.style.top=(giant?(u.y-1):u.y)/26*100+'%';el.style.setProperty('--jitter',(giant||dragon||charging)?'0px':((u.uid*7)%3-1)+'px');el.style.setProperty('--delay',(-u.uid%8)*.17+'s');const body=el.querySelector('.unit'),chargeStage=charging?Math.max(0,game.turn-(u.selfDestructStart||game.turn)):0,chargeScale=charging?(chargeStage>=2?1.8:chargeStage>=1?1.45:1.15):1;body.style.setProperty('--base-size','1.3');body.style.setProperty('--rarity-size',u.card.rarity>=3?'1.2':'1');body.style.setProperty('--charge-size',chargeScale);body.className='unit '+(u.card.mob==='zombie'?'zombie-unit ':(u.side?'enemy ':'ally '))+(u.card.rarity===4?'legendary ':'')+(giant?'giant ':'')+(dragon?'dragon-unit ':'')+(u.card.mob?'mob ':'');const face=body.querySelector('.face');face.textContent=charging?'😡':u.card.icon;body.querySelector('.weapon').textContent=u.bombAt?'💣':u.card.badge||'';const life=body.querySelector('.life');life.style.width=Math.max(0,u.hp/(u.maxHP||u.card.hp)*100)+'%';life.style.display=followerCompanion?'none':'';const tags=body.querySelector('.debuff-tags');tags.textContent=Object.keys(u.debuffs||{}).map(k=>DEBUFF_LABELS[k]||'').join(' ');tags.title=tags.textContent;}
+for(const [uid,el]of actors)if(!alive.has(uid)){el.classList.add('vanish');actors.delete(uid);setTimeout(()=>el.remove(),300);}for(let i=0;i<cells.length;i++){const x=i%25,y=Math.floor(i/25),u=game.at(x,y),f=game.fences.get(y*25+x),rowLabel=y===0?'敵召喚0行':y===25?'味方召喚25行':y+'行';cells[i].title=f?'柵 HP '+Math.ceil(f.hp)+' / '+f.maxHP:'';cells[i].setAttribute('aria-label',u?(u.side?'敵 ':'味方 ')+u.card.name+'、体力'+Math.ceil(u.hp):rowLabel+(x+1)+'列 '+(f?'柵 HP '+Math.ceil(f.hp):'空きマス'));cells[i].tabIndex=game.phase==='paused'&&u?0:-1;cells[i].style.pointerEvents=game.phase==='paused'?'auto':'none';}}
+function addParticle(event,delay=0){if(particles.length>=Math.max(config.base.maxEffects,120)){particles.shift()?.el.remove();}const projectile=event.kind==='projectile',laser=event.kind==='laser',tile=event.kind==='tileEmoji',dark=event.kind==='saturnDark',saturn=event.kind==='saturnBody',spark=event.kind==='sparkBurst',scorch=event.kind==='scorch',summon=event.kind==='summonSparkle',el=document.createElement((spark||scorch)?'div':'span');el.className=dark?'saturn-dark':saturn?'saturn-body':spark?'spark-burst':scorch?'scorch-mark':summon?'summon-sparkle':tile?'tile-emoji':laser?'laser-beam':projectile?'projectile':'effect '+event.kind;if(event.mirror)el.classList.add('fx-mirror');if(spark){for(let i=0;i<8;i++)el.append(document.createElement('i'));}else el.textContent=(laser||dark||scorch||event.kind==='debuffAura')?'':event.text;field.append(el);el.style.opacity='0';particles.push({el,event,life:-delay,duration:event.duration||(laser?.32:projectile?.24:tile?.48:.8)});}
+function events(game){renderGame=game;renderTurn=game.turn;for(const act of game.actions){const el=actors.get(act.uid);if(el&&['attack','castle'].includes(act.type)){el.classList.remove('lunge');void el.offsetWidth;el.classList.add('lunge');}}const destinations=new Set(game.events.filter(e=>e.kind==='projectile').map(e=>e.to.x+','+e.to.y));for(const event of game.events.slice(-Math.max(config.base.maxEffects,120))){if(event.kind==='handPunch'){const el=actors.get(event.uid);if(el){el.style.setProperty('--punch-tx',(event.dx*200)+'%');el.style.setProperty('--punch-ty',(event.dy*200)+'%');el.classList.remove('hand-punch');void el.offsetWidth;el.classList.add('hand-punch');setTimeout(()=>el.classList.remove('hand-punch'),360);}continue;}addParticle(event,event.kind==='hit'&&destinations.has(event.x+','+event.y)?.24:0);if(event.kind==='hit'&&event.uid){const el=actors.get(event.uid);if(el){el.classList.remove('shake');void el.offsetWidth;el.classList.add('shake');}}}game.events=[];game.actions=[];}
+function animate(dt){for(let i=particles.length-1;i>=0;i--){const p=particles[i];p.life+=dt;if(p.life<0)continue;p.el.style.opacity='1';if(p.event.kind==='saturnDark'){const span=Math.max(1,p.event.endTurn-p.event.startTurn),t=Math.max(0,Math.min(1,Math.max((renderTurn-p.event.startTurn)/span,renderGame?.phase==='ended'?p.life/(span*config.base.turnMs/1000):0)));if(t>=1){p.el.remove();particles.splice(i,1);continue;}const size=p.event.size,left=p.event.x-Math.floor((size-1)/2),top=p.event.y-Math.floor((size-1)/2);p.el.style.left=left/25*100+'%';p.el.style.top=top/26*100+'%';p.el.style.width=size/25*100+'%';p.el.style.height=size/26*100+'%';p.el.style.opacity=String(.96*Math.pow(1-t,1.35));p.el.style.filter='blur('+(1.2+t*2.2)+'px)';continue;}const t=p.life/p.duration;if(t>=1){p.el.remove();particles.splice(i,1);continue;}if(p.event.kind==='sweat'){const u=renderGame?.units.find(v=>v.uid===p.event.uid&&v.hp>0);if(!u||u.behaviorState!=='fleeing'||u.bombAvoiding||renderGame.commands[u.side]||renderGame.mode==='test'){p.el.remove();particles.splice(i,1);continue;}p.el.style.left=(u.x+1.4)/25*100+'%';p.el.style.top=(u.y+.35)/26*100+'%';p.el.style.transform='translate(-50%,-50%)';p.el.style.opacity=String(1-t);}
+ else if(p.event.kind==='debuffAura'){p.el.style.left=(p.event.x+.5)/25*100+'%';p.el.style.top=(p.event.y+.5)/26*100+'%';p.el.style.width=p.event.radius*2/25*100+'%';p.el.style.height=p.event.radius*2/26*100+'%';p.el.style.transform='translate(-50%,-50%)';p.el.style.opacity=String(1-t);}
+ else if(p.event.kind==='scorch'){const size=p.event.size,left=p.event.x+.5-size/2,top=p.event.y-.5-size/2;p.el.style.left=left/25*100+'%';p.el.style.top=(top+1)/26*100+'%';p.el.style.width=size/25*100+'%';p.el.style.height=size/26*100+'%';p.el.style.opacity=String(.88*Math.pow(1-t,1.45));p.el.style.transform='rotate('+(Math.sin((p.event.x+1)*(p.event.y+2))*3)+'deg) scale('+(1-.04*t)+')';}else if(p.event.kind==='summonSparkle'){p.el.style.left=(p.event.x+p.event.dx*t)/25*100+'%';p.el.style.top=(p.event.y+p.event.dy*t+1)/26*100+'%';p.el.style.opacity=String(Math.min(1,(1-t)*1.8));p.el.style.transform='translate(-50%,-50%) scale('+(1+.35*Math.sin(t*Math.PI))+')';}else if(p.event.kind==='laser'){const {from,to}=p.event,dx=to.x-from.x,dy=to.y-from.y,len=Math.hypot(dx,dy);p.el.style.left=(from.x+.5)/25*100+'%';p.el.style.top=(from.y+.5)/26*100+'%';p.el.style.height=len/26*100+'%';p.el.style.opacity=String(1-t);p.el.style.transform='translateX(-50%) rotate('+Math.atan2(dy,dx)*180/Math.PI+'deg) rotate(-90deg)';}else if(p.event.kind==='saturnBody'){const wobble=Math.sin(t*Math.PI*6)*6,scale=1+.22*Math.sin(Math.min(1,t*1.35)*Math.PI);p.el.style.left=(p.event.x+.5)/25*100+'%';p.el.style.top=(p.event.y+.5)/26*100+'%';p.el.style.opacity=String(t<.72?1:Math.max(0,(1-t)/.28));p.el.style.transform='translate(-50%,-50%) rotate('+wobble+'deg) scale('+scale+')';}else if(p.event.kind==='sparkBurst'){p.el.style.left=(p.event.x+.5)/25*100+'%';p.el.style.top=(p.event.y+.5)/26*100+'%';p.el.style.opacity=String(1-t);const radius=(field.clientWidth/25)*(.25+1.15*t);[...p.el.children].forEach((dot,j)=>{const a=j/8*Math.PI*2+(j%2?.16:-.08),r=radius*(.72+(j%3)*.14);dot.style.transform='translate('+(Math.cos(a)*r)+'px,'+(Math.sin(a)*r)+'px) scale('+(1-.55*t)+')';});}else if(p.event.kind==='projectile'){const {from,to}=p.event,dx=to.x-from.x,dy=to.y-from.y,steps=Math.max(1,Math.max(Math.abs(dx),Math.abs(dy))),progress=p.event.stepped?Math.min(1,Math.ceil(t*steps)/steps):t;p.el.style.left=(from.x+dx*progress+.5)/25*100+'%';p.el.style.top=(from.y+dy*progress+.5)/26*100+'%';p.el.style.transform='translate(-50%,-50%) rotate('+(p.event.fixedRotation??(Math.atan2(dy,dx)*180/Math.PI))+'deg)';}else if(p.event.kind==='tileEmoji'){p.el.style.left=(p.event.x+.5)/25*100+'%';p.el.style.top=(p.event.y+.5)/26*100+'%';p.el.style.transform='translate(-50%,-50%) scale('+(1+.15*Math.sin(t*Math.PI))+')';p.el.style.opacity=String(Math.min(1,(1-t)*1.7));}else{p.el.style.left=(p.event.x+.5)/25*100+'%';p.el.style.top=(p.event.y+.5)/26*100+'%';p.el.style.transform='translate(-50%,calc(-50% - '+(t*15)+'px))';p.el.style.opacity=1-t;}}}
+return {paint,events,animate,reset(){renderGame=null;terrainKey='';objectKey='';objectLayer.replaceChildren();actors.clear();layer.replaceChildren();particles.splice(0).forEach(p=>p.el.remove());}};}
+</script>
+<script type="text/plain" data-module="m9.js">
+import {skillDescription} from './m10.js';
+import {config,applyConfig,freshDefaults,expectedCost} from './m2.js';
+import {draw,healthRating,costFor} from './m4.js';
+import {TYPES,ROLE_NAMES} from './m3.js';
+import {escapeHTML as esc} from './m8.js';
+const LABEL={rangeMin:'射程 最小',rangeMax:'射程 最大',castleHP:'城の耐久',initialPoints:'初期ポイント',pointsPerSecond:'初期ポイント / 秒',pointsGrowthTurns:'ポイント増加間隔（ターン）',pointsGrowthAmount:'1回のポイント増加量 / 秒',pointsMaxPerSecond:'最大ポイント / 秒',turnMs:'1ターンの時間（ms）',homeAttack:'自陣 攻撃倍率',homeInitiative:'自陣 素早さ倍率',homeSkill:'自陣 味方スキル倍率',homeExecute:'自陣 即撃破成功率倍率',homeConvert:'自陣 味方化成功率倍率',defenseRadius:'近隣防衛の反応距離',areaDepth:'範囲攻撃 前方距離',areaWidth:'範囲攻撃 左右幅',maxEffects:'同時エフェクト数',attack:'攻撃',initiative:'素早さ',skill:'味方スキル',range:'射程・発動距離',radius:'効果範囲',duration:'持続ターン',cooldown:'再使用ターン',chance:'発動率（0〜1）',amount:'効果量・倍率',count:'召喚数',turns:'継続召喚ターン',hp:'体力'};
+const FIXED=new Set(['costMin','costMax','attackMin','attackMax','hpMin','hpMax','hpMultiplier','initiativeMin','initiativeMax']);
+const INTS=new Set(['rangeMin','rangeMax','castleHP','initialPoints','pointsGrowthTurns','turnMs','defenseRadius','areaDepth','areaWidth','maxEffects','range','radius','duration','cooldown','count','turns','hp']);
+function field(path,key,value){const step=INTS.has(key)?1:.01,min=key==='amount'?-5:0,max=key==='chance'?1:100000;return '<label>'+esc(LABEL[key]||key)+'<input type="number" data-path="'+path+'" value="'+value+'" step="'+step+'" min="'+min+'" max="'+max+'" required></label>';}
+function table(headers,rows){return '<table><thead><tr>'+headers.map(h=>'<th>'+esc(h)+'</th>').join('')+'</tr></thead><tbody>'+rows.map(row=>'<tr>'+row.map(v=>'<td>'+esc(v)+'</td>').join('')+'</tr>').join('')+'</tbody></table>';}
+export function setupEditor({newGame,pause,toast}){const $=id=>document.getElementById(id);let draft=structuredClone(config);
+function skillFields(){const index=+$('skillChoice').value,s=draft.skills[index];$('skillEditor').innerHTML='<p>'+esc(s.name)+'：'+esc(skillDescription(s,3))+'<br>レア4：'+esc(skillDescription(s,4))+'</p>'+s.effects.map((e,i)=>'<div class="form-grid">'+['count','amount'].map(k=>field('skills.'+index+'.effects.'+i+'.'+k,k,e[k])).join('')+'</div>').join('');}
+function mobFields(){const key=$('mobChoice').value,m=draft.mobs[key];$('mobEditor').innerHTML='<div class="form-grid">'+['attack','hp','initiative','range','areaDepth'].map(k=>field('mobs.'+key+'.'+k,k,m[k])).join('')+'<label>攻撃タイプ<select data-path="mobs.'+key+'.type">'+Object.entries(TYPES).map(([k,n])=>'<option value="'+k+'" '+(m.type===k?'selected':'')+'>'+n+'</option>').join('')+'</select></label></div><p>召喚数はスキル数値で変更できます。</p>';}
+function render(){
+ $('skillProbEditor').innerHTML=[['skillChance','スキル持ち出現率'],['rare4Chance','スキル持ちのうちレア4になる確率']].map(([key,label])=>'<label>'+label+'（%）<input type="number" data-prob="'+key+'" value="'+(draft[key]*100).toFixed(4)+'" min="0" max="100" step="any" required></label>').join('');
+ $('baseEditor').innerHTML=Object.entries(draft.base).filter(([k])=>!FIXED.has(k)).map(([k,v])=>field('base.'+k,k,v)).join('');
+ $('crisisEditor').innerHTML=draft.crisis.map((b,i)=>'<fieldset><legend>耐久'+b.threshold*100+'%以下 · 平均'+b.units+'体分</legend><div class="form-grid">'+['attack','initiative','skill'].map(k=>field('crisis.'+i+'.'+k,k,b[k])).join('')+'</div></fieldset>').join('');
+ $('skillChoice').innerHTML=draft.skills.map((s,i)=>'<option value="'+i+'">'+esc(s.emoji+' '+s.name)+'</option>').join('');
+ $('mobChoice').innerHTML=Object.entries(draft.mobs).map(([k,m])=>'<option value="'+k+'">'+esc(m.icon+' '+m.name)+'</option>').join('');
+ skillFields();mobFields();
+}
+function capture(e){if(e.target.dataset.prob){draft[e.target.dataset.prob]=+e.target.value/100;return;}if(!e.target.dataset.path)return;const parts=e.target.dataset.path.split('.');let obj=draft;for(const p of parts.slice(0,-1))obj=obj[p];obj[parts.at(-1)]=e.target.type==='number'?+e.target.value:e.target.value;}
+$('settingsForm').addEventListener('input',capture);$('settingsForm').addEventListener('change',capture);$('skillChoice').onchange=skillFields;$('mobChoice').onchange=mobFields;
+$('editor').addEventListener('toggle',()=>{if($('editor').open){const first=$('settingsForm').querySelector('details');if(first)first.open=false;pause(true);}});
+$('defaults').onclick=()=>{draft=freshDefaults();render();toast('初期設定を読み込みました。反映ボタンで適用します');};
+$('settingsForm').onsubmit=e=>{e.preventDefault();try{applyConfig(draft);$('settingsError').textContent='';$('batchResult').replaceChildren();newGame();toast('設定を反映して新しい戦闘を開始しました');}catch(err){$('settingsError').textContent=err.message;}};
+$('batchRun').onclick=async()=>{const n=+$('batchSize').value;$('batchRun').disabled=true;const cards=[];try{
+ for(let i=0;i<n;i++){cards.push(draw());if(i%200===0){$('batchProgress').textContent=i+' / '+n;await new Promise(r=>setTimeout(r,0));}}
+ const count=fn=>{const out={};for(const c of cards){const key=fn(c);if(key!==null)out[key]=(out[key]||0)+1;}return out;},pct=v=>(v/n*100).toFixed(2)+'%';
+ const rarity=count(c=>c.rarity),roles=count(c=>c.skill?null:c.role),skillRoles=count(c=>c.skill?c.role:null),skills=count(c=>c.skill?.key??null),types=count(c=>c.type),skillCount=cards.filter(c=>c.skill).length;
+ let html='<p>スキル持ち '+skillCount+'体（'+pct(skillCount)+'）／レア4 '+(rarity[4]||0)+'体（'+pct(rarity[4]||0)+'）<br>コスト平均：'+(cards.reduce((s,c)=>s+c.cost,0)/n).toFixed(2)+'pt / 平均1体分の補充：約'+(expectedCost()/config.base.pointsPerSecond).toFixed(1)+'秒</p>';
+ html+=table(['能力','平均','最小','最大'],['cost','attack','hp','initiative'].map(k=>{const values=cards.map(c=>c[k]);return [k==='cost'?'コスト':LABEL[k],(values.reduce((a,b)=>a+b,0)/n).toFixed(2),Math.min(...values),Math.max(...values)];}));
+ html+=table(['レア度','人数','割合'],[1,2,3,4].map(r=>['R'+r,rarity[r]||0,pct(rarity[r]||0)]));
+ html+=table(['通常キャラの役割','人数','全体比'],Object.entries(ROLE_NAMES).map(([k,name])=>[name,roles[k]||0,pct(roles[k]||0)]));
+ html+=table(['スキル持ちの役割','人数','全体比'],Object.entries(ROLE_NAMES).filter(([k])=>['normal','defender'].includes(k)).map(([k,name])=>[name,skillRoles[k]||0,pct(skillRoles[k]||0)]));
+ html+=table(['攻撃','人数','割合'],Object.entries(TYPES).map(([k,v])=>[v,types[k]||0,pct(types[k]||0)]));
+ html+=table(['スキル','人数','全体比'],config.skills.map(s=>[s.name,skills[s.key]||0,pct(skills[s.key]||0)]));
+ let invalid=0,highWeak=0;for(const c of cards){if(c.cost!==costFor(c.attack,c.hp,c.initiative)||healthRating(c.hp)<1||healthRating(c.hp)>10)invalid++;if(c.cost>=7&&c.attack<=3&&c.hp<=22&&c.initiative<=3)highWeak++;}
+ html+='<p>コスト計算の不整合 '+invalid+'体／コスト7以上かつ3能力が低いキャラ '+highWeak+'体</p>';
+ $('batchResult').innerHTML=html;$('batchProgress').textContent=n.toLocaleString()+'体 完了';
+}catch(err){$('batchResult').textContent=err.message;}finally{$('batchRun').disabled=false;}};render();}
+</script>
+<script type="text/plain" data-module="m11.js">
+// Shared objects, warp-gate lifecycle and gate travel. No alternative battle engine.
+import {TUNING} from './m3.js';
+import {distance} from './m5.js';
+export function object(g,u,key,x=u.x,y=u.y,extra={}){if(g.objects.filter(o=>!o.remove).length>=TUNING.objectCap)return null;const o={id:++g.objectSerial,key,x,y,side:u.side,source:u,born:g.turn,...extra};g.objects.push(o);g.fenceVersion++;return o;}
+export function bombRisk(g,u,x=u.x,y=u.y,margin=0){let count=0,depth=0;const cells=g.footprint(u,x,y);for(const b of g.objects){if(b.key!=='bomb'||b.remove)continue;const r=(b.radius??TUNING.bombRadius)+margin,d=Math.min(...cells.map(p=>Math.hypot(p.x-b.x,p.y-b.y)));if(d<=r){count++;depth+=r-d+.01;}}return {count,depth};}
+export const isGateBuilder=u=>!!u?.warpDuty&&!u.warpDone;
+function siteOpen(g,p){return p&&!g.fences.has(p.y*25+p.x)&&!g.objects.some(o=>!o.remove&&((o.key==='mountain'||o.key==='mirror')&&o.x===p.x&&o.y===p.y));}
+function chooseSite(g,side,home){const [a,b]=home?TUNING.warpHomeRows[side]:TUNING.warpNeutralRows,spots=[];for(let y=a;y<=b;y++)for(let x=0;x<25;x++){const p={x,y};if(g.free(x,y)&&siteOpen(g,p)&&!g.objects.some(o=>o.key==='bomb'&&!o.remove&&Math.hypot(o.x-x,o.y-y)<=(o.radius??TUNING.bombRadius)+TUNING.bombAvoidMargin))spots.push(p);}return spots.length?spots[Math.floor(g.rng()*spots.length)]:null;}
+export function initWarpGroup(g,units){if(units.length!==3||units.some(u=>!u))return null;g.warpGroups??=new Map();const ordered=units.slice().sort((a,b)=>a.x-b.x||a.uid-b.uid),home=ordered[1],pair=[ordered[0],ordered[2]],id=++g.warpSerial,group={id,side:home.side,homeUid:home.uid,pairUids:pair.map(u=>u.uid),homeSite:chooseSite(g,home.side,true),neutralSite:chooseSite(g,home.side,false),status:'building',mirrors:[],completedTurn:null,expires:null};g.warpGroups.set(id,group);for(const u of units){u.warpGroupId=id;u.warpDuty=u===home?'home':'neutral';u.warpDone=false;u.path=null;}g.warpVersion++;return group;}
+function release(g,group){for(const u of g.units)if(u.warpGroupId===group.id){u.warpDone=true;u.warpDuty=null;u.path=null;u.target=null;u.state='moving';}}
+export function endWarpGroup(g,id,reason='終了'){const group=g.warpGroups?.get(id);if(!group)return;group.status='ended';for(const o of g.objects)if(o.key==='mirror'&&o.groupId===id)o.remove=true;g.objects=g.objects.filter(o=>!o.remove);release(g,group);g.warpGroups.delete(id);g.warpVersion++;g.fenceVersion++;if(reason==='建設中止')g.log('ワープゲートの建設を中止');}
+export function abortWarpForUnit(g,u){const group=g.warpGroups?.get(u.warpGroupId);if(group?.status==='building'&&(group.pairUids.includes(u.uid)||group.homeUid===u.uid&&!group.mirrors.length))endWarpGroup(g,group.id,'建設中止');}
+function aliveBuilder(g,group,id){return g.units.find(u=>u.uid===id&&u.hp>0&&u.side===group.side&&u.card.skill?.key==='warpGate');}
+export function updateWarpGroups(g){for(const group of [...(g.warpGroups?.values()||[])]){
+ if(group.status==='complete'){const mirrors=g.objects.filter(o=>o.key==='mirror'&&o.groupId===group.id&&!o.remove);if(g.turn>=group.expires||mirrors.length!==2)endWarpGroup(g,group.id);continue;}
+ const home=aliveBuilder(g,group,group.homeUid),pair=group.pairUids.map(id=>aliveBuilder(g,group,id));
+ if(pair.some(u=>!u)||(!group.mirrors.length&&!home)){endWarpGroup(g,group.id,'建設中止');continue;}
+ // Commands suspend construction; deaths are still handled immediately above.
+ if(g.commands[group.side])continue;
+ if(!group.homeSite&&!group.mirrors.length)group.homeSite=chooseSite(g,group.side,true);
+ if(!group.neutralSite)group.neutralSite=chooseSite(g,group.side,false);
+ if(!group.mirrors.length&&home&&group.homeSite&&distance(home,group.homeSite)===0&&siteOpen(g,group.homeSite)){
+  const mirror=object(g,home,'mirror',home.x,home.y,{emoji:'🪞',groupId:group.id,connected:false});
+  if(mirror){group.mirrors.push(mirror.id);home.warpDone=true;home.warpDuty=null;home.path=null;home.state='moving';g.warpVersion++;}
+ }
+ const site=group.neutralSite;
+ if(group.mirrors.length===1&&site&&siteOpen(g,site)&&pair.every(u=>distance(u,site)<=1)&&pair.some(u=>distance(u,site)===0)&&g.occupants(site.x,site.y).every(u=>group.pairUids.includes(u.uid))){
+  const mirror=object(g,pair[0],'mirror',site.x,site.y,{emoji:'🪞',groupId:group.id,connected:true});if(!mirror)continue;
+  group.mirrors.push(mirror.id);group.status='complete';group.completedTurn=g.turn;group.expires=g.turn+TUNING.warpLife;
+  for(const o of g.objects)if(o.key==='mirror'&&o.groupId===group.id){o.connected=true;o.expires=group.expires;}
+  release(g,group);g.warpVersion++;g.log('ワープゲート完成！');
+ }
+}}
+export function gateDecision(g,u,movement){if(!isGateBuilder(u)||g.commands[u.side])return null;const group=g.warpGroups?.get(u.warpGroupId);if(!group){u.warpDone=true;u.warpDuty=null;return null;}
+ const home=u.warpDuty==='home',key=home?'homeSite':'neutralSite';let site=group[key];
+ if(!site||!siteOpen(g,site)||(u.stuck||0)>=TUNING.warpRerouteTurns){const replacement=chooseSite(g,u.side,home);if(replacement){group[key]=site=replacement;g.warpVersion++;for(const v of g.units)if(v.warpGroupId===group.id&&!v.warpDone){v.path=null;v.stuck=0;}}}
+ if(!site)return {type:'wait'};
+ const partnerAt=!home&&g.occupants(site.x,site.y).some(v=>v!==u&&group.pairUids.includes(v.uid));
+ const action=movement(g,u,site,'gateBuilder',partnerAt?1:0);if(action.type!=='wait')return action;
+ const attacks=g.attackTargets(u);if(attacks.length&&u.lastAttacked>=g.turn-1)return {type:'attack',targets:attacks};return action;
+}
+function exitCell(g,u,exit,goal,canEnter){const cells=[];for(let dy=-TUNING.warpExitRadius;dy<=TUNING.warpExitRadius;dy++)for(let dx=-TUNING.warpExitRadius;dx<=TUNING.warpExitRadius;dx++){const x=exit.x+dx,y=exit.y+dy;if(canEnter(g,u,x,y)&&g.occupants(x,y).every(v=>v.uid===u.uid)&&!bombRisk(g,u,x,y,TUNING.bombAvoidMargin).count)cells.push({x,y});}cells.sort((a,b)=>distance(a,exit)-distance(b,exit)||distance(a,goal)-distance(b,goal));return cells[0]||null;}
+// routeProbe is the same A* used for walking. Shortlist by distance, then compare
+// reachable walking paths; a gate never becomes an independent movement target.
+export function gateTravel(g,u,goal,range,routeProbe,canEnter){if(isGateBuilder(u)||u.owner||u.card.mob==='zombie'||g.footprintSize(u)!==1||u.warpLockUntil>g.turn)return null;
+ let best=null,direct=null;for(const group of g.warpGroups?.values()||[]){if(group.side!==u.side||group.status!=='complete'||g.turn>=group.expires)continue;const pair=group.mirrors.map(id=>g.objects.find(o=>o.id===id&&!o.remove));if(pair.some(o=>!o))continue;
+ for(let i=0;i<2;i++){const entry=pair[i],exit=pair[1-i];if(direct===null)direct=routeProbe(u,goal,range);const walking=direct?.reached?direct.cells.length:Infinity;if(distance(u,entry)+Math.max(0,distance(exit,goal)-range)+TUNING.warpMinSaving>=walking)continue;
+  const landing=exitCell(g,u,exit,goal,canEnter);if(!landing)continue;
+  const approach=routeProbe(u,entry,0),after=routeProbe({...u,x:landing.x,y:landing.y},goal,range);if(!approach?.reached||!after?.reached)continue;
+  const cost=approach.cells.length+1+after.cells.length;
+  if(cost+TUNING.warpMinSaving>=walking||best&&cost>=best.cost)continue;
+  best={cost,groupId:group.id,entryId:entry.id,landing,approach};
+ }}if(!best)return null;const warp={groupId:best.groupId,entryId:best.entryId,goal:{x:goal.x,y:goal.y}};return best.approach.cells.length?{type:'move',cell:best.approach.cells[0],warp}:{type:'warp',cell:best.landing,warp};
+}
+export function traverseGate(g,u,request,canEnter){if(!request||u.warpLockUntil>g.turn||g.footprintSize(u)!==1||u.owner||u.card.mob==='zombie')return false;const group=g.warpGroups?.get(request.groupId);if(!group||group.status!=='complete'||group.side!==u.side)return false;
+ const entry=g.objects.find(o=>o.id===request.entryId&&o.groupId===group.id&&!o.remove),exit=g.objects.find(o=>o.key==='mirror'&&o.groupId===group.id&&o.id!==request.entryId&&!o.remove);if(!entry||!exit||distance(u,entry)!==0)return false;
+ const landing=exitCell(g,u,exit,request.goal,canEnter);if(!landing)return false;const from={x:u.x,y:u.y};if(!g.moveTo(u,landing.x,landing.y))return false;u.path=null;u.warpLockUntil=g.turn+TUNING.warpLockTurns;u.lastWarpGroup=group.id;g.events.push({kind:'magic',...from,text:'🪞'},{kind:'magic',x:u.x,y:u.y,text:'✨'});return true;
+}
+</script>
+<script type="text/plain" data-module="m12.js">
+// 星の弾幕：中立地帯の巡回と既存オブジェクト機構での直進弾。
+import {config} from './m2.js';
+import {TUNING} from './m3.js';
+import {distance} from './m5.js';
+import {object} from './m11.js';
+export const starDamage=()=>Math.round(((config.base.hpMin+config.base.hpMax)/2)*config.base.hpMultiplier*TUNING.starDamageFactor);
+export function starDecision(g,u,movement,canEnter){if(u.card.skill?.key!=='starBarrage'||g.commands[u.side])return null;
+ const [min,max]=TUNING.starNeutralRows,row=TUNING.starPatrolRows[u.side];
+ if(u.y<min||u.y>max){return movement(g,u,{x:u.x,y:row},'starPatrol');}
+ if(u.starNextShot==null||g.turn>=u.starNextShot)return {type:'starShot'};
+ u.starPatrolDir??=u.uid%2?1:-1;
+ const score=q=>g.near(q,3).filter(v=>g.hostile(u,v)&&!v.owner).reduce((n,v)=>n+Math.max(0,4-distance(q,v)),0)+g.battles.reduce((n,b)=>n+(b.size>=6&&distance(q,b)<3?3:0),0);
+ const horizontal=[u.starPatrolDir,-u.starPatrolDir].map(dx=>({x:u.x+dx,y:u.y,dx})).filter(p=>canEnter(g,u,p.x,p.y));
+ if(horizontal.length){horizontal.sort((a,b)=>score(a)-score(b)||Number(a.dx!==u.starPatrolDir)-Number(b.dx!==u.starPatrolDir));const chosen=horizontal[0];u.starPatrolDir=chosen.dx;return {type:'move',cell:chosen};}
+ // Move within neutral rows to bypass a short obstacle, without chasing an enemy.
+ const around=[{x:u.x,y:u.y-1},{x:u.x,y:u.y+1}].filter(p=>p.y>=min&&p.y<=max&&canEnter(g,u,p.x,p.y)).sort((a,b)=>score(a)-score(b)||Math.abs(a.y-row)-Math.abs(b.y-row));
+ return around[0]?{type:'move',cell:around[0]}:{type:'wait'};
+}
+export function starShoot(g,u){const dy=u.side?1:-1,enemy=g.near(u,TUNING.starNearRange).filter(v=>!v.owner&&g.hostile(u,v)&&(u.side?v.y>=u.y:v.y<=u.y)).sort((a,b)=>g.unitDistance(u,a)-g.unitDistance(u,b)||a.uid-b.uid)[0];
+ const x=enemy?Math.max(0,Math.min(24,enemy.x)):u.x,star=object(g,u,'star',x,u.y,{emoji:'⭐',dy,damage:starDamage()});
+ if(!star)return false;
+ u.starNextShot=g.turn+TUNING.starInterval;
+ if(x!==u.x)g.events.push({kind:'projectile',from:{x:u.x,y:u.y},to:{x,y:u.y},text:'⭐',duration:.22});
+ return true;
+}
+export function stepStars(g,damageFence){for(const o of g.objects){if(o.key!=='star'||o.born===g.turn||o.remove)continue;
+ o.y+=o.dy;
+ if(o.y<1||o.y>24){o.remove=true;continue;}
+ const hit=g.occupants(o.x,o.y).find(u=>!u.owner&&(u.card.mob==='zombie'||u.side!==o.side));
+ if(hit){g.hurt(hit,o.damage,o.source);g.events.push({kind:'sparkBurst',x:o.x,y:o.y,duration:.34});o.remove=true;continue;}
+ const fence=g.fences.get(o.y*25+o.x);
+ if(fence&&fence.side!==o.side){damageFence(g,fence,o.damage);o.remove=true;}
+}}
+</script>
+<script type="text/plain" data-module="main.js">
+import "./m0.js";
+</script>
+<script type="module">
+// Standalone module loader. All source code above is editable; no network dependency.
+const sources=new Map([...document.querySelectorAll('[data-module]')].map(e=>[e.dataset.module,e.textContent]));
+const urls=new Map();
+function link(name){if(urls.has(name))return urls.get(name);const code=sources.get(name).replace(/(['"])\.\/(m\d+\.js)\1/g,(_,q,dep)=>q+link(dep)+q);const url=URL.createObjectURL(new Blob([code],{type:'text/javascript'}));urls.set(name,url);return url;}
+import(link('main.js')).catch(error=>{document.getElementById('toast').textContent='起動エラー: '+error.message;document.getElementById('toast').classList.add('show');console.error(error);});
+</script>
+</body></html>
